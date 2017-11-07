@@ -16,7 +16,7 @@ namespace MainComponent
             this.SetStyle(ControlStyles.UserPaint, true);
             this.Invalidate(true);
             this.Size = new Size(400, 180);
-            //this.MaximumSize = new Size(400,                                180);
+            //this.MaximumSize = new Size(400, 180);
             //this.MinimumSize = new Size(400, 180);
         }
 
