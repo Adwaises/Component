@@ -35,7 +35,7 @@
             // mainComp2
             // 
             this.mainComp2.ColorLine = System.Drawing.Color.Blue;
-            this.mainComp2.Location = new System.Drawing.Point(12, 12);
+            this.mainComp2.Location = new System.Drawing.Point(127, 72);
             this.mainComp2.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComp2.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComp2.Name = "mainComp2";
