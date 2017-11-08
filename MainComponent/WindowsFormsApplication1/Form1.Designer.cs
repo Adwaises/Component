@@ -60,7 +60,6 @@
 
         #endregion
 
-        private MainComponent.MainComp mainComp1;
         private MainComponent.MainComp mainComp2;
     }
 }
