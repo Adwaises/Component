@@ -28,39 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainComp2 = new MainComponent.MainComp();
-            ((System.ComponentModel.ISupportInitialize)(this.mainComp2)).BeginInit();
+            this.mainComp1 = new MainComponent.MainComp();
+            ((System.ComponentModel.ISupportInitialize)(this.mainComp1)).BeginInit();
             this.SuspendLayout();
             // 
-            // mainComp2
+            // mainComp1
             // 
-            this.mainComp2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.mainComp2.ColorLine = System.Drawing.Color.Blue;
-            this.mainComp2.InitialImage = null;
-            this.mainComp2.Location = new System.Drawing.Point(462, 238);
-            this.mainComp2.MaximumSize = new System.Drawing.Size(400, 180);
-            this.mainComp2.MinimumSize = new System.Drawing.Size(400, 180);
-            this.mainComp2.Name = "mainComp2";
-            this.mainComp2.Size = new System.Drawing.Size(400, 180);
-            this.mainComp2.TabIndex = 0;
-            this.mainComp2.TabStop = false;
+            this.mainComp1.ColorLine = System.Drawing.Color.Blue;
+            this.mainComp1.Location = new System.Drawing.Point(52, 68);
+            this.mainComp1.MaximumSize = new System.Drawing.Size(400, 180);
+            this.mainComp1.MinimumSize = new System.Drawing.Size(400, 180);
+            this.mainComp1.Name = "mainComp1";
+            this.mainComp1.Size = new System.Drawing.Size(400, 180);
+            this.mainComp1.TabIndex = 0;
+            this.mainComp1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 430);
-            this.Controls.Add(this.mainComp2);
+            this.Controls.Add(this.mainComp1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.mainComp2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainComp1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MainComponent.MainComp mainComp2;
+        private MainComponent.MainComp mainComp1;
     }
 }
 

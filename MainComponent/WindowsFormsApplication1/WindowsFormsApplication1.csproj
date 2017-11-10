@@ -85,6 +85,10 @@
       <Project>{222EF75F-96AE-4471-B901-375E68D737DD}</Project>
       <Name>MainComponent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PrimaryComponent\PrimaryComponent.csproj">
+      <Project>{BD812E40-532C-4520-B515-1C01A53ABD00}</Project>
+      <Name>PrimaryComponent</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
