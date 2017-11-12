@@ -94,6 +94,7 @@ namespace MainComponent
             this.primaryComponent1.Size = new Size(50, 100);
             this.primaryComponent1.TabIndex = 0;
             this.primaryComponent1.TabStop = false;
+
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
