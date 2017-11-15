@@ -15,7 +15,7 @@ namespace ChildComponent
         {
             //this.SetStyle(ControlStyles.UserPaint, true);
             //this.Invalidate(true);
-            this.Size = new Size(50, 100);
+            this.Size = new Size(50, 50);
             this.BackColor = Color.Red;
             //this.MaximumSize = new Size(400, 180);
             //this.MinimumSize = new Size(400, 180);

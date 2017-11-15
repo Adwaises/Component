@@ -55,47 +55,46 @@ namespace MainComp
 
         private void InitializeComponent()
         {
-            this.childComponent1 = new ChildComponent.ChildComponent();
             this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
+            this.childComponent1 = new ChildComponent.ChildComponent();
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // childComponent1
-            // 
-            this.childComponent1.BackColor = System.Drawing.Color.Red;
-            this.childComponent1.Location = new System.Drawing.Point(19, 14);
-            this.childComponent1.Name = "childComponent1";
-            this.childComponent1.Size = new System.Drawing.Size(50, 100);
-            this.childComponent1.TabIndex = 0;
-            this.childComponent1.TabStop = false;
             // 
             // primaryComponent1
             // 
             this.primaryComponent1.BackColor = System.Drawing.Color.DarkBlue;
-            this.primaryComponent1.Location = new System.Drawing.Point(327, 59);
+            this.primaryComponent1.Location = new System.Drawing.Point(330, 56);
             this.primaryComponent1.Name = "primaryComponent1";
             this.primaryComponent1.Size = new System.Drawing.Size(50, 100);
             this.primaryComponent1.TabIndex = 1;
             this.primaryComponent1.TabStop = false;
             // 
+            // childComponent1
+            // 
+            this.childComponent1.BackColor = System.Drawing.Color.Red;
+            this.childComponent1.Location = new System.Drawing.Point(38, 32);
+            this.childComponent1.Name = "childComponent1";
+            this.childComponent1.Size = new System.Drawing.Size(50, 50);
+            this.childComponent1.TabIndex = 2;
+            this.childComponent1.TabStop = false;
+            // 
             // MainComponent
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.primaryComponent1);
             this.Controls.Add(this.childComponent1);
+            this.Controls.Add(this.primaryComponent1);
             this.MaximumSize = new System.Drawing.Size(400, 180);
             this.MinimumSize = new System.Drawing.Size(400, 180);
             this.Name = "MainComponent";
             this.Size = new System.Drawing.Size(400, 180);
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
             this.ResumeLayout(false);
 
         }
-
-        public ChildComponent.ChildComponent childComponent1;
         public PrimaryComponent.PrimaryComponent primaryComponent1;
+        private ChildComponent.ChildComponent childComponent1;
     }
 }
 
