@@ -51,22 +51,6 @@ namespace MainComp
         }
 
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size MaximumSize
-        {
-            get { return new Size(400, 180); }
-            set { Size = new Size(400, 180); }
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size MinimumSize
-        {
-            get { return new Size(400, 180); }
-            set { Size = new Size(400, 180); }
-        }
-
 
 
 

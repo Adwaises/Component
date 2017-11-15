@@ -10,7 +10,21 @@ namespace MainComp
 {
     partial class MainComponent
     {
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MaximumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MinimumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
 
         /// <summary> 
         /// Требуется переменная конструктора.
@@ -50,7 +64,7 @@ namespace MainComp
             // childComponent1
             // 
             this.childComponent1.BackColor = System.Drawing.Color.Red;
-            this.childComponent1.Location = new System.Drawing.Point(37, 34);
+            this.childComponent1.Location = new System.Drawing.Point(19, 14);
             this.childComponent1.Name = "childComponent1";
             this.childComponent1.Size = new System.Drawing.Size(50, 100);
             this.childComponent1.TabIndex = 0;
@@ -59,7 +73,7 @@ namespace MainComp
             // primaryComponent1
             // 
             this.primaryComponent1.BackColor = System.Drawing.Color.DarkBlue;
-            this.primaryComponent1.Location = new System.Drawing.Point(323, 34);
+            this.primaryComponent1.Location = new System.Drawing.Point(327, 59);
             this.primaryComponent1.Name = "primaryComponent1";
             this.primaryComponent1.Size = new System.Drawing.Size(50, 100);
             this.primaryComponent1.TabIndex = 1;
@@ -80,8 +94,8 @@ namespace MainComp
 
         }
 
-        private ChildComponent.ChildComponent childComponent1;
-        private PrimaryComponent.PrimaryComponent primaryComponent1;
+        public ChildComponent.ChildComponent childComponent1;
+        public PrimaryComponent.PrimaryComponent primaryComponent1;
     }
 }
 
