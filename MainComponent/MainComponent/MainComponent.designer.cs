@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,7 @@ namespace MainComp
 {
     partial class MainComponent
     {
+
 
         /// <summary> 
         /// Требуется переменная конструктора.
@@ -36,45 +39,49 @@ namespace MainComp
 
 
 
-        public PrimaryComponent.PrimaryComponent primaryComponent1;
-        public ChildComponent.ChildComponent childComponent1;
-
         private void InitializeComponent()
         {
-            this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
             this.childComponent1 = new ChildComponent.ChildComponent();
-            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
+            this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // primaryComponent1
-            // 
-            this.primaryComponent1.BackColor = System.Drawing.Color.DarkBlue;
-            this.primaryComponent1.Location = new System.Drawing.Point(10, 10);
-            this.primaryComponent1.Name = "primaryComponent1";
-            this.primaryComponent1.Size = new System.Drawing.Size(50, 100);
-            this.primaryComponent1.TabIndex = 0;
-            this.primaryComponent1.TabStop = false;
             // 
             // childComponent1
             // 
-            this.childComponent1.BackColor = System.Drawing.Color.DarkBlue;
-            this.childComponent1.Location = new System.Drawing.Point(100, 100);
+            this.childComponent1.BackColor = System.Drawing.Color.Red;
+            this.childComponent1.Location = new System.Drawing.Point(37, 34);
             this.childComponent1.Name = "childComponent1";
             this.childComponent1.Size = new System.Drawing.Size(50, 100);
             this.childComponent1.TabIndex = 0;
             this.childComponent1.TabStop = false;
             // 
+            // primaryComponent1
+            // 
+            this.primaryComponent1.BackColor = System.Drawing.Color.DarkBlue;
+            this.primaryComponent1.Location = new System.Drawing.Point(323, 34);
+            this.primaryComponent1.Name = "primaryComponent1";
+            this.primaryComponent1.Size = new System.Drawing.Size(50, 100);
+            this.primaryComponent1.TabIndex = 1;
+            this.primaryComponent1.TabStop = false;
+            // 
             // MainComponent
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
+            this.Controls.Add(this.primaryComponent1);
+            this.Controls.Add(this.childComponent1);
+            this.MaximumSize = new System.Drawing.Size(400, 180);
+            this.MinimumSize = new System.Drawing.Size(400, 180);
+            this.Name = "MainComponent";
+            this.Size = new System.Drawing.Size(400, 180);
             ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
             this.ResumeLayout(false);
 
         }
+
+        private ChildComponent.ChildComponent childComponent1;
+        private PrimaryComponent.PrimaryComponent primaryComponent1;
     }
 }
 

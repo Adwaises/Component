@@ -10,30 +10,20 @@ using System.Windows.Forms;
 
 namespace MainComp
 {
-    public partial class MainComponent : PictureBox
+    public partial class MainComponent : UserControl
     {
         //private PrimaryComponent primaryComp;
+
+        private PictureBox pictureBox = null;
+
         public MainComponent()
         {
             InitializeComponent();
-            this.SetStyle(ControlStyles.UserPaint, true);
-            this.Invalidate(true);
-            this.Size = new Size(400, 180);
-            //this.MaximumSize = new Size(400, 180);
-            //this.MinimumSize = new Size(400, 180);
+            pictureBox = new PictureBox();
+            //this.SetStyle(ControlStyles.UserPaint, true);
+            pictureBox.Invalidate(true);
+            pictureBox.Size = new Size(400, 180);
 
-
-            //primaryComp = new ListBox();
-            ////имя
-            //primaryComp.Name = "MyListBox";
-            ////ширина
-            //primaryComp.Width = 50;
-            ////высота
-            //primaryComp.Height = 100;
-            ////координаты расположения контрола на форме
-            //primaryComp.Location = new Point(10, 20);
-
-            //this.Controls.Add(primaryComp);
         }
 
 
@@ -56,28 +46,29 @@ namespace MainComp
         protected override void OnPaint(PaintEventArgs e)
         {
             Pen pen = new Pen(col1, 3);
-            e.Graphics.DrawRectangle(pen, 1, 1, Width-3, Height-3);
+            e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
             base.OnPaint(e);
         }
+
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override Size MaximumSize
         {
             get { return new Size(400, 180); }
-            set { base.Size = new Size(400,180); }
+            set { Size = new Size(400, 180); }
         }
+
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override Size MinimumSize
         {
             get { return new Size(400, 180); }
-            set { base.Size = new Size(400, 180); }
+            set { Size = new Size(400, 180); }
         }
 
-       
 
-     
+
 
         //[Browsable(false)]
         //[EditorBrowsable(EditorBrowsableState.Never)]

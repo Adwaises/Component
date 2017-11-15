@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.mainComponent1 = new MainComp.MainComponent();
-            ((System.ComponentModel.ISupportInitialize)(this.mainComponent1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainComponent1
             // 
-            this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
+            this.mainComponent1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.mainComponent1.ColorLine = System.Drawing.Color.Orchid;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
@@ -51,7 +51,6 @@
             this.Controls.Add(this.mainComponent1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.mainComponent1)).EndInit();
             this.ResumeLayout(false);
 
         }
