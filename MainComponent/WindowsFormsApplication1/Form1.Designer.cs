@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainComp1 = new MainComponent.MainComp();
-            ((System.ComponentModel.ISupportInitialize)(this.mainComp1)).BeginInit();
+            this.mainComponent1 = new MainComp.MainComponent();
+            ((System.ComponentModel.ISupportInitialize)(this.mainComponent1)).BeginInit();
             this.SuspendLayout();
             // 
-            // mainComp1
+            // mainComponent1
             // 
-            this.mainComp1.ColorLine = System.Drawing.Color.Blue;
-            this.mainComp1.Location = new System.Drawing.Point(12, 12);
-            this.mainComp1.MaximumSize = new System.Drawing.Size(400, 180);
-            this.mainComp1.MinimumSize = new System.Drawing.Size(400, 180);
-            this.mainComp1.Name = "mainComp1";
-            this.mainComp1.Size = new System.Drawing.Size(400, 180);
-            this.mainComp1.TabIndex = 0;
-            this.mainComp1.TabStop = false;
+            this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
+            this.mainComponent1.Location = new System.Drawing.Point(12, 12);
+            this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
+            this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
+            this.mainComponent1.Name = "mainComponent1";
+            this.mainComponent1.Size = new System.Drawing.Size(400, 180);
+            this.mainComponent1.TabIndex = 0;
+            this.mainComponent1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 430);
-            this.Controls.Add(this.mainComp1);
+            this.Controls.Add(this.mainComponent1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.mainComp1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainComponent1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public MainComponent.MainComp mainComp1;
+        private MainComp.MainComponent mainComponent1;
     }
 }
 

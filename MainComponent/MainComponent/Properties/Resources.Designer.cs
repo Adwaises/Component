@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MainComponent.Properties {
+namespace MainComp.Properties {
     using System;
     
     

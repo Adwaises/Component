@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainComponent
+namespace MainComp
 {
-    public class MainComp : PictureBox
+    public partial class MainComponent : PictureBox
     {
         //private PrimaryComponent primaryComp;
-        public MainComp()
+        public MainComponent()
         {
-            //InitializeComponent();
+            InitializeComponent();
             this.SetStyle(ControlStyles.UserPaint, true);
             this.Invalidate(true);
             this.Size = new Size(400, 180);
@@ -36,8 +36,8 @@ namespace MainComponent
             //this.Controls.Add(primaryComp);
         }
 
-        public PrimaryComponent.PrimaryComponent primaryComponent1;
-        public ChildComponent.ChildComponent childComponent1;
+
+
         private Color col1 = Color.Blue;
         [Category("Properties"), Description("Specifies the color of line.")]
         public Color ColorLine
@@ -51,11 +51,6 @@ namespace MainComponent
                 col1 = value;
                 Invalidate();
             }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -80,42 +75,9 @@ namespace MainComponent
             set { base.Size = new Size(400, 180); }
         }
 
-        private void InitializeComponent()
-        {
-            this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
-            this.childComponent1 = new ChildComponent.ChildComponent();
-            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // primaryComponent1
-            // 
-            this.primaryComponent1.BackColor = System.Drawing.Color.DarkBlue;
-            this.primaryComponent1.Location = new System.Drawing.Point(10, 10);
-            this.primaryComponent1.Name = "primaryComponent1";
-            this.primaryComponent1.Size = new System.Drawing.Size(50, 100);
-            this.primaryComponent1.TabIndex = 0;
-            this.primaryComponent1.TabStop = false;
-            // 
-            // childComponent1
-            // 
-            this.childComponent1.BackColor = System.Drawing.Color.DarkBlue;
-            this.childComponent1.Location = new System.Drawing.Point(100, 100);
-            this.childComponent1.Name = "childComponent1";
-            this.childComponent1.Size = new System.Drawing.Size(50, 100);
-            this.childComponent1.TabIndex = 0;
-            this.childComponent1.TabStop = false;
-            // 
-            // MainComp
-            // 
-            this.BackColor = System.Drawing.SystemColors.Control;
-            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-            this.ResumeLayout(false);
+       
 
-        }
+     
 
         //[Browsable(false)]
         //[EditorBrowsable(EditorBrowsableState.Never)]
