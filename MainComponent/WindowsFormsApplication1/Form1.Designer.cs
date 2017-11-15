@@ -58,7 +58,7 @@
 
         #endregion
 
-        private MainComponent.MainComp mainComp1;
+        public MainComponent.MainComp mainComp1;
     }
 }
 
