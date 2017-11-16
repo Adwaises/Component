@@ -15,11 +15,11 @@ namespace PrimaryComponent
         {
             //this.SetStyle(ControlStyles.UserPaint, true);
             //this.Invalidate(true);
-            this.Size = new Size(50, 100);
+            this.Size = new Size(100, 100);
             this.BackColor = Color.DarkBlue;
             //this.MaximumSize = new Size(400, 180);
             //this.MinimumSize = new Size(400, 180);
-            
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         protected override void Dispose(bool disposing)

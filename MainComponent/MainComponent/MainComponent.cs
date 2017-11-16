@@ -18,6 +18,8 @@ namespace MainComp
 
         private PictureBox pictureBox = null;
 
+        private List<ChildComponent.ChildComponent> list;
+
         public MainComponent()
         {
             InitializeComponent();
@@ -26,47 +28,174 @@ namespace MainComp
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
 
+            list = new List<ChildComponent.ChildComponent>();
+            foreach (var elem in this.Controls)
+            {
+                if (elem is ChildComponent.ChildComponent) {
+                    list.Add(elem as ChildComponent.ChildComponent);
+                }
+            }
+            list.Reverse();
+
         }
 
-       // private Color colorChild = Color.Blue;
-        [Category("Properties"), Description("Specifies the color of line.")]
-        public Color ColorLineChild
+        // private Color colorChild = Color.Blue;
+        //[Category("Properties"), Description("Specifies the color of line.")]
+        //public Color ColorLineChild
+        //{
+        //    get
+        //    {
+        //        return childComponent1.ColorLineChild;
+        //    }
+        //    set
+        //    {
+        //        childComponent1.ColorLineChild = value;
+        //        Invalidate();
+        //    }
+        //}
+
+        
+        //private ChildComponent.ChildComponent childComponent = childComponent1;
+        /// <summary>
+        /// Свойства дочернего компонента
+        /// </summary>
+           
+            //теперь они не нужны
+            
+            //[Category("ChildComponent"), Description("Specifies the background image of child element.")]
+            //public Image BackgroundImageChild
+            //{
+            //    get
+            //    {
+            //        return list[0].BackgroundImage;
+            //    }
+            //    set
+            //    {
+            //        list[0].BackgroundImage = value;
+            //        Invalidate();
+            //    }
+            //}
+            //[Category("ChildComponent"), Description("Specifies the location of child element.")]
+            //public Point LocationChild
+            //{
+            //    get
+            //    {
+            //        return childComponent1.Location;
+            //    }
+            //    set
+            //    {
+            //        childComponent1.Location = value;
+            //        Invalidate();
+            //    }
+            //}
+            //[Category("ChildComponent"), Description("Specifies the size of child element.")]
+            //public Size SizeChild
+            //{
+            //    get
+            //    {
+            //        return childComponent1.Size;
+            //    }
+            //    set
+            //    {
+            //        childComponent1.Size = value;
+            //        Invalidate();
+            //    }
+            //}
+
+        [Category("ChildComponent"), Description("Specifies the list of child elements.")]
+        public List<ChildComponent.ChildComponent> SelectChild
         {
             get
             {
-                return childComponent1.ColorLineChild;
+                return list;
+            }
+            //set
+            //{
+            //    list = value;
+            //    Invalidate();
+            //}
+        }
+
+        /// <summary>
+        /// Свойства Главного компонента
+        /// </summary>
+        [Category("PrimaryComponent"), Description("Specifies the background image of primary element.")]
+        public Image BackgroundImagePrimary
+        {
+            get
+            {
+                return primaryComponent1.BackgroundImage;
             }
             set
             {
-                childComponent1.ColorLineChild = value;
+                primaryComponent1.BackgroundImage = value;
+                Invalidate();
+            }
+        }
+        [Category("PrimaryComponent"), Description("Specifies the location of primary element.")]
+        public Point LocationPrimary
+        {
+            get
+            {
+                return primaryComponent1.Location;
+            }
+            set
+            {
+                primaryComponent1.Location = value;
+                Invalidate();
+            }
+        }
+        [Category("PrimaryComponent"), Description("Specifies the size of primary element.")]
+        public Size SizePrimary
+        {
+            get
+            {
+                return primaryComponent1.Size;
+            }
+            set
+            {
+                primaryComponent1.Size = value;
                 Invalidate();
             }
         }
 
+
         protected override void OnPaint(PaintEventArgs e)
         {
-            Pen pen = new Pen(col1, 3);
+            Pen pen = new Pen(colorLine, 3);
             e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
             base.OnPaint(e);
         }
 
-        private Color col1 = Color.Blue;
-        [Category("Properties"), Description("Specifies the color of line.")]
+        private Color colorLine = Color.Blue;
+        [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
         {
             get
             {
-                return col1;
+                return colorLine;
             }
             set
             {
-
-                col1 = value;
+                colorLine = value;
                 Invalidate();
             }
         }
 
-
+        private int errorNumber = 3;
+        [Category("Component"), Description("Specifies the error number of component.")]
+        public int ErrorNumber
+        {
+            get
+            {
+                return errorNumber;
+            }
+            set
+            {
+                errorNumber = value;
+                Invalidate();
+            }
+        }
 
 
 
