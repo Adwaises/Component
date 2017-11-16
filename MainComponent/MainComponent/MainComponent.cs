@@ -14,6 +14,8 @@ namespace MainComp
     {
         //private PrimaryComponent primaryComp;
 
+       
+
         private PictureBox pictureBox = null;
 
         public MainComponent()

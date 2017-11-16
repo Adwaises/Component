@@ -35,7 +35,6 @@
             // 
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
-            this.mainComponent1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);

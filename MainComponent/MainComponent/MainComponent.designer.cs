@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MainComp
 {
@@ -64,7 +65,7 @@ namespace MainComp
             // primaryComponent1
             // 
             this.primaryComponent1.BackColor = System.Drawing.Color.DarkBlue;
-            this.primaryComponent1.Location = new System.Drawing.Point(330, 56);
+            this.primaryComponent1.Location = new System.Drawing.Point(330, 62);
             this.primaryComponent1.Name = "primaryComponent1";
             this.primaryComponent1.Size = new System.Drawing.Size(50, 100);
             this.primaryComponent1.TabIndex = 1;
@@ -73,7 +74,7 @@ namespace MainComp
             // childComponent1
             // 
             this.childComponent1.BackColor = System.Drawing.Color.Red;
-            this.childComponent1.Location = new System.Drawing.Point(38, 32);
+            this.childComponent1.Location = new System.Drawing.Point(40, 30);
             this.childComponent1.Name = "childComponent1";
             this.childComponent1.Size = new System.Drawing.Size(50, 50);
             this.childComponent1.TabIndex = 2;
@@ -94,7 +95,7 @@ namespace MainComp
 
         }
         public PrimaryComponent.PrimaryComponent primaryComponent1;
-        private ChildComponent.ChildComponent childComponent1;
+        public ChildComponent.ChildComponent childComponent1;
     }
 }
 
