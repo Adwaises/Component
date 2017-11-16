@@ -58,8 +58,10 @@ namespace MainComp
         {
             this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
             this.childComponent1 = new ChildComponent.ChildComponent();
+            this.childComponent2 = new ChildComponent.ChildComponent();
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent2)).BeginInit();
             this.SuspendLayout();
             // 
             // primaryComponent1
@@ -76,13 +78,23 @@ namespace MainComp
             this.childComponent1.BackColor = System.Drawing.Color.Red;
             this.childComponent1.Location = new System.Drawing.Point(40, 30);
             this.childComponent1.Name = "childComponent1";
-            this.childComponent1.Size = new System.Drawing.Size(50, 50);
+            this.childComponent1.Size = new System.Drawing.Size(27, 21);
             this.childComponent1.TabIndex = 2;
             this.childComponent1.TabStop = false;
+            // 
+            // childComponent2
+            // 
+            this.childComponent2.BackColor = System.Drawing.Color.Red;
+            this.childComponent2.Location = new System.Drawing.Point(36, 3);
+            this.childComponent2.Name = "childComponent2";
+            this.childComponent2.Size = new System.Drawing.Size(50, 50);
+            this.childComponent2.TabIndex = 3;
+            this.childComponent2.TabStop = false;
             // 
             // MainComponent
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.childComponent2);
             this.Controls.Add(this.childComponent1);
             this.Controls.Add(this.primaryComponent1);
             this.MaximumSize = new System.Drawing.Size(400, 180);
@@ -91,6 +103,7 @@ namespace MainComp
             this.Size = new System.Drawing.Size(400, 180);
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent2)).EndInit();
             this.ResumeLayout(false);
 
         }

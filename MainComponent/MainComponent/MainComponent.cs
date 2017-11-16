@@ -28,7 +28,27 @@ namespace MainComp
 
         }
 
+       // private Color colorChild = Color.Blue;
+        [Category("Properties"), Description("Specifies the color of line.")]
+        public Color ColorLineChild
+        {
+            get
+            {
+                return childComponent1.ColorLineChild;
+            }
+            set
+            {
+                childComponent1.ColorLineChild = value;
+                Invalidate();
+            }
+        }
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Pen pen = new Pen(col1, 3);
+            e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
+            base.OnPaint(e);
+        }
 
         private Color col1 = Color.Blue;
         [Category("Properties"), Description("Specifies the color of line.")]
@@ -40,16 +60,10 @@ namespace MainComp
             }
             set
             {
+
                 col1 = value;
                 Invalidate();
             }
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            Pen pen = new Pen(col1, 3);
-            e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
-            base.OnPaint(e);
         }
 
 
