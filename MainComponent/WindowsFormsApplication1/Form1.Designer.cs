@@ -35,8 +35,9 @@
             // 
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
+            this.mainComponent1.ColorLineChild = System.Drawing.Color.Cyan;
             this.mainComponent1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.mainComponent1.Location = new System.Drawing.Point(12, 12);
+            this.mainComponent1.Location = new System.Drawing.Point(27, 24);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
@@ -47,7 +48,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 430);
+            this.ClientSize = new System.Drawing.Size(740, 404);
             this.Controls.Add(this.mainComponent1);
             this.Name = "Form1";
             this.Text = "Form1";
