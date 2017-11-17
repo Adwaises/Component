@@ -27,7 +27,7 @@ namespace ChildComponent
 
         private bool accessory = false;
         [Category("Child element"), Description("Specifies the accessory to the primary element.")]
-        public bool Accessory 
+        public bool Accessory
         {
             get
             {
@@ -49,7 +49,7 @@ namespace ChildComponent
             }
             set
             {
-                if(value)
+                if (value)
                 {
 
 
@@ -65,9 +65,11 @@ namespace ChildComponent
                         flag = false;
                         foreach (var elem in Parent.Controls)
                         {
-                            if (elem is ChildComponent) {
+                            if (elem is ChildComponent)
+                            {
                                 if (Math.Abs(((elem as ChildComponent).Location.X + 13) - (point.X + 13)) < 30 &&
-                                    Math.Abs(((elem as ChildComponent).Location.Y + 13) - (point.Y + 13)) < 30)
+                                    Math.Abs(((elem as ChildComponent).Location.Y + 13) - (point.Y + 13)) < 30 ||
+                                    point.X < 5 || point.Y < 5 || point.Y > 150)
                                 {
                                     point = new Point(rand.Next(230), rand.Next(140));
                                     //this.Location = new Point((elem as ChildComponent).Location.X, (elem as ChildComponent).Location.Y);

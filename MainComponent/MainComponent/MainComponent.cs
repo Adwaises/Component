@@ -248,7 +248,8 @@ namespace MainComp
                     foreach (var elem in list)
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
-                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30)
+                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 || 
+                            child.Location.X <5 || child.Location.Y < 5 || child.Location.Y > 150)
                         {
                             child.Location = new Point(rand.Next(230), rand.Next(140));
                             flag = true;
