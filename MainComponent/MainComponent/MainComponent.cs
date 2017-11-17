@@ -234,30 +234,29 @@ namespace MainComp
 
         private void addChild(int n)
         {
-            Random rand = new Random();
+            
             for (int i = 0; i < n; i++)
             {
+                Random rand = new Random();
                 ChildComponent.ChildComponent child = new ChildComponent.ChildComponent();
                 child.Location = new Point(rand.Next(230), rand.Next(150));
                 //определяем не наложились ли элементы
-                //bool flag = true;
-                //while (flag)
-                //{
-                //    flag = false;
-                //    foreach (var elem in list)
-                //    {
-                //        if ((elem.Location.X + 13) - child.Location.X < Math.Abs(15) ||
-                //                (elem.Location.Y + 13) - child.Location.Y < Math.Abs(15))
-                //        {
-                        
-                //            child.Location = new Point(rand.Next(230), rand.Next(150));
-                //            flag = true;
+                bool flag = true;
+                while (flag)
+                {
+                    flag = false;
+                    foreach (var elem in list)
+                    {
+                        if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
+                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30)
+                        {
+                            child.Location = new Point(rand.Next(230), rand.Next(140));
+                            flag = true;
+                        }
+                    }
+                }
 
-                //        }
-                //    }
-                //}
-                
-                
+
 
                 Controls.Add(child);
                 list.Add(child);
