@@ -26,7 +26,7 @@ namespace ChildComponent
 
 
         private bool accessory = false;
-        [Category("Child component"), Description("Specifies the accessory to the primary element.")]
+        [Category("Child element"), Description("Specifies the accessory to the primary element.")]
         public bool Accessory 
         {
             get
@@ -41,7 +41,7 @@ namespace ChildComponent
         }
 
         
-        [Category("Child component"), Description("Specifies the accessory to the primary element.")]
+        [Category("Child element"), Description("Specifies the random point of child element.")]
         public bool RandomPoint
         {
             get
