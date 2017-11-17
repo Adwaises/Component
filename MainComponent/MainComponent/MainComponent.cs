@@ -238,7 +238,21 @@ namespace MainComp
             for (int i = 0; i < n; i++)
             {
                 ChildComponent.ChildComponent child = new ChildComponent.ChildComponent();
-                child.Location = new Point(rand.Next( 230), rand.Next(150));
+                child.Location = new Point(rand.Next(230), rand.Next(150));
+                foreach (var elem in list)
+                {
+                    while (elem.Location.X+13 - child.Location.X > Math.Abs(50) &&
+                            elem.Location.Y+13 - child.Location.Y > Math.Abs(50)) {
+
+                        //if ((elem as ChildComponent.ChildComponent).Location.X - child.Location.X < Math.Abs(25) ||
+                        //    (elem as ChildComponent.ChildComponent).Location.Y - child.Location.Y < Math.Abs(25))
+                        //{
+                            child.Location = new Point(rand.Next(230), rand.Next(150));
+                        
+                    }
+                }
+                
+
                 Controls.Add(child);
                 list.Add(child);
             }

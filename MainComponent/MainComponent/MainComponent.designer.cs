@@ -118,7 +118,7 @@ namespace MainComp
             this.childComponent4.BackColor = System.Drawing.Color.Red;
             this.childComponent4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent4.ClildNumber = false;
-            this.childComponent4.Location = new System.Drawing.Point(19, 137);
+            this.childComponent4.Location = new System.Drawing.Point(44, 108);
             this.childComponent4.Name = "childComponent4";
             this.childComponent4.Size = new System.Drawing.Size(25, 25);
             this.childComponent4.TabIndex = 5;
