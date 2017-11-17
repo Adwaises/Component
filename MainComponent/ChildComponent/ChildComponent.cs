@@ -26,8 +26,8 @@ namespace ChildComponent
 
 
         private bool accessory = false;
-        [Category("Child component"), Description("Specifies the accessory of primary component.")]
-        public bool ClildNumber
+        [Category("Child component"), Description("Specifies the accessory to the primary element.")]
+        public bool Accessory 
         {
             get
             {
@@ -36,6 +36,25 @@ namespace ChildComponent
             set
             {
                 accessory = value;
+                Invalidate();
+            }
+        }
+
+        
+        [Category("Child component"), Description("Specifies the accessory to the primary element.")]
+        public bool RandomPoint
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                if(value)
+                {
+                    Random rand = new Random();
+                    this.Location = new Point(rand.Next(230), rand.Next(150));
+                }
                 Invalidate();
             }
         }

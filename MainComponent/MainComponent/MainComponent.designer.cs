@@ -84,7 +84,7 @@ namespace MainComp
             // 
             this.childComponent1.BackColor = System.Drawing.Color.GreenYellow;
             this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent1.ClildNumber = true;
+            this.childComponent1.Accessory = true;
             this.childComponent1.Location = new System.Drawing.Point(19, 32);
             this.childComponent1.Name = "childComponent1";
             this.childComponent1.Size = new System.Drawing.Size(25, 25);
@@ -95,7 +95,7 @@ namespace MainComp
             // 
             this.childComponent2.BackColor = System.Drawing.Color.Red;
             this.childComponent2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent2.ClildNumber = false;
+            this.childComponent2.Accessory = false;
             this.childComponent2.Location = new System.Drawing.Point(117, 92);
             this.childComponent2.Name = "childComponent2";
             this.childComponent2.Size = new System.Drawing.Size(25, 25);
@@ -106,7 +106,7 @@ namespace MainComp
             // 
             this.childComponent3.BackColor = System.Drawing.Color.GreenYellow;
             this.childComponent3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent3.ClildNumber = true;
+            this.childComponent3.Accessory = true;
             this.childComponent3.Location = new System.Drawing.Point(134, 137);
             this.childComponent3.Name = "childComponent3";
             this.childComponent3.Size = new System.Drawing.Size(25, 25);
@@ -117,7 +117,7 @@ namespace MainComp
             // 
             this.childComponent4.BackColor = System.Drawing.Color.Red;
             this.childComponent4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent4.ClildNumber = false;
+            this.childComponent4.Accessory = false;
             this.childComponent4.Location = new System.Drawing.Point(44, 108);
             this.childComponent4.Name = "childComponent4";
             this.childComponent4.Size = new System.Drawing.Size(25, 25);
@@ -128,7 +128,7 @@ namespace MainComp
             // 
             this.childComponent5.BackColor = System.Drawing.Color.Red;
             this.childComponent5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent5.ClildNumber = false;
+            this.childComponent5.Accessory = false;
             this.childComponent5.Location = new System.Drawing.Point(71, 56);
             this.childComponent5.Name = "childComponent5";
             this.childComponent5.Size = new System.Drawing.Size(25, 25);
