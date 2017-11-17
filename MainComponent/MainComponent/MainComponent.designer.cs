@@ -56,25 +56,19 @@ namespace MainComp
 
         private void InitializeComponent()
         {
-            this.childComponent1 = new ChildComponent.ChildComponent();
             this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
+            this.childComponent1 = new ChildComponent.ChildComponent();
             this.childComponent2 = new ChildComponent.ChildComponent();
             this.childComponent3 = new ChildComponent.ChildComponent();
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
+            this.childComponent4 = new ChildComponent.ChildComponent();
+            this.childComponent5 = new ChildComponent.ChildComponent();
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent5)).BeginInit();
             this.SuspendLayout();
-            // 
-            // childComponent1
-            // 
-            this.childComponent1.BackColor = System.Drawing.Color.Red;
-            this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent1.Location = new System.Drawing.Point(40, 30);
-            this.childComponent1.Name = "childComponent1";
-            this.childComponent1.Size = new System.Drawing.Size(27, 21);
-            this.childComponent1.TabIndex = 2;
-            this.childComponent1.TabStop = false;
             // 
             // primaryComponent1
             // 
@@ -86,29 +80,66 @@ namespace MainComp
             this.primaryComponent1.TabIndex = 1;
             this.primaryComponent1.TabStop = false;
             // 
+            // childComponent1
+            // 
+            this.childComponent1.BackColor = System.Drawing.Color.GreenYellow;
+            this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent1.ClildNumber = true;
+            this.childComponent1.Location = new System.Drawing.Point(19, 32);
+            this.childComponent1.Name = "childComponent1";
+            this.childComponent1.Size = new System.Drawing.Size(25, 25);
+            this.childComponent1.TabIndex = 2;
+            this.childComponent1.TabStop = false;
+            // 
             // childComponent2
             // 
             this.childComponent2.BackColor = System.Drawing.Color.Red;
             this.childComponent2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent2.Location = new System.Drawing.Point(40, 57);
+            this.childComponent2.ClildNumber = false;
+            this.childComponent2.Location = new System.Drawing.Point(117, 92);
             this.childComponent2.Name = "childComponent2";
-            this.childComponent2.Size = new System.Drawing.Size(27, 22);
+            this.childComponent2.Size = new System.Drawing.Size(25, 25);
             this.childComponent2.TabIndex = 3;
             this.childComponent2.TabStop = false;
             // 
             // childComponent3
             // 
-            this.childComponent3.BackColor = System.Drawing.Color.Red;
+            this.childComponent3.BackColor = System.Drawing.Color.GreenYellow;
             this.childComponent3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent3.Location = new System.Drawing.Point(40, 97);
+            this.childComponent3.ClildNumber = true;
+            this.childComponent3.Location = new System.Drawing.Point(134, 137);
             this.childComponent3.Name = "childComponent3";
-            this.childComponent3.Size = new System.Drawing.Size(50, 50);
+            this.childComponent3.Size = new System.Drawing.Size(25, 25);
             this.childComponent3.TabIndex = 4;
             this.childComponent3.TabStop = false;
+            // 
+            // childComponent4
+            // 
+            this.childComponent4.BackColor = System.Drawing.Color.Red;
+            this.childComponent4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent4.ClildNumber = false;
+            this.childComponent4.Location = new System.Drawing.Point(19, 137);
+            this.childComponent4.Name = "childComponent4";
+            this.childComponent4.Size = new System.Drawing.Size(25, 25);
+            this.childComponent4.TabIndex = 5;
+            this.childComponent4.TabStop = false;
+            // 
+            // childComponent5
+            // 
+            this.childComponent5.BackColor = System.Drawing.Color.Red;
+            this.childComponent5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent5.ClildNumber = false;
+            this.childComponent5.Location = new System.Drawing.Point(71, 56);
+            this.childComponent5.Name = "childComponent5";
+            this.childComponent5.Size = new System.Drawing.Size(25, 25);
+            this.childComponent5.TabIndex = 6;
+            this.childComponent5.TabStop = false;
             // 
             // MainComponent
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.childComponent5);
+            this.Controls.Add(this.childComponent4);
             this.Controls.Add(this.childComponent3);
             this.Controls.Add(this.childComponent2);
             this.Controls.Add(this.childComponent1);
@@ -117,17 +148,21 @@ namespace MainComp
             this.MinimumSize = new System.Drawing.Size(400, 180);
             this.Name = "MainComponent";
             this.Size = new System.Drawing.Size(400, 180);
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent5)).EndInit();
             this.ResumeLayout(false);
 
         }
         public PrimaryComponent.PrimaryComponent primaryComponent1;
-        public ChildComponent.ChildComponent childComponent1;
+        private ChildComponent.ChildComponent childComponent1;
         private ChildComponent.ChildComponent childComponent2;
         private ChildComponent.ChildComponent childComponent3;
+        private ChildComponent.ChildComponent childComponent4;
+        private ChildComponent.ChildComponent childComponent5;
     }
 }
 

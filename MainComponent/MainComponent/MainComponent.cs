@@ -183,7 +183,7 @@ namespace MainComp
         }
 
         private int errorNumber = 3;
-        [Category("Component"), Description("Specifies the error number of component.")]
+        [Category("Component"), Description("Specifies the error number of component. Value from 1 to 10.")]
         public int ErrorNumber
         {
             get
@@ -192,12 +192,57 @@ namespace MainComp
             }
             set
             {
-                errorNumber = value;
+                if(value >0 && value <= 10)
+                    errorNumber = value;
                 Invalidate();
             }
         }
 
+        private int clildNumber = 5;
+        [Category("Component"), Description("Specifies the number of child component. Value from 5 to 7.")]
+        public int ClildNumber
+        {
+            get
+            {
+                return clildNumber;
+            }
+            set
+            {
+                int lastNum = clildNumber;
+                if (value > 4 && value <= 7)
+                    clildNumber = value;
+                Invalidate();
+                if ( clildNumber > lastNum)
+                {
+                    addChild(clildNumber - lastNum);
+                } else if(lastNum > clildNumber)
+                {
+                    delChild(lastNum - clildNumber);
+                }
+            }
 
+        }
+
+        private void delChild(int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                this.Controls.RemoveAt(Controls.Count - 1);
+                list.RemoveAt(list.Count-1);
+            }
+        }
+
+        private void addChild(int n)
+        {
+            Random rand = new Random();
+            for (int i = 0; i < n; i++)
+            {
+                ChildComponent.ChildComponent child = new ChildComponent.ChildComponent();
+                child.Location = new Point(rand.Next( 230), rand.Next(150));
+                Controls.Add(child);
+                list.Add(child);
+            }
+        }
 
         //[Browsable(false)]
         //[EditorBrowsable(EditorBrowsableState.Never)]

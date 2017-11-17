@@ -35,6 +35,7 @@
             // 
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.BackgroundImagePrimary = null;
+            this.mainComponent1.ClildNumber = 5;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);

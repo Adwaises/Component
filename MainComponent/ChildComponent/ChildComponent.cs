@@ -16,7 +16,7 @@ namespace ChildComponent
         {
             //this.SetStyle(ControlStyles.UserPaint, true);
             //this.Invalidate(true);
-            this.Size = new Size(50, 50);
+            this.Size = new Size(25, 25);
             this.BackColor = Color.Red;
             //this.MaximumSize = new Size(400, 180);
             //this.MinimumSize = new Size(400, 180);
@@ -24,6 +24,21 @@ namespace ChildComponent
 
         }
 
+
+        private bool accessory = false;
+        [Category("Child component"), Description("Specifies the accessory of primary component.")]
+        public bool ClildNumber
+        {
+            get
+            {
+                return accessory;
+            }
+            set
+            {
+                accessory = value;
+                Invalidate();
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {
