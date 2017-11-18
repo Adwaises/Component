@@ -39,68 +39,29 @@ namespace MainComp
             
         }
 
-        // private Color colorChild = Color.Blue;
-        //[Category("Properties"), Description("Specifies the color of line.")]
-        //public Color ColorLineChild
-        //{
-        //    get
-        //    {
-        //        return childComponent1.ColorLineChild;
-        //    }
-        //    set
-        //    {
-        //        childComponent1.ColorLineChild = value;
-        //        Invalidate();
-        //    }
-        //}
+        [Category("Component"), Description("Specifies the random point of child element.")]
+        public bool RandomLocationChild
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                foreach(var elem in list)
+                {
+                    elem.RandomLocation = true;
+                }
 
-        
+                Invalidate();
+            }
+        }
+
+
         //private ChildComponent.ChildComponent childComponent = childComponent1;
         /// <summary>
         /// Свойства дочернего компонента
         /// </summary>
-           
-            //теперь они не нужны
-            
-            //[Category("ChildComponent"), Description("Specifies the background image of child element.")]
-            //public Image BackgroundImageChild
-            //{
-            //    get
-            //    {
-            //        return list[0].BackgroundImage;
-            //    }
-            //    set
-            //    {
-            //        list[0].BackgroundImage = value;
-            //        Invalidate();
-            //    }
-            //}
-            //[Category("ChildComponent"), Description("Specifies the location of child element.")]
-            //public Point LocationChild
-            //{
-            //    get
-            //    {
-            //        return childComponent1.Location;
-            //    }
-            //    set
-            //    {
-            //        childComponent1.Location = value;
-            //        Invalidate();
-            //    }
-            //}
-            //[Category("ChildComponent"), Description("Specifies the size of child element.")]
-            //public Size SizeChild
-            //{
-            //    get
-            //    {
-            //        return childComponent1.Size;
-            //    }
-            //    set
-            //    {
-            //        childComponent1.Size = value;
-            //        Invalidate();
-            //    }
-            //}
 
         [Category("ChildComponent"), Description("Specifies the list of child elements.")]
         public List<ChildComponent.ChildComponent> SelectChild

@@ -35,7 +35,7 @@
             // 
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.BackgroundImagePrimary = null;
-            this.mainComponent1.ClildNumber = 6;
+            this.mainComponent1.ClildNumber = 5;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
@@ -43,6 +43,7 @@
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
+            this.mainComponent1.RandomLocationChild = false;
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
             this.mainComponent1.SizePrimary = new System.Drawing.Size(100, 100);
             this.mainComponent1.TabIndex = 0;

@@ -87,7 +87,7 @@ namespace MainComp
             this.childComponent5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent5.Location = new System.Drawing.Point(71, 56);
             this.childComponent5.Name = "childComponent5";
-            this.childComponent5.RandomPoint = false;
+            this.childComponent5.RandomLocation = false;
             this.childComponent5.Size = new System.Drawing.Size(25, 25);
             this.childComponent5.TabIndex = 6;
             this.childComponent5.TabStop = false;
@@ -99,7 +99,7 @@ namespace MainComp
             this.childComponent4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent4.Location = new System.Drawing.Point(44, 108);
             this.childComponent4.Name = "childComponent4";
-            this.childComponent4.RandomPoint = false;
+            this.childComponent4.RandomLocation = false;
             this.childComponent4.Size = new System.Drawing.Size(25, 25);
             this.childComponent4.TabIndex = 5;
             this.childComponent4.TabStop = false;
@@ -111,7 +111,7 @@ namespace MainComp
             this.childComponent3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent3.Location = new System.Drawing.Point(134, 137);
             this.childComponent3.Name = "childComponent3";
-            this.childComponent3.RandomPoint = false;
+            this.childComponent3.RandomLocation = false;
             this.childComponent3.Size = new System.Drawing.Size(25, 25);
             this.childComponent3.TabIndex = 4;
             this.childComponent3.TabStop = false;
@@ -123,7 +123,7 @@ namespace MainComp
             this.childComponent2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent2.Location = new System.Drawing.Point(117, 92);
             this.childComponent2.Name = "childComponent2";
-            this.childComponent2.RandomPoint = false;
+            this.childComponent2.RandomLocation = false;
             this.childComponent2.Size = new System.Drawing.Size(25, 25);
             this.childComponent2.TabIndex = 3;
             this.childComponent2.TabStop = false;
@@ -135,7 +135,7 @@ namespace MainComp
             this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent1.Location = new System.Drawing.Point(19, 32);
             this.childComponent1.Name = "childComponent1";
-            this.childComponent1.RandomPoint = false;
+            this.childComponent1.RandomLocation = false;
             this.childComponent1.Size = new System.Drawing.Size(25, 25);
             this.childComponent1.TabIndex = 2;
             this.childComponent1.TabStop = false;

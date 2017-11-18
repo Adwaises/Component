@@ -41,7 +41,7 @@ namespace ChildComponent
         }
 
         [Category("Child element"), Description("Specifies the random point of child element.")]
-        public bool RandomPoint
+        public bool RandomLocation
         {
             get
             {
