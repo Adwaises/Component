@@ -286,32 +286,26 @@ namespace MainComp
         // события для движения
         static bool isPress = false;
         static Point startPst;
-        /// <summary>
-        /// Функция выполняется при нажатии на перемещаемый контрол
-        /// </summary>
-        /// <param name="sender">контролл</param>
-        /// <param name="e">событие мышки</param>
+        // Функция выполняется при нажатии на перемещаемый контрол
         private static void mDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) return;//проверка что нажата левая кнопка
-            isPress = true;
-            startPst = e.Location;
+            if (e.Button == MouseButtons.Left) {isPress = true;
+            startPst = e.Location; } else { return;} //проверка что нажата левая кнопка
+            
         }
-        /// <summary>
-        /// Функция выполняется при отжатии перемещаемого контрола
-        /// </summary>
-        /// <param name="sender">контролл</param>
-        /// <param name="e">событие мышки</param>
+        // Функция выполняется при отжатии перемещаемого контрола
         private static void mUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) return;//проверка что нажата левая кнопка
-            isPress = false;
+            if (e.Button == MouseButtons.Left) {
+                isPress = false;
+            }
+            else
+            {
+                return;
+            }//проверка что нажата левая кнопка
+           
         }
-        /// <summary>
-        /// Функция выполняется при перемещении контрола
-        /// </summary>
-        /// <param name="sender">контролл</param>
-        /// <param name="e">событие мышки</param>
+        // Функция выполняется при перемещении контрола
         private static void mMove(object sender, MouseEventArgs e)
         {
             if (isPress)
@@ -321,10 +315,9 @@ namespace MainComp
                 control.Left += e.X - startPst.X;
             }
         }
-        /// <summary>
-        /// обучает контролы передвигаться
-        /// </summary>
-        /// <param name="sender">контролл(это может быть кнопка, лейбл, календарик и.т.д)</param>
+      
+       // обучает контролы передвигаться
+        
         public static void LearnToMove(object sender)
         {
             Control control = (Control)sender;
