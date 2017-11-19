@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainComponent.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -6,16 +7,16 @@ using System.Windows.Forms;
 
 namespace MainComp
 {
+    public enum TypesOfImages { Face, Pizza, Flower, Custom}
+
     public partial class MainComponent : UserControl
     {
         //private PrimaryComponent primaryComp;
 
-       
-
         private PictureBox pictureBox = null;
-        
-        private List<ChildComponent.ChildComponent> list;
-        
+
+        private List<ChildComponent.ChildComponent> ChildElemlist;
+
         public MainComponent()
         {
             InitializeComponent();
@@ -24,20 +25,110 @@ namespace MainComp
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
 
-            list = new List<ChildComponent.ChildComponent>();
+            ChildElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
             {
-                if (elem is ChildComponent.ChildComponent) {
-                    list.Add(elem as ChildComponent.ChildComponent);
+                if (elem is ChildComponent.ChildComponent)
+                {
+                    ChildElemlist.Add(elem as ChildComponent.ChildComponent);
                 }
             }
-            list.Reverse();
-            foreach (var elem in list)
+
+            //Тут будет загрузка картинок из папки в коллекции
+            LoadImages();
+
+            //Загрузка картинок в зависимости от установленного TypesOfImages 
+            SetImagesFromType();
+
+            //После загрузки - перемещение
+            ChildElemlist.Reverse();
+            foreach (var elem in ChildElemlist)
             {
-            LearnToMove(elem);
+                LearnToMove(elem);
             }
-            
         }
+
+
+
+        #region WorkWithImage
+
+        private TypesOfImages typeImages = TypesOfImages.Face;
+        private ImageList FaceImg = new ImageList();
+        private ImageList PizzaImg = new ImageList();
+        private ImageList FlowersImg = new ImageList();
+        private ImageList TrashImg = new ImageList();
+
+        [Category("Component"), Description("Current type images of component")]
+        public TypesOfImages TypeImage
+        {
+            get { return typeImages; }
+            set
+            {
+                typeImages = value;
+            }
+        }
+        
+        ImageList imgs = new ImageList();
+
+        [Category("ChildComponent"), Description("Custom list of child images")]
+        public ImageList CustomChildImages
+        {
+            get { return imgs; }
+            set { imgs = value; }
+        }
+
+        void LoadImages()
+        {
+            //Исправлю и сделаю загрузку ВСЕХ файлов из папки
+            //Загрузка из ресурсов
+            FaceImg.ImageSize = new Size (128,128);
+            FaceImg.Images.Add(Resources.face as Bitmap);
+            FaceImg.Images.Add(Resources.eyes as Bitmap);
+            FaceImg.Images.Add(Resources.nose as Bitmap);
+            FaceImg.Images.Add(Resources.mouth as Bitmap);
+
+            //TrashImg.Images.Add(Resources)
+            TrashImg.ImageSize = new Size(128, 128);
+            TrashImg.Images.Add(Resources.rose as Bitmap);
+            TrashImg.Images.Add(Resources.poppy as Bitmap);
+            TrashImg.Images.Add(Resources.roses as Bitmap);
+
+        }
+
+        void SetImagesFromType()
+        {
+            if (typeImages == TypesOfImages.Face)
+            {   
+                //Загрузка шаблона "Лицо"
+                BackgroundImagePrimary = FaceImg.Images[0];
+
+                //Итератор который проходит по картинкам в коллекции
+                int numPicture = 1;
+                for (int i = 0; i < ChildElemlist.Count; i++)
+                {
+                    //Загружаем все элементы из коллекции
+                    //Если нужно загрузить больше элементов чем есть картинок 
+                    //- загрузка из трэш-коллекции
+                    if (i < FaceImg.Images.Count - 2)
+                    {
+                        ChildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
+                        numPicture++;
+                    } else if (i == FaceImg.Images.Count - 2)
+                    {
+                        ChildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
+                        numPicture = 1;
+                    }
+                    else
+                    {
+                        ChildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
+                        numPicture++;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
 
         [Category("Component"), Description("Specifies the random point of child element.")]
         public bool RandomLocationChild
@@ -48,7 +139,7 @@ namespace MainComp
             }
             set
             {
-                foreach(var elem in list)
+                foreach (var elem in ChildElemlist)
                 {
                     elem.RandomLocation = true;
                 }
@@ -67,7 +158,7 @@ namespace MainComp
         {
             get
             {
-                return list;
+                return ChildElemlist;
             }
             //set
             //{
@@ -155,7 +246,7 @@ namespace MainComp
             }
             set
             {
-                if(value >0 && value <= 10)
+                if (value > 0 && value <= 10)
                     errorNumber = value;
                 Invalidate();
             }
@@ -175,10 +266,11 @@ namespace MainComp
                 if (value > 4 && value <= 7)
                     clildNumber = value;
                 Invalidate();
-                if ( clildNumber > lastNum)
+                if (clildNumber > lastNum)
                 {
                     addChild(clildNumber - lastNum);
-                } else if(lastNum > clildNumber)
+                }
+                else if (lastNum > clildNumber)
                 {
                     delChild(lastNum - clildNumber);
                 }
@@ -208,7 +300,7 @@ namespace MainComp
             for (int i = 0; i < n; i++)
             {
                 this.Controls.RemoveAt(Controls.Count - 1);
-                list.RemoveAt(list.Count-1);
+                ChildElemlist.RemoveAt(ChildElemlist.Count - 1);
             }
         }
 
@@ -224,19 +316,19 @@ namespace MainComp
                 while (flag)
                 {
                     flag = false;
-                    foreach (var elem in list)
+                    foreach (var elem in ChildElemlist)
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
-                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 || 
-                            child.Location.X <5 || child.Location.Y < 5 || child.Location.Y > 150)
+                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 ||
+                            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 150)
                         {
                             child.Location = new Point(rand.Next(230), rand.Next(140));
                             flag = true;
                         }
                     }
                 }
-                Controls.Add(child); 
-                list.Add(child);
+                Controls.Add(child);
+                ChildElemlist.Add(child);
                 LearnToMove(child);
             }
         }
@@ -266,21 +358,26 @@ namespace MainComp
         // Функция выполняется при нажатии на перемещаемый контрол
         private static void mDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) {isPress = true;
-            startPst = e.Location; } else { return;} //проверка что нажата левая кнопка
-            
+            if (e.Button == MouseButtons.Left)
+            {
+                isPress = true;
+                startPst = e.Location;
+            }
+            else { return; } //проверка что нажата левая кнопка
+
         }
         // Функция выполняется при отжатии перемещаемого контрола
         private static void mUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) {
+            if (e.Button == MouseButtons.Left)
+            {
                 isPress = false;
             }
             else
             {
                 return;
             }//проверка что нажата левая кнопка
-           
+
         }
         // Функция выполняется при перемещении контрола
         private static void mMove(object sender, MouseEventArgs e)
@@ -292,9 +389,9 @@ namespace MainComp
                 control.Left += e.X - startPst.X;
             }
         }
-      
-       // обучает контролы передвигаться
-        
+
+        // обучает контролы передвигаться
+
         public static void LearnToMove(object sender)
         {
             Control control = (Control)sender;
@@ -315,5 +412,5 @@ namespace MainComp
             toolTip1.IsBalloon = true;
         }
     }
-    
+
 }

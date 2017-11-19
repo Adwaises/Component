@@ -16,8 +16,8 @@ namespace ChildComponent
         {
             //this.SetStyle(ControlStyles.UserPaint, true);
             //this.Invalidate(true);
-            this.Size = new Size(25, 25);
-            this.BackColor = Color.Red;
+            this.Size = new Size(32, 32);
+            this.BackColor = Color.Transparent;
             //this.MaximumSize = new Size(400, 180);
             //this.MinimumSize = new Size(400, 180);
             this.BackgroundImageLayout = ImageLayout.Stretch;

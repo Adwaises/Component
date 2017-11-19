@@ -15,8 +15,8 @@ namespace PrimaryComponent
         {
             //this.SetStyle(ControlStyles.UserPaint, true);
             //this.Invalidate(true);
-            this.Size = new Size(100, 100);
-            this.BackColor = Color.DarkBlue;
+            this.Size = new Size(128, 128);
+            //this.BackColor = Color.Transparent;
             //this.MaximumSize = new Size(400, 180);
             //this.MinimumSize = new Size(400, 180);
             this.BackgroundImageLayout = ImageLayout.Stretch;
@@ -26,6 +26,7 @@ namespace PrimaryComponent
         {
             base.Dispose(disposing);
         }
+
 
         //private Color col1 = Color.Blue;
         //[Category("Properties"), Description("Specifies the color of line.")]
