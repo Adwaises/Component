@@ -142,6 +142,25 @@ namespace MainComp
         /// <summary>
         /// Свойства основного коспонента
         /// </summary>
+
+
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MaximumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MinimumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
         private Color colorLine = Color.Blue;
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
