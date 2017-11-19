@@ -17,13 +17,13 @@ namespace MainComp
         
         private List<ChildComponent.ChildComponent> listChild;
 
-        public enum LocationChild
+        public enum EnvironmentChild
         {
             Face,
             Pizza,
             Parking
         }
-        private LocationChild location;
+        private EnvironmentChild environment;
 
         public MainComponent()
         {
@@ -34,7 +34,7 @@ namespace MainComp
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
 
-            location = LocationChild.Face;
+            environment = EnvironmentChild.Face;
 
             listChild = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
@@ -216,16 +216,16 @@ namespace MainComp
         }
 
 
-        [Category("Component"), Description("Specifies the location of component.")]
-        public LocationChild LocationMode
+        [Category("Component"), Description("Specifies the environment of component.")]
+        public EnvironmentChild EnvironmentMode
         {
             get
             {
-                return location;
+                return environment;
             }
             set
             {
-                location = value;
+                environment = value;
                 Invalidate();
             }
         }
