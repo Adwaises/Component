@@ -62,7 +62,6 @@ namespace MainComp
         /// <summary>
         /// Свойства дочернего компонента
         /// </summary>
-
         [Category("ChildComponent"), Description("Specifies the list of child elements.")]
         public List<ChildComponent.ChildComponent> SelectChild
         {
@@ -128,6 +127,9 @@ namespace MainComp
             base.OnPaint(e);
         }
 
+        /// <summary>
+        /// Свойства основного коспонента
+        /// </summary>
         private Color colorLine = Color.Blue;
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
@@ -181,7 +183,22 @@ namespace MainComp
                     delChild(lastNum - clildNumber);
                 }
             }
+        }
 
+
+        private string textHelp = "Text\r\nhelp";
+        [Category("Component"), Description("Specifies the text help of component.")]
+        public string TextHelp
+        {
+            get
+            {
+                return textHelp;
+            }
+            set
+            {
+                textHelp = @value;
+                Invalidate();
+            }
         }
 
         private void delChild(int n)
@@ -195,7 +212,6 @@ namespace MainComp
 
         private void addChild(int n)
         {
-            
             for (int i = 0; i < n; i++)
             {
                 Random rand = new Random();
@@ -217,15 +233,13 @@ namespace MainComp
                         }
                     }
                 }
-
-
-
-                Controls.Add(child);
-                
+                Controls.Add(child); 
                 list.Add(child);
                 LearnToMove(child);
             }
         }
+
+
 
         private void childComponent1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -285,6 +299,18 @@ namespace MainComp
             control.MouseDown += new MouseEventHandler(mDown);
             control.MouseUp += new MouseEventHandler(mUp);
             control.MouseMove += new MouseEventHandler(mMove);
+        }
+
+
+        /// <summary>
+        /// Метод вывода подсказки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(pictureBox1, textHelp);
+            toolTip1.IsBalloon = true;
         }
     }
     

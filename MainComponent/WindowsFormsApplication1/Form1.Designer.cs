@@ -39,7 +39,7 @@
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
-            this.mainComponent1.LocationPrimary = new System.Drawing.Point(269, 45);
+            this.mainComponent1.LocationPrimary = new System.Drawing.Point(283, 32);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
@@ -47,7 +47,7 @@
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
             this.mainComponent1.SizePrimary = new System.Drawing.Size(100, 100);
             this.mainComponent1.TabIndex = 0;
-            this.mainComponent1.Load += new System.EventHandler(this.mainComponent1_Load_1);
+            this.mainComponent1.TextHelp = "Text \r\n help \\r\\n help";
             // 
             // Form1
             // 
