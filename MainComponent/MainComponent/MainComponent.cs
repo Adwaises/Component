@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace MainComp
@@ -14,25 +15,36 @@ namespace MainComp
 
         private PictureBox pictureBox = null;
         
-        private List<ChildComponent.ChildComponent> list;
-        
+        private List<ChildComponent.ChildComponent> listChild;
+
+        public enum LocationChild
+        {
+            Face,
+            Pizza,
+            Parking
+        }
+        private LocationChild location;
+
         public MainComponent()
         {
             InitializeComponent();
             pictureBox = new PictureBox();
+            
             //this.SetStyle(ControlStyles.UserPaint, true);
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
 
-            list = new List<ChildComponent.ChildComponent>();
+            location = LocationChild.Face;
+
+            listChild = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
             {
                 if (elem is ChildComponent.ChildComponent) {
-                    list.Add(elem as ChildComponent.ChildComponent);
+                    listChild.Add(elem as ChildComponent.ChildComponent);
                 }
             }
-            list.Reverse();
-            foreach (var elem in list)
+            listChild.Reverse();
+            foreach (var elem in listChild)
             {
             LearnToMove(elem);
             }
@@ -48,7 +60,7 @@ namespace MainComp
             }
             set
             {
-                foreach(var elem in list)
+                foreach(var elem in listChild)
                 {
                     elem.RandomLocation = true;
                 }
@@ -67,7 +79,7 @@ namespace MainComp
         {
             get
             {
-                return list;
+                return listChild;
             }
             //set
             //{
@@ -203,12 +215,29 @@ namespace MainComp
             }
         }
 
+
+        [Category("Component"), Description("Specifies the location of component.")]
+        public LocationChild LocationMode
+        {
+            get
+            {
+                return location;
+            }
+            set
+            {
+                location = value;
+                Invalidate();
+            }
+        }
+
+
+
         private void delChild(int n)
         {
             for (int i = 0; i < n; i++)
             {
                 this.Controls.RemoveAt(Controls.Count - 1);
-                list.RemoveAt(list.Count-1);
+                listChild.RemoveAt(listChild.Count-1);
             }
         }
 
@@ -224,7 +253,7 @@ namespace MainComp
                 while (flag)
                 {
                     flag = false;
-                    foreach (var elem in list)
+                    foreach (var elem in listChild)
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
                             Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 || 
@@ -236,7 +265,7 @@ namespace MainComp
                     }
                 }
                 Controls.Add(child); 
-                list.Add(child);
+                listChild.Add(child);
                 LearnToMove(child);
             }
         }
