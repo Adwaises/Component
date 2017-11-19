@@ -188,6 +188,7 @@ namespace MainComp
 
         private string textHelp = "Text\r\nhelp";
         [Category("Component"), Description("Specifies the text help of component.")]
+        [Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string TextHelp
         {
             get
@@ -196,7 +197,8 @@ namespace MainComp
             }
             set
             {
-                textHelp = @value;
+                textHelp = value;
+                textHelp.Replace("\r\n", Environment.NewLine);
                 Invalidate();
             }
         }

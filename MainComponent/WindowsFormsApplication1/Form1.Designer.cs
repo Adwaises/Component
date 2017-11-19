@@ -47,7 +47,7 @@
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
             this.mainComponent1.SizePrimary = new System.Drawing.Size(100, 100);
             this.mainComponent1.TabIndex = 0;
-            this.mainComponent1.TextHelp = "Text \r\n help \\r\\n help";
+            this.mainComponent1.TextHelp = "Text\r\nhelp\r\nhelp";
             // 
             // Form1
             // 
