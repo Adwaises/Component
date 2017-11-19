@@ -50,7 +50,7 @@
             this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
             this.mainComponent1.TabIndex = 0;
             this.mainComponent1.TextHelp = "Text\r\nhelp";
-            this.mainComponent1.TypeImage = MainComp.TypesOfImages.Face;
+            //this.mainComponent1.TypeImage = MainComp.TypesOfImages.Face;
             // 
             // Form2
             // 

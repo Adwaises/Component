@@ -8,23 +8,19 @@ using System.Windows.Forms;
 
 namespace MainComp
 {
-    public enum TypesOfImages { Face, Pizza, Flower, Custom}
+
 
     public partial class MainComponent : UserControl
     {
         //private PrimaryComponent primaryComp;
 
+        public enum TypesOfImages { Face, Pizza, Flower, Custom }
         private PictureBox pictureBox = null;
         
-        private List<ChildComponent.ChildComponent> listChild;
+        private List<ChildComponent.ChildComponent> ChildElemlist;
 
-        public enum EnvironmentChild
-        {
-            Face,
-            Pizza,
-            Parking
-        }
-        private EnvironmentChild environment;
+
+        //private TypesOfImages environment;
 
         public MainComponent()
         {
@@ -35,13 +31,13 @@ namespace MainComp
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
 
-            environment = EnvironmentChild.Face;
+            //environment = TypesOfImages.Face;
 
-            listChild = new List<ChildComponent.ChildComponent>();
+            ChildElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
             {
                 if (elem is ChildComponent.ChildComponent) {
-                    listChild.Add(elem as ChildComponent.ChildComponent);
+                    ChildElemlist.Add(elem as ChildComponent.ChildComponent);
                 }
             }
 
@@ -150,7 +146,7 @@ namespace MainComp
             }
             set
             {
-                foreach(var elem in list)
+                foreach(var elem in ChildElemlist)
                 {
                     elem.RandomLocation = true;
                 }
@@ -169,7 +165,7 @@ namespace MainComp
         {
             get
             {
-                return list;
+                return ChildElemlist;
             }
             //set
             //{
@@ -326,19 +322,19 @@ namespace MainComp
         }
 
 
-        [Category("Component"), Description("Specifies the environment of component.")]
-        public EnvironmentChild EnvironmentMode
-        {
-            get
-            {
-                return environment;
-            }
-            set
-            {
-                environment = value;
-                Invalidate();
-            }
-        }
+        //[Category("Component"), Description("Specifies the environment of component.")]
+        //public TypesOfImages EnvironmentMode
+        //{
+        //    get
+        //    {
+        //        return environment;
+        //    }
+        //    set
+        //    {
+        //        environment = value;
+        //        Invalidate();
+        //    }
+        //}
 
 
 
@@ -347,7 +343,7 @@ namespace MainComp
             for (int i = 0; i < n; i++)
             {
                 this.Controls.RemoveAt(Controls.Count - 1);
-                list.RemoveAt(list.Count-1);
+                ChildElemlist.RemoveAt(ChildElemlist.Count-1);
             }
         }
 
@@ -363,7 +359,7 @@ namespace MainComp
                 while (flag)
                 {
                     flag = false;
-                    foreach (var elem in list)
+                    foreach (var elem in ChildElemlist)
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
                             Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 ||
@@ -374,8 +370,8 @@ namespace MainComp
                         }
                     }
                 }
-                Controls.Add(child); 
-                list.Add(child);
+                Controls.Add(child);
+                ChildElemlist.Add(child);
                 LearnToMove(child);
             }
         }

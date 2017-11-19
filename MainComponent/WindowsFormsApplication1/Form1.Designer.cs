@@ -53,7 +53,6 @@
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
             this.mainComponent1.ClildNumber = 5;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
-            this.mainComponent1.EnvironmentMode = MainComp.MainComponent.EnvironmentChild.Face;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
             this.mainComponent1.LocationPrimary = new System.Drawing.Point(255, 19);
@@ -64,7 +63,8 @@
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
             this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
             this.mainComponent1.TabIndex = 0;
-            this.mainComponent1.TextHelp = "Text\r\nhelp";
+            this.mainComponent1.TextHelp = "Text help\r\nHelp text";
+            this.mainComponent1.TypeImage = MainComp.MainComponent.TypesOfImages.Face;
             // 
             // Form1
             // 
