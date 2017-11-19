@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace MainComp
@@ -14,23 +15,33 @@ namespace MainComp
         //private PrimaryComponent primaryComp;
 
         private PictureBox pictureBox = null;
+        
+        private List<ChildComponent.ChildComponent> listChild;
 
-        private List<ChildComponent.ChildComponent> ChildElemlist;
+        public enum EnvironmentChild
+        {
+            Face,
+            Pizza,
+            Parking
+        }
+        private EnvironmentChild environment;
 
         public MainComponent()
         {
             InitializeComponent();
             pictureBox = new PictureBox();
+            
             //this.SetStyle(ControlStyles.UserPaint, true);
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
 
-            ChildElemlist = new List<ChildComponent.ChildComponent>();
+            environment = EnvironmentChild.Face;
+
+            listChild = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
             {
-                if (elem is ChildComponent.ChildComponent)
-                {
-                    ChildElemlist.Add(elem as ChildComponent.ChildComponent);
+                if (elem is ChildComponent.ChildComponent) {
+                    listChild.Add(elem as ChildComponent.ChildComponent);
                 }
             }
 
@@ -139,7 +150,7 @@ namespace MainComp
             }
             set
             {
-                foreach (var elem in ChildElemlist)
+                foreach(var elem in list)
                 {
                     elem.RandomLocation = true;
                 }
@@ -158,7 +169,7 @@ namespace MainComp
         {
             get
             {
-                return ChildElemlist;
+                return list;
             }
             //set
             //{
@@ -221,6 +232,25 @@ namespace MainComp
         /// <summary>
         /// Свойства основного коспонента
         /// </summary>
+
+
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MaximumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MinimumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
         private Color colorLine = Color.Blue;
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
@@ -295,12 +325,29 @@ namespace MainComp
             }
         }
 
+
+        [Category("Component"), Description("Specifies the environment of component.")]
+        public EnvironmentChild EnvironmentMode
+        {
+            get
+            {
+                return environment;
+            }
+            set
+            {
+                environment = value;
+                Invalidate();
+            }
+        }
+
+
+
         private void delChild(int n)
         {
             for (int i = 0; i < n; i++)
             {
                 this.Controls.RemoveAt(Controls.Count - 1);
-                ChildElemlist.RemoveAt(ChildElemlist.Count - 1);
+                list.RemoveAt(list.Count-1);
             }
         }
 
@@ -316,7 +363,7 @@ namespace MainComp
                 while (flag)
                 {
                     flag = false;
-                    foreach (var elem in ChildElemlist)
+                    foreach (var elem in list)
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
                             Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 ||
@@ -327,8 +374,8 @@ namespace MainComp
                         }
                     }
                 }
-                Controls.Add(child);
-                ChildElemlist.Add(child);
+                Controls.Add(child); 
+                list.Add(child);
                 LearnToMove(child);
             }
         }
