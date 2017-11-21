@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.childComponent1 = new ChildComponent.ChildComponent();
             this.mainComponent1 = new MainComp.MainComponent();
@@ -53,6 +52,7 @@
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
             this.mainComponent1.ClildNumber = 5;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
+            this.mainComponent1.CustomChildImages = null;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
             this.mainComponent1.LocationPrimary = new System.Drawing.Point(255, 19);

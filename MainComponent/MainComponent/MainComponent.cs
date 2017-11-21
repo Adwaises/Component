@@ -8,19 +8,16 @@ using System.Windows.Forms;
 
 namespace MainComp
 {
-
-
     public partial class MainComponent : UserControl
     {
-        //private PrimaryComponent primaryComp;
-
         public enum TypesOfImages { Face, Pizza, Flower, Custom }
         private PictureBox pictureBox = null;
-        
-        private List<ChildComponent.ChildComponent> ChildElemlist;
-
-
-        //private TypesOfImages environment;
+        private List<ChildComponent.ChildComponent> сhildElemlist;
+        //переменные основного компонента
+        private string textHelp = "Text\r\nhelp";
+        private int errorNumber = 3;
+        private int clildNumber = 5;
+        private Color colorLine = Color.Blue;
 
         public MainComponent()
         {
@@ -31,13 +28,12 @@ namespace MainComp
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
 
-            //environment = TypesOfImages.Face;
-
-            ChildElemlist = new List<ChildComponent.ChildComponent>();
+            //создание списка дочерних элементов и его заполение
+            сhildElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
             {
                 if (elem is ChildComponent.ChildComponent) {
-                    ChildElemlist.Add(elem as ChildComponent.ChildComponent);
+                    сhildElemlist.Add(elem as ChildComponent.ChildComponent);
                 }
             }
 
@@ -48,8 +44,8 @@ namespace MainComp
             SetImagesFromType();
 
             //После загрузки - перемещение
-            ChildElemlist.Reverse();
-            foreach (var elem in ChildElemlist)
+            сhildElemlist.Reverse();
+            foreach (var elem in сhildElemlist)
             {
                 LearnToMove(elem);
             }
@@ -111,23 +107,23 @@ namespace MainComp
 
                 //Итератор который проходит по картинкам в коллекции
                 int numPicture = 1;
-                for (int i = 0; i < ChildElemlist.Count; i++)
+                for (int i = 0; i < сhildElemlist.Count; i++)
                 {
                     //Загружаем все элементы из коллекции
                     //Если нужно загрузить больше элементов чем есть картинок 
                     //- загрузка из трэш-коллекции
                     if (i < FaceImg.Images.Count - 2)
                     {
-                        ChildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
+                        сhildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
                         numPicture++;
                     } else if (i == FaceImg.Images.Count - 2)
                     {
-                        ChildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
+                        сhildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
                         numPicture = 1;
                     }
                     else
                     {
-                        ChildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
+                        сhildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
                         numPicture++;
                     }
                 }
@@ -136,27 +132,8 @@ namespace MainComp
 
         #endregion
 
+        #region Property
 
-        [Category("Component"), Description("Specifies the random point of child element.")]
-        public bool RandomLocationChild
-        {
-            get
-            {
-                return false;
-            }
-            set
-            {
-                foreach(var elem in ChildElemlist)
-                {
-                    elem.RandomLocation = true;
-                }
-
-                Invalidate();
-            }
-        }
-
-
-        //private ChildComponent.ChildComponent childComponent = childComponent1;
         /// <summary>
         /// Свойства дочернего компонента
         /// </summary>
@@ -165,7 +142,7 @@ namespace MainComp
         {
             get
             {
-                return ChildElemlist;
+                return сhildElemlist;
             }
             //set
             //{
@@ -217,19 +194,26 @@ namespace MainComp
             }
         }
 
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            Pen pen = new Pen(colorLine, 3);
-            e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
-            base.OnPaint(e);
-        }
-
         /// <summary>
         /// Свойства основного коспонента
         /// </summary>
 
-
+        [Category("Component"), Description("Specifies the random point of child element.")]
+        public bool RandomLocationChild
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                foreach (var elem in сhildElemlist)
+                {
+                    elem.RandomLocation = true;
+                }
+                Invalidate();
+            }
+        }
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -247,7 +231,7 @@ namespace MainComp
             set { Size = new Size(400, 180); }
         }
 
-        private Color colorLine = Color.Blue;
+        
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
         {
@@ -262,7 +246,7 @@ namespace MainComp
             }
         }
 
-        private int errorNumber = 3;
+       
         [Category("Component"), Description("Specifies the error number of component. Value from 1 to 10.")]
         public int ErrorNumber
         {
@@ -278,7 +262,7 @@ namespace MainComp
             }
         }
 
-        private int clildNumber = 5;
+       
         [Category("Component"), Description("Specifies the number of child component. Value from 5 to 7.")]
         public int ClildNumber
         {
@@ -291,7 +275,6 @@ namespace MainComp
                 int lastNum = clildNumber;
                 if (value > 4 && value <= 7)
                     clildNumber = value;
-                Invalidate();
                 if (clildNumber > lastNum)
                 {
                     addChild(clildNumber - lastNum);
@@ -300,11 +283,10 @@ namespace MainComp
                 {
                     delChild(lastNum - clildNumber);
                 }
+                Invalidate();
             }
         }
 
-
-        private string textHelp = "Text\r\nhelp";
         [Category("Component"), Description("Specifies the text help of component.")]
         [Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string TextHelp
@@ -321,32 +303,25 @@ namespace MainComp
             }
         }
 
+        #endregion
 
-        //[Category("Component"), Description("Specifies the environment of component.")]
-        //public TypesOfImages EnvironmentMode
-        //{
-        //    get
-        //    {
-        //        return environment;
-        //    }
-        //    set
-        //    {
-        //        environment = value;
-        //        Invalidate();
-        //    }
-        //}
-
-
-
+        /// <summary>
+        /// Метод удаления дочернего элемента с формы и листа
+        /// </summary>
+        /// <param name="n"></param>
         private void delChild(int n)
         {
             for (int i = 0; i < n; i++)
             {
                 this.Controls.RemoveAt(Controls.Count - 1);
-                ChildElemlist.RemoveAt(ChildElemlist.Count-1);
+                сhildElemlist.RemoveAt(сhildElemlist.Count-1);
             }
         }
 
+        /// <summary>
+        /// Метод добавления дочернего элемента на форму и в лист
+        /// </summary>
+        /// <param name="n"></param>
         private void addChild(int n)
         {
             for (int i = 0; i < n; i++)
@@ -359,7 +334,7 @@ namespace MainComp
                 while (flag)
                 {
                     flag = false;
-                    foreach (var elem in ChildElemlist)
+                    foreach (var elem in сhildElemlist)
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
                             Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 ||
@@ -371,12 +346,17 @@ namespace MainComp
                     }
                 }
                 Controls.Add(child);
-                ChildElemlist.Add(child);
+                сhildElemlist.Add(child);
                 LearnToMove(child);
             }
         }
 
-
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Pen pen = new Pen(colorLine, 3);
+            e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
+            base.OnPaint(e);
+        }
 
         private void childComponent1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -388,13 +368,7 @@ namespace MainComp
 
         }
 
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public override Size Size
-        //{
-        //    get { return base.Size; }
-        //    set { base.Size = value; }
-        //}
+
         // события для движения
         static bool isPress = false;
         static Point startPst;
