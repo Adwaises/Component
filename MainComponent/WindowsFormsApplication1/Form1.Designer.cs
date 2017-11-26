@@ -28,25 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.childComponent1 = new ChildComponent.ChildComponent();
             this.mainComponent1 = new MainComp.MainComponent();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // childComponent1
+            // 
+            this.childComponent1.Accessory = false;
+            this.childComponent1.BackColor = System.Drawing.Color.Red;
+            this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent1.Location = new System.Drawing.Point(0, 0);
+            this.childComponent1.Name = "childComponent1";
+            this.childComponent1.RandomLocation = false;
+            this.childComponent1.Size = new System.Drawing.Size(25, 25);
+            this.childComponent1.TabIndex = 0;
+            this.childComponent1.TabStop = false;
             // 
             // mainComponent1
             // 
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
-            this.mainComponent1.BackgroundImagePrimary = null;
-            this.mainComponent1.ClildNumber = 6;
+            this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
+            this.mainComponent1.ClildNumber = 5;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
+            this.mainComponent1.CustomChildImages = null;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
-            this.mainComponent1.LocationPrimary = new System.Drawing.Point(269, 45);
+            this.mainComponent1.LocationPrimary = new System.Drawing.Point(255, 19);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
+            this.mainComponent1.RandomLocationChild = false;
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
-            this.mainComponent1.SizePrimary = new System.Drawing.Size(100, 100);
+            this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
             this.mainComponent1.TabIndex = 0;
-            this.mainComponent1.Load += new System.EventHandler(this.mainComponent1_Load_1);
+            this.mainComponent1.TextHelp = "Text help\r\nHelp text";
+            this.mainComponent1.TypeImage = MainComp.MainComponent.TypesOfImages.Face;
             // 
             // Form1
             // 
@@ -56,12 +74,13 @@
             this.Controls.Add(this.mainComponent1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private ChildComponent.ChildComponent childComponent1;
         private MainComp.MainComponent mainComponent1;
     }
 }
