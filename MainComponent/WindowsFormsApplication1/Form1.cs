@@ -27,5 +27,10 @@ namespace WindowsFormsApplication1
             
             //this.Container.Add(new ChildComponent.ChildComponent());
         }
+
+        private void mainComponent1_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainComponent.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MainComponent.designer.cs">
       <DependentUpon>MainComponent.cs</DependentUpon>
