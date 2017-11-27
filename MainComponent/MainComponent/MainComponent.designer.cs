@@ -41,6 +41,7 @@ namespace MainComp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainComponent));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.childComponent7 = new ChildComponent.ChildComponent();
             this.childComponent6 = new ChildComponent.ChildComponent();
@@ -136,6 +137,7 @@ namespace MainComp
             // 
             this.primaryComponent1.BackColor = System.Drawing.Color.Transparent;
             this.primaryComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.primaryComponent1.InitialImage = ((System.Drawing.Image)(resources.GetObject("primaryComponent1.InitialImage")));
             this.primaryComponent1.Location = new System.Drawing.Point(267, 19);
             this.primaryComponent1.Name = "primaryComponent1";
             this.primaryComponent1.Size = new System.Drawing.Size(128, 128);
