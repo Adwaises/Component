@@ -10,9 +10,11 @@ namespace MainComp
 {
     public partial class MainComponent : UserControl
     {
-        public enum TypesOfImages { Face, Pizza, Flower, Custom }
+        public enum TypesOfImages { Face, Refrigerator, Flower, Custom }
+
         private PictureBox pictureBox = null;
         private List<ChildComponent.ChildComponent> сhildElemlist;
+
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
         private int errorNumber = 3;
@@ -41,7 +43,7 @@ namespace MainComp
             LoadImages();
 
             //Загрузка картинок в зависимости от установленного TypesOfImages 
-            SetImagesFromType();
+            SetImagesFromType(typeImages);
 
             //После загрузки - перемещение
             сhildElemlist.Reverse();
@@ -49,35 +51,57 @@ namespace MainComp
             {
                 LearnToMove(elem);
             }
+
+            Invalidate();
         }
 
 
 
         #region WorkWithImage
 
-        private TypesOfImages typeImages = TypesOfImages.Face;
+        private TypesOfImages typeImages;
+
         private ImageList FaceImg = new ImageList();
-        private ImageList PizzaImg = new ImageList();
+        private ImageList RefrigerImg = new ImageList();
         private ImageList FlowersImg = new ImageList();
         private ImageList TrashImg = new ImageList();
 
         [Category("Component"), Description("Current type images of component")]
         public TypesOfImages TypeImage
         {
-            get { return typeImages; }
+            get {
+                return typeImages;
+            }
             set
             {
                 typeImages = value;
+                SetImagesFromType(typeImages);
+                Invalidate();
             }
         }
-        
-        ImageList imgs = new ImageList();
+
+        private int childRightNumber = 3;
+
+        [Category("Component"), Description("Count right picture")]
+        public int ChildRightNumber
+        {
+            get
+            {
+                return childRightNumber;
+            }
+            set
+            {
+                childRightNumber = value;
+            }
+        }
+
+        ImageList CustomImg = new ImageList();
 
         [Category("ChildComponent"), Description("Custom list of child images")]
         public ImageList CustomChildImages
         {
-            get { return imgs; }
-            set { imgs = value; }
+            get { return CustomImg; }
+            set { CustomImg = value; }
         }
 
         void LoadImages()
@@ -90,20 +114,47 @@ namespace MainComp
             FaceImg.Images.Add(Resources.nose as Bitmap);
             FaceImg.Images.Add(Resources.mouth as Bitmap);
 
+            //FlowersCollection
+            FlowersImg.ImageSize = new Size(128, 128);
+            FlowersImg.Images.Add(Resources.vase as Bitmap);
+            FlowersImg.Images.Add(Resources.rose as Bitmap);
+            FlowersImg.Images.Add(Resources.poppy as Bitmap);
+            FlowersImg.Images.Add(Resources.roses as Bitmap);
+
+            //
+            RefrigerImg.ImageSize = new Size(128, 128);
+            RefrigerImg.Images.Add(Resources.refrigerator as Bitmap);
+            RefrigerImg.Images.Add(Resources.meat as Bitmap);
+            RefrigerImg.Images.Add(Resources.cheese as Bitmap);
+            RefrigerImg.Images.Add(Resources.jelly as Bitmap);
+            RefrigerImg.Images.Add(Resources.water as Bitmap);
+            RefrigerImg.Images.Add(Resources.fish as Bitmap);
+
             //TrashImg.Images.Add(Resources)
             TrashImg.ImageSize = new Size(128, 128);
             TrashImg.Images.Add(Resources.rose as Bitmap);
             TrashImg.Images.Add(Resources.poppy as Bitmap);
             TrashImg.Images.Add(Resources.roses as Bitmap);
 
+            
+
         }
 
-        void SetImagesFromType()
+        void SetWrongImage(TypesOfImages typeImg)
         {
-            if (typeImages == TypesOfImages.Face)
-            {   
+            
+        }
+
+        void SetImagesFromType(TypesOfImages typeImg)
+        {
+
+            //var newImageList;
+
+            if (typeImg == TypesOfImages.Face)
+            {
                 //Загрузка шаблона "Лицо"
                 BackgroundImagePrimary = FaceImg.Images[0];
+                TrashImg = FlowersImg;
 
                 //Итератор который проходит по картинкам в коллекции
                 int numPicture = 1;
@@ -112,13 +163,64 @@ namespace MainComp
                     //Загружаем все элементы из коллекции
                     //Если нужно загрузить больше элементов чем есть картинок 
                     //- загрузка из трэш-коллекции
-                    if (i < FaceImg.Images.Count - 2)
+                    if (i < FaceImg.Images.Count - 2 && i < ChildRightNumber)
                     {
                         сhildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
                         numPicture++;
-                    } else if (i == FaceImg.Images.Count - 2)
+                    }
+                    else if (i == FaceImg.Images.Count - 2 || i == childRightNumber)
                     {
                         сhildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
+                        numPicture = 1;
+                    }
+                    else
+                    {
+                        сhildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
+                        numPicture++;
+                    }
+                }
+            }
+            else if (typeImg == TypesOfImages.Flower)
+            {
+                BackgroundImagePrimary = FlowersImg.Images[0];
+                TrashImg = FaceImg;
+
+                int numPicture = 1;
+                for (int i = 0; i < сhildElemlist.Count; i++)
+                {
+                    if (i < FlowersImg.Images.Count - 2)
+                    {
+                        сhildElemlist[i].BackgroundImage = FlowersImg.Images[numPicture];
+                        numPicture++;
+                    }
+                    else if (i == FlowersImg.Images.Count - 2)
+                    {
+                        сhildElemlist[i].BackgroundImage = FlowersImg.Images[numPicture];
+                        numPicture = 1;
+                    }
+                    else
+                    {
+                        сhildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
+                        numPicture++;
+                    }
+                }
+            }
+            else if (typeImg == TypesOfImages.Refrigerator)
+            {
+                BackgroundImagePrimary = RefrigerImg.Images[0];
+                TrashImg = FaceImg;
+
+                int numPicture = 1;
+                for (int i = 0; i < сhildElemlist.Count; i++)
+                {
+                    if (i < RefrigerImg.Images.Count - 2)
+                    {
+                        сhildElemlist[i].BackgroundImage = RefrigerImg.Images[numPicture];
+                        numPicture++;
+                    }
+                    else if (i == RefrigerImg.Images.Count - 2)
+                    {
+                        сhildElemlist[i].BackgroundImage = RefrigerImg.Images[numPicture];
                         numPicture = 1;
                     }
                     else
