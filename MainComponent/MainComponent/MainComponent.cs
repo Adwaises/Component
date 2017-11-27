@@ -36,7 +36,7 @@ namespace MainComp
                     сhildElemlist.Add(elem as ChildComponent.ChildComponent);
                 }
             }
-
+            ToPosition(this.primaryComponent1);
             //Тут будет загрузка картинок из папки в коллекции
             LoadImages();
 
@@ -144,11 +144,7 @@ namespace MainComp
             {
                 return сhildElemlist;
             }
-            //set
-            //{
-            //    list = value;
-            //    Invalidate();
-            //}
+            
         }
 
         /// <summary>
@@ -372,13 +368,21 @@ namespace MainComp
         // события для движения
         static bool isPress = false;
         static Point startPst;
+        
+        
+        
+        static Control controlTemp;
         // Функция выполняется при нажатии на перемещаемый контрол
         private static void mDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
+                Control control = (Control)sender;
+                //запоминаем компонент который тянем 
+                controlTemp=control;
                 isPress = true;
                 startPst = e.Location;
+                
             }
             else { return; } //проверка что нажата левая кнопка
 
@@ -388,14 +392,31 @@ namespace MainComp
         {
             if (e.Button == MouseButtons.Left)
             {
+
+                Control control = (Control)sender;
                 isPress = false;
+                if (control.Top > controlPrim.Location.Y && control.Left > controlPrim.Location.X)
+                {
+                    if ((control as ChildComponent.ChildComponent).Accessory)
+                    {
+                        control.MouseDown -= new MouseEventHandler(mDown);
+                        control.MouseUp -= new MouseEventHandler(mUp);
+                    }
+                    else
+                    {
+                        (control as ChildComponent.ChildComponent).RandomLocation=true;
+                        
+                    }
+                    MessageBox.Show("1");
+                }
             }
             else
             {
                 return;
             }//проверка что нажата левая кнопка
 
-        }
+        } 
+       
         // Функция выполняется при перемещении контрола
         private static void mMove(object sender, MouseEventArgs e)
         {
@@ -404,8 +425,10 @@ namespace MainComp
                 Control control = (Control)sender;
                 control.Top += e.Y - startPst.Y;
                 control.Left += e.X - startPst.X;
+               
             }
         }
+       
 
         // обучает контролы передвигаться
 
@@ -417,6 +440,34 @@ namespace MainComp
             control.MouseMove += new MouseEventHandler(mMove);
         }
 
+        private static void onThePosition(object sender, EventArgs e)
+        {
+
+            
+            if (isPress)
+            {
+                MessageBox.Show("1");
+                //if ((controlTemp  as ChildComponent.ChildComponent).Accessory)
+                //{
+
+                //    controlTemp.MouseMove -= new MouseEventHandler(mMove);
+                //}
+                //else {
+                //    controlTemp.Top = startPst.Y;
+                //    controlTemp.Left = startPst.X;
+                //} 
+
+            }
+            else {
+MessageBox.Show("");
+            }
+        }
+        static Control controlPrim;
+        public static void ToPosition(object sender)
+        {
+            controlPrim = (Control)sender;
+           // control.MouseEnter += new EventHandler(onThePosition);
+        }
 
         /// <summary>
         /// Метод вывода подсказки

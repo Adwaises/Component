@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace ChildComponent
 {
+   
     public class ChildComponent : PictureBox
 
     {
