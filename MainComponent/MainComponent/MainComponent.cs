@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using ChildComponent;
 
 namespace MainComp
 {
@@ -12,8 +13,10 @@ namespace MainComp
     {
         public enum TypesOfImages { Face, Refrigerator, Flower, Custom }
 
+        Random random = new Random();
+
         private PictureBox pictureBox = null;
-        private List<ChildComponent.ChildComponent> сhildElemlist;
+        private List<ChildComponent.ChildComponent> childElemlist;
 
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
@@ -21,9 +24,34 @@ namespace MainComp
         private int clildNumber = 5;
         private Color colorLine = Color.Blue;
 
+
+        //!Это костыль!
+        public static System.Drawing.Drawing2D.GraphicsPath BuildTransparencyPath(Image im)
+        {
+            int x;
+            int y;
+            Bitmap bmp = new Bitmap(im);
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            Color mask = bmp.GetPixel(0, 0);
+
+            for (x = 0; x <= bmp.Width - 1; x++)
+            {
+                for (y = 0; y <= bmp.Height - 1; y++)
+                {
+                    if (!bmp.GetPixel(x, y).Equals(mask))
+                    {
+                        gp.AddRectangle(new Rectangle(x, y, 1, 1));
+                    }
+                }
+            }
+            bmp.Dispose();
+            return gp;
+        }
+
         public MainComponent()
         {
             InitializeComponent();
+
             pictureBox = new PictureBox();
             
             //this.SetStyle(ControlStyles.UserPaint, true);
@@ -31,11 +59,11 @@ namespace MainComp
             pictureBox.Size = new Size(400, 180);
 
             //создание списка дочерних элементов и его заполение
-            сhildElemlist = new List<ChildComponent.ChildComponent>();
+            childElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
             {
                 if (elem is ChildComponent.ChildComponent) {
-                    сhildElemlist.Add(elem as ChildComponent.ChildComponent);
+                    childElemlist.Add(elem as ChildComponent.ChildComponent);
                 }
             }
 
@@ -46,25 +74,41 @@ namespace MainComp
             SetImagesFromType(typeImages);
 
             //После загрузки - перемещение
-            сhildElemlist.Reverse();
-            foreach (var elem in сhildElemlist)
+            childElemlist.Reverse();
+            foreach (var elem in childElemlist)
             {
                 LearnToMove(elem);
             }
 
-            Invalidate();
+
+            //primaryComponent1.Controls.Add(childComponent1);
+            //primaryComponent1.Controls.Add(childComponent2);
+            //primaryComponent1.Controls.Add(childComponent3);
+            //primaryComponent1.Controls.Add(childComponent4);
+            //primaryComponent1.Controls.Add(childComponent5);
+
+            Invalidate();            
         }
 
 
 
         #region WorkWithImage
 
+        private int rightChildNumber = 4;
+
         private TypesOfImages typeImages;
 
         private ImageList FaceImg = new ImageList();
+        private Image primaryFace;
+
         private ImageList RefrigerImg = new ImageList();
+        private Image primaryRefriger;
+
         private ImageList FlowersImg = new ImageList();
-        private ImageList TrashImg = new ImageList();
+        private Image primaryFlower;
+
+        private ImageList CustomImg = new ImageList();
+        private Image primaryCustomImg;
 
         [Category("Component"), Description("Current type images of component")]
         public TypesOfImages TypeImage
@@ -77,25 +121,11 @@ namespace MainComp
                 typeImages = value;
                 SetImagesFromType(typeImages);
                 Invalidate();
+                this.Refresh();
+
             }
         }
 
-        private int childRightNumber = 3;
-
-        [Category("Component"), Description("Count right picture")]
-        public int ChildRightNumber
-        {
-            get
-            {
-                return childRightNumber;
-            }
-            set
-            {
-                childRightNumber = value;
-            }
-        }
-
-        ImageList CustomImg = new ImageList();
 
         [Category("ChildComponent"), Description("Custom list of child images")]
         public ImageList CustomChildImages
@@ -108,41 +138,67 @@ namespace MainComp
         {
             //Исправлю и сделаю загрузку ВСЕХ файлов из папки
             //Загрузка из ресурсов
-            FaceImg.ImageSize = new Size (128,128);
-            FaceImg.Images.Add(Resources.face as Bitmap);
+            primaryFace = Resources.face;
+
+            FaceImg.ImageSize = new Size (32,32);
             FaceImg.Images.Add(Resources.eyes as Bitmap);
             FaceImg.Images.Add(Resources.nose as Bitmap);
             FaceImg.Images.Add(Resources.mouth as Bitmap);
+            FaceImg.Images.Add(Resources.reading_glasses as Bitmap);
+            FaceImg.Images.Add(Resources.moustache as Bitmap);
+
 
             //FlowersCollection
-            FlowersImg.ImageSize = new Size(128, 128);
-            FlowersImg.Images.Add(Resources.vase as Bitmap);
+            primaryFlower = Resources.vase;
+
+            FlowersImg.ImageSize = new Size(32, 32);
             FlowersImg.Images.Add(Resources.rose as Bitmap);
             FlowersImg.Images.Add(Resources.poppy as Bitmap);
             FlowersImg.Images.Add(Resources.roses as Bitmap);
+            FlowersImg.Images.Add(Resources.rose_1 as Bitmap);
+            FlowersImg.Images.Add(Resources.sunflower as Bitmap);
 
             //
-            RefrigerImg.ImageSize = new Size(128, 128);
-            RefrigerImg.Images.Add(Resources.refrigerator as Bitmap);
+            primaryRefriger = Resources.refrigerator;
+
+            RefrigerImg.ImageSize = new Size(32, 32);
             RefrigerImg.Images.Add(Resources.meat as Bitmap);
             RefrigerImg.Images.Add(Resources.cheese as Bitmap);
             RefrigerImg.Images.Add(Resources.jelly as Bitmap);
             RefrigerImg.Images.Add(Resources.water as Bitmap);
             RefrigerImg.Images.Add(Resources.fish as Bitmap);
-
-            //TrashImg.Images.Add(Resources)
-            TrashImg.ImageSize = new Size(128, 128);
-            TrashImg.Images.Add(Resources.rose as Bitmap);
-            TrashImg.Images.Add(Resources.poppy as Bitmap);
-            TrashImg.Images.Add(Resources.roses as Bitmap);
-
+            RefrigerImg.Images.Add(Resources.can as Bitmap);
+            RefrigerImg.Images.Add(Resources.carrot as Bitmap);
             
-
         }
 
-        void SetWrongImage(TypesOfImages typeImg)
+        Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
         {
-            
+
+            var allLists = new List<ImageList>();
+            if (!exceptionTypeImg.Equals(TypesOfImages.Face))
+            {
+                allLists.Add(FaceImg);
+            }
+
+            if (!exceptionTypeImg.Equals(TypesOfImages.Flower))
+            {
+                allLists.Add(FlowersImg);
+            }
+
+            if (!exceptionTypeImg.Equals(TypesOfImages.Refrigerator))
+            {
+                allLists.Add(RefrigerImg);
+            }
+
+            if (!exceptionTypeImg.Equals(TypesOfImages.Custom))
+            {
+                allLists.Add(CustomImg);
+            }
+
+            var randomList = allLists[random.Next(0, allLists.Count - 1)];
+
+            return randomList.Images[random.Next(0, randomList.Images.Count - 1)];
         }
 
         void SetImagesFromType(TypesOfImages typeImg)
@@ -153,81 +209,57 @@ namespace MainComp
             if (typeImg == TypesOfImages.Face)
             {
                 //Загрузка шаблона "Лицо"
-                BackgroundImagePrimary = FaceImg.Images[0];
-                TrashImg = FlowersImg;
+                BackgroundImagePrimary = primaryFace;
 
-                //Итератор который проходит по картинкам в коллекции
-                int numPicture = 1;
-                for (int i = 0; i < сhildElemlist.Count; i++)
+                //Проход по всем дочерним элементам
+                for (int i = 0; i < childElemlist.Count; i++)
                 {
-                    //Загружаем все элементы из коллекции
-                    //Если нужно загрузить больше элементов чем есть картинок 
-                    //- загрузка из трэш-коллекции
-                    if (i < FaceImg.Images.Count - 2 && i < ChildRightNumber)
+                    //Пока не закончатся шаблонные картинки заливаем их 
+                    if (i < FaceImg.Images.Count && i < rightChildNumber)
                     {
-                        сhildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
-                        numPicture++;
-                    }
-                    else if (i == FaceImg.Images.Count - 2 || i == childRightNumber)
+                        childElemlist[i].BackgroundImage = FaceImg.Images[i];
+                    } else // Если закончились - спамим неправильные
                     {
-                        сhildElemlist[i].BackgroundImage = FaceImg.Images[numPicture];
-                        numPicture = 1;
+                        childElemlist[i].BackgroundImage = SetRandomWrongImage(typeImg);
                     }
-                    else
-                    {
-                        сhildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
-                        numPicture++;
-                    }
-                }
+                    
+                }               
+
             }
             else if (typeImg == TypesOfImages.Flower)
             {
-                BackgroundImagePrimary = FlowersImg.Images[0];
-                TrashImg = FaceImg;
+                BackgroundImagePrimary = primaryFlower;
 
-                int numPicture = 1;
-                for (int i = 0; i < сhildElemlist.Count; i++)
+                for (int i = 0; i < childElemlist.Count; i++)
                 {
-                    if (i < FlowersImg.Images.Count - 2)
+
+                    if (i < FlowersImg.Images.Count && i < rightChildNumber)
                     {
-                        сhildElemlist[i].BackgroundImage = FlowersImg.Images[numPicture];
-                        numPicture++;
-                    }
-                    else if (i == FlowersImg.Images.Count - 2)
-                    {
-                        сhildElemlist[i].BackgroundImage = FlowersImg.Images[numPicture];
-                        numPicture = 1;
+                        childElemlist[i].BackgroundImage = FlowersImg.Images[i];
                     }
                     else
                     {
-                        сhildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
-                        numPicture++;
+                        childElemlist[i].BackgroundImage = SetRandomWrongImage(typeImg);
                     }
+
                 }
             }
             else if (typeImg == TypesOfImages.Refrigerator)
             {
-                BackgroundImagePrimary = RefrigerImg.Images[0];
-                TrashImg = FaceImg;
+                BackgroundImagePrimary = primaryRefriger;
 
-                int numPicture = 1;
-                for (int i = 0; i < сhildElemlist.Count; i++)
+                for (int i = 0; i < childElemlist.Count; i++)
                 {
-                    if (i < RefrigerImg.Images.Count - 2)
+
+                    if (i < RefrigerImg.Images.Count && i < rightChildNumber)
                     {
-                        сhildElemlist[i].BackgroundImage = RefrigerImg.Images[numPicture];
-                        numPicture++;
-                    }
-                    else if (i == RefrigerImg.Images.Count - 2)
-                    {
-                        сhildElemlist[i].BackgroundImage = RefrigerImg.Images[numPicture];
-                        numPicture = 1;
+                        childElemlist[i].BackgroundImage = RefrigerImg.Images[i];
                     }
                     else
                     {
-                        сhildElemlist[i].BackgroundImage = TrashImg.Images[numPicture];
-                        numPicture++;
+                        childElemlist[i].BackgroundImage = SetRandomWrongImage(typeImg);
                     }
+
                 }
             }
         }
@@ -244,7 +276,7 @@ namespace MainComp
         {
             get
             {
-                return сhildElemlist;
+                return childElemlist;
             }
             //set
             //{
@@ -309,7 +341,7 @@ namespace MainComp
             }
             set
             {
-                foreach (var elem in сhildElemlist)
+                foreach (var elem in childElemlist)
                 {
                     elem.RandomLocation = true;
                 }
@@ -364,8 +396,11 @@ namespace MainComp
             }
         }
 
+
+        private int minChildNumber = 3;
+        private int maxChildNumber = 7;
        
-        [Category("Component"), Description("Specifies the number of child component. Value from 5 to 7.")]
+        [Category("Component"), Description("Specifies the number of child component. Value from 3 to 7.")]
         public int ClildNumber
         {
             get
@@ -375,7 +410,7 @@ namespace MainComp
             set
             {
                 int lastNum = clildNumber;
-                if (value > 4 && value <= 7)
+                if (value > minChildNumber && value <= maxChildNumber) //???Магические числа???
                     clildNumber = value;
                 if (clildNumber > lastNum)
                 {
@@ -385,6 +420,7 @@ namespace MainComp
                 {
                     delChild(lastNum - clildNumber);
                 }
+
                 Invalidate();
             }
         }
@@ -416,7 +452,7 @@ namespace MainComp
             for (int i = 0; i < n; i++)
             {
                 this.Controls.RemoveAt(Controls.Count - 1);
-                сhildElemlist.RemoveAt(сhildElemlist.Count-1);
+                childElemlist.RemoveAt(childElemlist.Count-1);
             }
         }
 
@@ -436,7 +472,7 @@ namespace MainComp
                 while (flag)
                 {
                     flag = false;
-                    foreach (var elem in сhildElemlist)
+                    foreach (var elem in childElemlist)
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
                             Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 ||
@@ -447,8 +483,10 @@ namespace MainComp
                         }
                     }
                 }
+
+                child.Image = SetRandomWrongImage(typeImages);
                 Controls.Add(child);
-                сhildElemlist.Add(child);
+                childElemlist.Add(child);
                 LearnToMove(child);
             }
         }
