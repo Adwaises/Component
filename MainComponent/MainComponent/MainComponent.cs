@@ -21,39 +21,21 @@ namespace MainComp
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
         private int errorNumber = 3;
-        private int clildNumber = 5;
+
+        private int countNonCorrectChild = 3;
+        private int countCorrectChild = 3;
+
+        private static TypesOfImages typeImages = TypesOfImages.Face;
+
         private Color colorLine = Color.Blue;
 
-
-        //!Это костыль!
-        public static System.Drawing.Drawing2D.GraphicsPath BuildTransparencyPath(Image im)
-        {
-            int x;
-            int y;
-            Bitmap bmp = new Bitmap(im);
-            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-            Color mask = bmp.GetPixel(0, 0);
-
-            for (x = 0; x <= bmp.Width - 1; x++)
-            {
-                for (y = 0; y <= bmp.Height - 1; y++)
-                {
-                    if (!bmp.GetPixel(x, y).Equals(mask))
-                    {
-                        gp.AddRectangle(new Rectangle(x, y, 1, 1));
-                    }
-                }
-            }
-            bmp.Dispose();
-            return gp;
-        }
 
         public MainComponent()
         {
             InitializeComponent();
 
             pictureBox = new PictureBox();
-            
+
             //this.SetStyle(ControlStyles.UserPaint, true);
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
@@ -62,11 +44,13 @@ namespace MainComp
             childElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
             {
-                if (elem is ChildComponent.ChildComponent) {
+                if (elem is ChildComponent.ChildComponent)
+                {
                     childElemlist.Add(elem as ChildComponent.ChildComponent);
                 }
             }
             ToPosition(this.primaryComponent1);
+
             //Тут будет загрузка картинок из папки в коллекции
             LoadImages();
 
@@ -87,51 +71,28 @@ namespace MainComp
             //primaryComponent1.Controls.Add(childComponent4);
             //primaryComponent1.Controls.Add(childComponent5);
 
-            Invalidate();            
+            Invalidate();
         }
 
 
 
         #region WorkWithImage
 
-        private int rightChildNumber = 4;
-
-        private static TypesOfImages typeImages;
-
-        //private ImageList FaceImg = new ImageList();
+        //Картинки Primary компонента
         private Image primaryFace;
-
-        //private ImageList RefrigerImg = new ImageList();
         private Image primaryRefriger;
-
-        //private ImageList FlowersImg = new ImageList();
         private Image primaryFlower;
-
-        //private ImageList CustomImg = new ImageList();
         private Image primaryCustomImg;
 
+        //Хранит картинки дочерних компоненов по типам
         private static Dictionary<Image, TypesOfImages> AllImg = new Dictionary<Image, TypesOfImages>();
 
-        [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
-        public int CountRightChild
+        //Свойство для выбора типа шаблона
+        [Category("Component"), Description("Current type images of component")]
+        public TypesOfImages CaptchaPattern
         {
             get
             {
-                return rightChildNumber;
-            }
-            set
-            {
-                if (value > 0 && value <= 4)
-                    rightChildNumber = value;
-
-                Invalidate();
-            }
-        }
-
-        [Category("Component"), Description("Current type images of component")]
-        public TypesOfImages TypeImage
-        {
-            get {
                 return typeImages;
             }
             set
@@ -140,17 +101,24 @@ namespace MainComp
                 SetImagesFromType(typeImages);
                 Invalidate();
                 this.Refresh();
-
             }
         }
 
+        [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
+        public int CountCorrectChild
+        {
+            get
+            { return countCorrectChild; }
+            set
+            {
+                if (value > 0 && value <= 4)
+                {
+                    countCorrectChild = value;
+                }
 
-        //[Category("ChildComponent"), Description("Custom list of child images")]
-        //public Dictionary<Image,TypesOfImages> CustomChildImages
-        //{
-        //    get { return CustomImg; }
-        //    set { CustomImg = value; }
-        //}
+                Invalidate();
+            }
+        }
 
         void LoadImages()
         {
@@ -178,11 +146,11 @@ namespace MainComp
             AllImg.Add(Resources.rose_1 as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.poppy as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.roses as Bitmap, TypesOfImages.Flower);
-
         }
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
         {
+            //Лист для всех элементов кроме пришедшей переменной 
             ImageList imgsNonType = new ImageList();
 
             foreach (var elem in AllImg)
@@ -192,16 +160,13 @@ namespace MainComp
                     imgsNonType.Images.Add(elem.Key);
                 }
             }
-
-
+            //Возвращает рандомный элемент из списка
             return imgsNonType.Images[random.Next(0, imgsNonType.Images.Count - 1)];
         }
 
         void SetImagesFromType(TypesOfImages typeImg)
         {
-
-            var newImageList = new List<Image>();
-
+            //Задает изображение для primary-компонента
             if (typeImg == TypesOfImages.Face)
             {
                 primaryComponent1.BackgroundImage = primaryFace;
@@ -219,7 +184,8 @@ namespace MainComp
                 primaryComponent1.BackgroundImage = primaryCustomImg;
             }
 
-
+            // Проход по всем картинкам и выборка изображений данного типа
+            var newImageList = new List<Image>();
             foreach (var elem in AllImg)
             {
                 if (elem.Value == typeImg)
@@ -228,9 +194,20 @@ namespace MainComp
                 }
             }
 
-            for (int i = 0; i < newImageList.Count; i++)
+            //Задает дочерним компонентам изображение из нового списка
+            //Пока картинки есть и дочерние компоненты => делаем присваивание
+            int i = 0; //Добавление подходящих компонентов
+            for (int p = 0; p < CountCorrectChild; p++)
             {
-                childElemlist[i].BackgroundImage = newImageList[i];
+                childElemlist[i].BackgroundImage = newImageList[p];
+                i++;
+            }
+
+            //Добавление неправильных компонентов
+            for (int j = 0; j < CountNonCorrectChild; j++)
+            {
+                childElemlist[i].BackgroundImage = SetRandomWrongImage(typeImages);
+                i++;
             }
 
         }
@@ -251,7 +228,7 @@ namespace MainComp
         //    {
         //        return childElemlist;
         //    }
-            
+
         //}
 
         /// <summary>
@@ -270,26 +247,22 @@ namespace MainComp
                 Invalidate();
             }
         }
+
         [Category("PrimaryComponent"), Description("Specifies the location of primary element.")]
         public Point LocationPrimary
         {
-            get
-            {
-                return primaryComponent1.Location;
-            }
+            get { return primaryComponent1.Location; }
             set
             {
                 primaryComponent1.Location = value;
                 Invalidate();
             }
         }
+
         [Category("PrimaryComponent"), Description("Specifies the size of primary element.")]
         public Size SizePrimary
         {
-            get
-            {
-                return primaryComponent1.Size;
-            }
+            get { return primaryComponent1.Size; }
             set
             {
                 primaryComponent1.Size = value;
@@ -305,9 +278,7 @@ namespace MainComp
         public bool RandomLocationChild
         {
             get
-            {
-                return false;
-            }
+            { return false; }
             set
             {
                 foreach (var elem in childElemlist)
@@ -334,14 +305,11 @@ namespace MainComp
             set { Size = new Size(400, 180); }
         }
 
-        
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
         {
             get
-            {
-                return colorLine;
-            }
+            { return colorLine; }
             set
             {
                 colorLine = value;
@@ -349,14 +317,11 @@ namespace MainComp
             }
         }
 
-       
         [Category("Component"), Description("Specifies the error number of component. Value from 1 to 10.")]
         public int ErrorNumber
         {
             get
-            {
-                return errorNumber;
-            }
+            { return errorNumber; }
             set
             {
                 if (value > 0 && value <= 10)
@@ -366,28 +331,31 @@ namespace MainComp
         }
 
 
-        private int minChildNumber = 3;
+        private int minChildNumber = 1;
         private int maxChildNumber = 7;
-       
-        [Category("Component"), Description("Specifies the number of child component. Value from 3 to 7.")]
-        public int ClildNumber
+
+        [Category("Component"), Description("Specifies the number of child component. Value from 1 to 7.")]
+        public int CountNonCorrectChild
         {
             get
-            {
-                return clildNumber;
-            }
+            { return countNonCorrectChild; }
             set
             {
-                int lastNum = clildNumber;
-                if (value > minChildNumber && value <= maxChildNumber) //???Магические числа???
-                    clildNumber = value;
-                if (clildNumber > lastNum)
+                //Мин-Макс проверка
+                int lastNum = countNonCorrectChild;
+                if (value > minChildNumber && value <= maxChildNumber)
                 {
-                    addChild(clildNumber - lastNum);
+                    countNonCorrectChild = value;
                 }
-                else if (lastNum > clildNumber)
+
+
+                if (countNonCorrectChild > lastNum)
                 {
-                    delChild(lastNum - clildNumber);
+                    //Аргумент - сколько новых нужно // Добавление неподходящих картинок
+                    addChild(countNonCorrectChild - lastNum, false);
+                } else if (lastNum > countNonCorrectChild)
+                {
+                    deleteChild(lastNum - countNonCorrectChild, false);
                 }
 
                 Invalidate();
@@ -399,9 +367,7 @@ namespace MainComp
         public string TextHelp
         {
             get
-            {
-                return textHelp;
-            }
+            { return textHelp; }
             set
             {
                 textHelp = value;
@@ -416,12 +382,26 @@ namespace MainComp
         /// Метод удаления дочернего элемента с формы и листа
         /// </summary>
         /// <param name="n"></param>
-        private void delChild(int n)
+        private void deleteChild(int countDeleteChild, bool isCorrectChild)
         {
-            for (int i = 0; i < n; i++)
+            //for (int i = 0; i < childElemlist.Count; i++){
+            //    //Если нужно удалить верный 
+            //    if (isCorrectChild)
+            //    {
+
+            //    } else //Если нужно удалить неверный
+            //    {
+
+            //    }
+            //}
+
+
+
+            for (int i = 0; i < countDeleteChild; i++)
             {
+
                 this.Controls.RemoveAt(Controls.Count - 1);
-                childElemlist.RemoveAt(childElemlist.Count-1);
+                childElemlist.RemoveAt(childElemlist.Count - 1);
             }
         }
 
@@ -429,13 +409,13 @@ namespace MainComp
         /// Метод добавления дочернего элемента на форму и в лист
         /// </summary>
         /// <param name="n"></param>
-        private void addChild(int n)
+        private void addChild(int countNewChild, bool isCorrectChild)
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < countNewChild; i++)
             {
-                Random rand = new Random();
+                // Рандомим позицию
                 ChildComponent.ChildComponent child = new ChildComponent.ChildComponent();
-                child.Location = new Point(rand.Next(230), rand.Next(150));
+                child.Location = new Point(random.Next(230), random.Next(150));
                 //определяем не наложились ли элементы
                 bool flag = true;
                 while (flag)
@@ -447,17 +427,46 @@ namespace MainComp
                             Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 ||
                             child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 150)
                         {
-                            child.Location = new Point(rand.Next(230), rand.Next(140));
+                            child.Location = new Point(random.Next(230), random.Next(140));
                             flag = true;
                         }
                     }
                 }
+                //Если нужно добавить верный дочерний элемент
+                if (isCorrectChild)
+                {
+                    child.BackgroundImage = FindNewCorrectImage();
+                } else
+                {
+                    child.BackgroundImage = SetRandomWrongImage(typeImages);
+                }
 
-                child.BackgroundImage= SetRandomWrongImage(typeImages);
                 Controls.Add(child);
                 childElemlist.Add(child);
                 LearnToMove(child);
             }
+        }
+
+        private Image FindNewCorrectImage()
+        {
+            //Проход по всей коллекции картинок
+            foreach (var elem in AllImg)
+            {
+                //Если тип картинки в коллекции совпадает с текущим шаблоном капчи
+                if (elem.Value == typeImages)
+                {
+                    //Проход по всем дочерним элементам с целью найти не использованное изображение
+                    for (int i = 0; i < childElemlist.Count; i++)
+                    {
+                        if (!childElemlist[i].BackgroundImage.Equals(elem.Key))
+                        {
+                            return elem.Key;
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -467,23 +476,11 @@ namespace MainComp
             base.OnPaint(e);
         }
 
-        private void childComponent1_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void childComponent1_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         // события для движения
         static bool isPress = false;
         static Point startPst;
-        
-        
-        
+
         static Control controlTemp;
         // Функция выполняется при нажатии на перемещаемый контрол
         private static void mDown(object sender, MouseEventArgs e)
@@ -492,35 +489,33 @@ namespace MainComp
             {
                 Control control = (Control)sender;
                 //запоминаем компонент который тянем 
-                controlTemp=control;
+                controlTemp = control;
                 isPress = true;
                 startPst = e.Location;
-                
-            }
-            else { return; } //проверка что нажата левая кнопка
 
+            } else
+            {   //проверка что нажата левая кнопка
+                return;
+            } 
         }
+        
         // Функция выполняется при отжатии перемещаемого контрола
-    
         private static void mUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                
                 Control control = (Control)sender;
                 isPress = false;
+
+                //Если дочерний компонент отпустили в координатах primary-comp
                 if (control.Top > controlPrim.Location.Y && control.Left > controlPrim.Location.X)
                 {
+                    TypesOfImages currentPattern = typeImages;                    
 
+                    AllImg.TryGetValue(control.BackgroundImage, out currentPattern);
+                    MessageBox.Show("Текущий шаблон: " + typeImages.ToString() + " Элемент: " + currentPattern);
 
-                    TypesOfImages toi = default(TypesOfImages);
-                   
-                    
-                   AllImg.TryGetValue(control.BackgroundImage, out toi);
-
-                    
-
-                    if (toi.Equals( typeImages))
+                    if (currentPattern.Equals(typeImages))
                     {
                         control.MouseDown -= new MouseEventHandler(mDown);
                         control.MouseUp -= new MouseEventHandler(mUp);
@@ -528,19 +523,15 @@ namespace MainComp
                     }
                     else
                     {
-                        (control as ChildComponent.ChildComponent).RandomLocation=true;
-                        
+                        (control as ChildComponent.ChildComponent).RandomLocation = true;
                     }
-                   
                 }
-            }
-            else
-            {
+            } else
+            {//проверка что нажата левая кнопка
                 return;
-            }//проверка что нажата левая кнопка
+            }
+        }
 
-        } 
-       
         // Функция выполняется при перемещении контрола
         private static void mMove(object sender, MouseEventArgs e)
         {
@@ -549,13 +540,10 @@ namespace MainComp
                 Control control = (Control)sender;
                 control.Top += e.Y - startPst.Y;
                 control.Left += e.X - startPst.X;
-               
             }
         }
-       
 
         // обучает контролы передвигаться
-
         public static void LearnToMove(object sender)
         {
             Control control = (Control)sender;
@@ -564,12 +552,11 @@ namespace MainComp
             control.MouseMove += new MouseEventHandler(mMove);
         }
 
-       
         static Control controlPrim;
         public static void ToPosition(object sender)
         {
             controlPrim = (Control)sender;
-           // control.MouseEnter += new EventHandler(onThePosition);
+            // control.MouseEnter += new EventHandler(onThePosition);
         }
 
         /// <summary>
@@ -583,5 +570,4 @@ namespace MainComp
             toolTip1.IsBalloon = true;
         }
     }
-
 }
