@@ -129,6 +129,9 @@
   <ItemGroup>
     <None Include="Resources\FaceImg\moustache.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Interface\help-web-button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

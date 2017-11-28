@@ -25,7 +25,7 @@ namespace MainComp
         private int countNonCorrectChild = 3;
         private int countCorrectChild = 3;
 
-        private static TypesOfImages typeImages = TypesOfImages.Face;
+        private static TypesOfImages typeImages = TypesOfImages.Flower;
 
         private Color colorLine = Color.Blue;
 
@@ -152,6 +152,7 @@ namespace MainComp
         {
             //Лист для всех элементов кроме пришедшей переменной 
             ImageList imgsNonType = new ImageList();
+            imgsNonType.ImageSize = new Size(32, 32);
 
             foreach (var elem in AllImg)
             {
@@ -160,6 +161,8 @@ namespace MainComp
                     imgsNonType.Images.Add(elem.Key);
                 }
             }
+
+            //Image newImage = imgsNonType.Images[random.Next(0, imgsNonType.Images.Count - 1)];
             //Возвращает рандомный элемент из списка
             return imgsNonType.Images[random.Next(0, imgsNonType.Images.Count - 1)];
         }
@@ -500,31 +503,49 @@ namespace MainComp
         }
         
         // Функция выполняется при отжатии перемещаемого контрола
-        private static void mUp(object sender, MouseEventArgs e)
+        private void mUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
+                //Control childComponent
                 Control control = (Control)sender;
                 isPress = false;
 
                 //Если дочерний компонент отпустили в координатах primary-comp
                 if (control.Top > controlPrim.Location.Y && control.Left > controlPrim.Location.X)
                 {
-                    TypesOfImages currentPattern = typeImages;                    
+                    TypesOfImages downTypeImage = CaptchaPattern;
 
-                    AllImg.TryGetValue(control.BackgroundImage, out currentPattern);
-                    MessageBox.Show("Текущий шаблон: " + typeImages.ToString() + " Элемент: " + currentPattern);
+                    //TryGetValue возвращает всегда ПЕРВЫЙ В СПИСКЕ тип для неправильных элементов 
+                    // Он устанавливается по дефолту
+                    //Неправильные элементы c# не может найти в нашем словаре. Почему ?? Хотя если приходят верные - все ОК 
+                    //Далее ниже идет костыль
 
-                    if (currentPattern.Equals(typeImages))
-                    {
+                    if (AllImg.ContainsKey(control.BackgroundImage)){
                         control.MouseDown -= new MouseEventHandler(mDown);
                         control.MouseUp -= new MouseEventHandler(mUp);
-                        MessageBox.Show("1");
-                    }
-                    else
+                    } else
                     {
+                        MessageBox.Show("Ошибка");
                         (control as ChildComponent.ChildComponent).RandomLocation = true;
                     }
+
+
+                    //AllImg.TryGetValue(control.BackgroundImage as Bitmap, out downTypeImage);
+
+                    //MessageBox.Show(" Элемент: " + downTypeImage + " CaptchaPattern " + CaptchaPattern);
+
+                    ////Проверка сходятся ли типы primary и дочернего
+                    //if (downTypeImage.Equals(CaptchaPattern))
+                    //{
+                    //    control.MouseDown -= new MouseEventHandler(mDown);
+                    //    control.MouseUp -= new MouseEventHandler(mUp);
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Ошибка");
+                    //    (control as ChildComponent.ChildComponent).RandomLocation = true;
+                    //}
                 }
             } else
             {//проверка что нажата левая кнопка
@@ -544,7 +565,7 @@ namespace MainComp
         }
 
         // обучает контролы передвигаться
-        public static void LearnToMove(object sender)
+        public void LearnToMove(object sender)
         {
             Control control = (Control)sender;
             control.MouseDown += new MouseEventHandler(mDown);
