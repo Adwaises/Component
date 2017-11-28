@@ -98,17 +98,35 @@ namespace MainComp
 
         private TypesOfImages typeImages;
 
-        private ImageList FaceImg = new ImageList();
+        //private ImageList FaceImg = new ImageList();
         private Image primaryFace;
 
-        private ImageList RefrigerImg = new ImageList();
+        //private ImageList RefrigerImg = new ImageList();
         private Image primaryRefriger;
 
-        private ImageList FlowersImg = new ImageList();
+        //private ImageList FlowersImg = new ImageList();
         private Image primaryFlower;
 
-        private ImageList CustomImg = new ImageList();
+        //private ImageList CustomImg = new ImageList();
         private Image primaryCustomImg;
+
+        private Dictionary<Image, TypesOfImages> AllImg = new Dictionary<Image, TypesOfImages>();
+
+        [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
+        public int CountRightChild
+        {
+            get
+            {
+                return rightChildNumber;
+            }
+            set
+            {
+                if (value > 0 && value <= 4)
+                    rightChildNumber = value;
+
+                Invalidate();
+            }
+        }
 
         [Category("Component"), Description("Current type images of component")]
         public TypesOfImages TypeImage
@@ -127,141 +145,94 @@ namespace MainComp
         }
 
 
-        [Category("ChildComponent"), Description("Custom list of child images")]
-        public ImageList CustomChildImages
-        {
-            get { return CustomImg; }
-            set { CustomImg = value; }
-        }
+        //[Category("ChildComponent"), Description("Custom list of child images")]
+        //public Dictionary<Image,TypesOfImages> CustomChildImages
+        //{
+        //    get { return CustomImg; }
+        //    set { CustomImg = value; }
+        //}
 
         void LoadImages()
         {
             //Исправлю и сделаю загрузку ВСЕХ файлов из папки
             //Загрузка из ресурсов
             primaryFace = Resources.face;
-
-            FaceImg.ImageSize = new Size (32,32);
-            FaceImg.Images.Add(Resources.eyes as Bitmap);
-            FaceImg.Images.Add(Resources.nose as Bitmap);
-            FaceImg.Images.Add(Resources.mouth as Bitmap);
-            FaceImg.Images.Add(Resources.reading_glasses as Bitmap);
-            FaceImg.Images.Add(Resources.moustache as Bitmap);
-
-
-            //FlowersCollection
             primaryFlower = Resources.vase;
-
-            FlowersImg.ImageSize = new Size(32, 32);
-            FlowersImg.Images.Add(Resources.rose as Bitmap);
-            FlowersImg.Images.Add(Resources.poppy as Bitmap);
-            FlowersImg.Images.Add(Resources.roses as Bitmap);
-            FlowersImg.Images.Add(Resources.rose_1 as Bitmap);
-            FlowersImg.Images.Add(Resources.sunflower as Bitmap);
-
-            //
             primaryRefriger = Resources.refrigerator;
 
-            RefrigerImg.ImageSize = new Size(32, 32);
-            RefrigerImg.Images.Add(Resources.meat as Bitmap);
-            RefrigerImg.Images.Add(Resources.cheese as Bitmap);
-            RefrigerImg.Images.Add(Resources.jelly as Bitmap);
-            RefrigerImg.Images.Add(Resources.water as Bitmap);
-            RefrigerImg.Images.Add(Resources.fish as Bitmap);
-            RefrigerImg.Images.Add(Resources.can as Bitmap);
-            RefrigerImg.Images.Add(Resources.carrot as Bitmap);
-            
+            AllImg.Add(Resources.eyes as Bitmap, TypesOfImages.Face);
+            AllImg.Add(Resources.nose as Bitmap, TypesOfImages.Face);
+            AllImg.Add(Resources.mouth as Bitmap, TypesOfImages.Face);
+            AllImg.Add(Resources.moustache as Bitmap, TypesOfImages.Face);
+            AllImg.Add(Resources.reading_glasses as Bitmap, TypesOfImages.Face);
+
+            AllImg.Add(Resources.meat as Bitmap, TypesOfImages.Refrigerator);
+            AllImg.Add(Resources.cheese as Bitmap, TypesOfImages.Refrigerator);
+            AllImg.Add(Resources.jelly as Bitmap, TypesOfImages.Refrigerator);
+            AllImg.Add(Resources.water as Bitmap, TypesOfImages.Refrigerator);
+            AllImg.Add(Resources.can as Bitmap, TypesOfImages.Refrigerator);
+            AllImg.Add(Resources.carrot as Bitmap, TypesOfImages.Refrigerator);
+
+            AllImg.Add(Resources.rose as Bitmap, TypesOfImages.Flower);
+            AllImg.Add(Resources.sunflower as Bitmap, TypesOfImages.Flower);
+            AllImg.Add(Resources.rose_1 as Bitmap, TypesOfImages.Flower);
+            AllImg.Add(Resources.poppy as Bitmap, TypesOfImages.Flower);
+            AllImg.Add(Resources.roses as Bitmap, TypesOfImages.Flower);
+
         }
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
         {
+            ImageList imgsNonType = new ImageList();
 
-            var allLists = new List<ImageList>();
-            if (!exceptionTypeImg.Equals(TypesOfImages.Face))
+            foreach (var elem in AllImg)
             {
-                allLists.Add(FaceImg);
+                if (!elem.Value.Equals(exceptionTypeImg))
+                {
+                    imgsNonType.Images.Add(elem.Key);
+                }
             }
 
-            if (!exceptionTypeImg.Equals(TypesOfImages.Flower))
-            {
-                allLists.Add(FlowersImg);
-            }
 
-            if (!exceptionTypeImg.Equals(TypesOfImages.Refrigerator))
-            {
-                allLists.Add(RefrigerImg);
-            }
-
-            if (!exceptionTypeImg.Equals(TypesOfImages.Custom))
-            {
-                allLists.Add(CustomImg);
-            }
-
-            var randomList = allLists[random.Next(0, allLists.Count - 1)];
-
-            return randomList.Images[random.Next(0, randomList.Images.Count - 1)];
+            return imgsNonType.Images[random.Next(0, imgsNonType.Images.Count - 1)];
         }
 
         void SetImagesFromType(TypesOfImages typeImg)
         {
 
-            //var newImageList;
+            var newImageList = new List<Image>();
 
             if (typeImg == TypesOfImages.Face)
             {
-                //Загрузка шаблона "Лицо"
-                BackgroundImagePrimary = primaryFace;
-
-                //Проход по всем дочерним элементам
-                for (int i = 0; i < childElemlist.Count; i++)
-                {
-                    //Пока не закончатся шаблонные картинки заливаем их 
-                    if (i < FaceImg.Images.Count && i < rightChildNumber)
-                    {
-                        childElemlist[i].BackgroundImage = FaceImg.Images[i];
-                    } else // Если закончились - спамим неправильные
-                    {
-                        childElemlist[i].BackgroundImage = SetRandomWrongImage(typeImg);
-                    }
-                    
-                }               
-
-            }
-            else if (typeImg == TypesOfImages.Flower)
-            {
-                BackgroundImagePrimary = primaryFlower;
-
-                for (int i = 0; i < childElemlist.Count; i++)
-                {
-
-                    if (i < FlowersImg.Images.Count && i < rightChildNumber)
-                    {
-                        childElemlist[i].BackgroundImage = FlowersImg.Images[i];
-                    }
-                    else
-                    {
-                        childElemlist[i].BackgroundImage = SetRandomWrongImage(typeImg);
-                    }
-
-                }
+                primaryComponent1.BackgroundImage = primaryFace;
             }
             else if (typeImg == TypesOfImages.Refrigerator)
             {
-                BackgroundImagePrimary = primaryRefriger;
+                primaryComponent1.BackgroundImage = primaryRefriger;
+            }
+            else if (typeImg == TypesOfImages.Flower)
+            {
+                primaryComponent1.BackgroundImage = primaryFlower;
+            }
+            else if (typeImg == TypesOfImages.Custom)
+            {
+                primaryComponent1.BackgroundImage = primaryCustomImg;
+            }
 
-                for (int i = 0; i < childElemlist.Count; i++)
+
+            foreach (var elem in AllImg)
+            {
+                if (elem.Value == typeImg)
                 {
-
-                    if (i < RefrigerImg.Images.Count && i < rightChildNumber)
-                    {
-                        childElemlist[i].BackgroundImage = RefrigerImg.Images[i];
-                    }
-                    else
-                    {
-                        childElemlist[i].BackgroundImage = SetRandomWrongImage(typeImg);
-                    }
-
+                    newImageList.Add(elem.Key);
                 }
             }
+
+            for (int i = 0; i < newImageList.Count; i++)
+            {
+                childElemlist[i].BackgroundImage = newImageList[i];
+            }
+
         }
 
         #endregion
