@@ -96,22 +96,6 @@ namespace MainComp
 
         private int rightChildNumber = 4;
 
-        [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
-        public int CountRightChild
-        {
-            get
-            {
-                return rightChildNumber;
-            }
-            set
-            {
-                if (value > 0 && value <= 4)
-                    rightChildNumber = value;
-                    
-                Invalidate();
-            }
-        }
-
         private TypesOfImages typeImages;
 
         //private ImageList FaceImg = new ImageList();
