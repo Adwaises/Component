@@ -50,7 +50,7 @@
             // 
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
-            this.mainComponent1.ClildNumber = 5;
+            this.mainComponent1.ClildNumber = 6;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
             this.mainComponent1.CustomChildImages = null;
             this.mainComponent1.ErrorNumber = 3;
@@ -65,6 +65,7 @@
             this.mainComponent1.TabIndex = 0;
             this.mainComponent1.TextHelp = "Text help\r\nHelp text";
             this.mainComponent1.TypeImage = MainComp.MainComponent.TypesOfImages.Face;
+            this.mainComponent1.Load += new System.EventHandler(this.mainComponent1_Load_2);
             // 
             // Form1
             // 

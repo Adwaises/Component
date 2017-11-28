@@ -72,8 +72,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +89,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FlowersImg\roses.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FlowersImg\vase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\refrigerator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\cheese.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\fish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\jelly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\meat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FlowersImg\sunflower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FlowersImg\rose_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FaceImg\reading-glasses.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\can.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\carrot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FaceImg\moustache.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

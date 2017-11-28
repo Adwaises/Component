@@ -32,5 +32,10 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void mainComponent1_Load_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }
