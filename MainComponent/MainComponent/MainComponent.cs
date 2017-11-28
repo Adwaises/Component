@@ -96,7 +96,7 @@ namespace MainComp
 
         private int rightChildNumber = 4;
 
-        private TypesOfImages typeImages;
+        private static TypesOfImages typeImages;
 
         //private ImageList FaceImg = new ImageList();
         private Image primaryFace;
@@ -110,7 +110,7 @@ namespace MainComp
         //private ImageList CustomImg = new ImageList();
         private Image primaryCustomImg;
 
-        private Dictionary<Image, TypesOfImages> AllImg = new Dictionary<Image, TypesOfImages>();
+        private static Dictionary<Image, TypesOfImages> AllImg = new Dictionary<Image, TypesOfImages>();
 
         [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
         public int CountRightChild
@@ -584,7 +584,7 @@ namespace MainComp
                     }
                 }
 
-                child.Image = SetRandomWrongImage(typeImages);
+                child.BackgroundImage= SetRandomWrongImage(typeImages);
                 Controls.Add(child);
                 childElemlist.Add(child);
                 LearnToMove(child);
@@ -632,26 +632,37 @@ namespace MainComp
 
         }
         // Функция выполняется при отжатии перемещаемого контрола
+    
         private static void mUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-
+                
                 Control control = (Control)sender;
                 isPress = false;
                 if (control.Top > controlPrim.Location.Y && control.Left > controlPrim.Location.X)
                 {
-                    if ((control as ChildComponent.ChildComponent).Accessory)
+
+
+                    TypesOfImages toi = default(TypesOfImages);
+                   
+                    
+                   AllImg.TryGetValue(control.BackgroundImage, out toi);
+
+                    
+
+                    if (toi.Equals( typeImages))
                     {
                         control.MouseDown -= new MouseEventHandler(mDown);
                         control.MouseUp -= new MouseEventHandler(mUp);
+                        MessageBox.Show("1");
                     }
                     else
                     {
                         (control as ChildComponent.ChildComponent).RandomLocation=true;
                         
                     }
-                    MessageBox.Show("1");
+                   
                 }
             }
             else
@@ -684,28 +695,7 @@ namespace MainComp
             control.MouseMove += new MouseEventHandler(mMove);
         }
 
-        private static void onThePosition(object sender, EventArgs e)
-        {
-
-            
-            if (isPress)
-            {
-                MessageBox.Show("1");
-                //if ((controlTemp  as ChildComponent.ChildComponent).Accessory)
-                //{
-
-                //    controlTemp.MouseMove -= new MouseEventHandler(mMove);
-                //}
-                //else {
-                //    controlTemp.Top = startPst.Y;
-                //    controlTemp.Left = startPst.X;
-                //} 
-
-            }
-            else {
-MessageBox.Show("");
-            }
-        }
+       
         static Control controlPrim;
         public static void ToPosition(object sender)
         {
