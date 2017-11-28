@@ -21,20 +21,20 @@ namespace ChildComponent
         }
 
 
-        private bool accessory = false;
-        [Category("Child element"), Description("Specifies the accessory to the primary element.")]
-        public bool Accessory
-        {
-            get
-            {
-                return accessory;
-            }
-            set
-            {
-                accessory = value;
-                Invalidate();
-            }
-        }
+        //private bool accessory = false;
+        //[Category("Child element"), Description("Specifies the accessory to the primary element.")]
+        //public bool Accessory
+        //{
+        //    get
+        //    {
+        //        return accessory;
+        //    }
+        //    set
+        //    {
+        //        accessory = value;
+        //        Invalidate();
+        //    }
+        //}
 
         [Category("Child element"), Description("Specifies the random point of child element.")]
         public bool RandomLocation

@@ -242,148 +242,17 @@ namespace MainComp
         /// <summary>
         /// Свойства дочернего компонента
         /// </summary>
-        [Category("ChildComponent"), Description("Specifies the list of child elements.")]
-        public List<ChildComponent.ChildComponent> SelectChild
-        {
-            get
-            {
-                return childElemlist;
-            }
-            //set
-            //{
-            //    childElemlist.Clear();
-            //    childElemlist = value;
-            //}
-        }
-
-        //пытался другим способом сделать
-
-        public enum ChildListEnum { childComponent1, childComponent2, childComponent3, childComponent4, childComponent5 }
-
-        private ChildListEnum childSelector;
-
-        [Category("ChildComponent"), Description("Current type images of component")]
-        public ChildListEnum ChildList
-        {
-            get
-            {
-                return childSelector;
-            }
-            set
-            {
-                childSelector = value;
-                Invalidate();
-
-            }
-        }
 
 
-        // они нужны мб
-
-        //[Category("ChildComponent"), Description("Specifies the background image of child element.")]
-        //public Image BackgroundImageChild
+        //[Category("ChildComponent"), Description("Specifies the list of child elements.")]
+        //public List<ChildComponent.ChildComponent> SelectChild
         //{
         //    get
         //    {
-        //        return childElemlist[0].BackgroundImage;
+        //        return childElemlist;
         //    }
-        //    set
-        //    {
-        //        childElemlist[0].BackgroundImage = value;
-        //        Invalidate();
-        //    }
+            
         //}
-        //[Category("ChildComponent"), Description("Specifies the location of child element.")]
-        //public Point LocationChild
-        //{
-        //    get
-        //    {
-        //        return childComponent1.Location;
-        //    }
-        //    set
-        //    {
-        //        childComponent1.Location = value;
-        //        Invalidate();
-        //    }
-        //}
-        //[Category("ChildComponent"), Description("Specifies the size of child element.")]
-        //public Size SizeChild
-        //{
-        //    get
-        //    {
-        //        return childComponent1.Size;
-        //    }
-        //    set
-        //    {
-        //        childComponent1.Size = value;
-        //        Invalidate();
-        //    }
-        //}
-        [Category("ChildComponent"), Description("Specifies the size of child element.")]
-        public bool Accessory
-        {
-            get
-            {
-                switch (childSelector)
-                {
-                    case ChildListEnum.childComponent1:
-                        return childComponent1.Accessory;
-                    case ChildListEnum.childComponent2:
-                        return childComponent2.Accessory;
-                    case ChildListEnum.childComponent3:
-                        return childComponent3.Accessory;
-                    case ChildListEnum.childComponent4:
-                        return childComponent4.Accessory;
-                    case ChildListEnum.childComponent5:
-                        return childComponent5.Accessory;
-                }
-                return childComponent1.Accessory;
-
-
-            }
-            set
-            {
-                switch (childSelector)
-                {
-                    case ChildListEnum.childComponent1:
-                        childComponent1.Accessory = value;
-                        Invalidate();
-                        break;
-                    case ChildListEnum.childComponent2:
-                        childComponent2.Accessory = value;
-                        Invalidate();
-                        break;
-                    case ChildListEnum.childComponent3:
-                        childComponent3.Accessory = value;
-                        Invalidate();
-                        break;
-                    case ChildListEnum.childComponent4:
-                        childComponent4.Accessory = value;
-                        Invalidate();
-                        break;
-                    case ChildListEnum.childComponent5:
-                        childComponent5.Accessory = value;
-                        Invalidate();
-                        break;
-                }
-
-                //if (childSelector == ChildListEnum.childComponent1)
-                //{
-                //    childComponent1.Accessory = value;
-                //}
-                //if (childSelector == ChildListEnum.childComponent2)
-                //{
-                //    childComponent2.Accessory = value;
-                //    MessageBox.Show(childComponent2.Accessory.ToString());
-                //}
-                //Invalidate();
-
-                //childComponent2.Accessory = value;
-                //Invalidate();
-
-            }
-        }
-
 
         /// <summary>
         /// Свойства Главного компонента
@@ -708,7 +577,7 @@ namespace MainComp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(pictureBox1, textHelp);
             toolTip1.IsBalloon = true;

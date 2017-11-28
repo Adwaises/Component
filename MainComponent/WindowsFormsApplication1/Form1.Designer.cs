@@ -36,7 +36,7 @@
             // 
             // childComponent1
             // 
-            this.childComponent1.Accessory = false;
+   
             this.childComponent1.BackColor = System.Drawing.Color.Red;
             this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent1.Location = new System.Drawing.Point(0, 0);
