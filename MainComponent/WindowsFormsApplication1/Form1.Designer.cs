@@ -48,10 +48,13 @@
             // 
             // mainComponent1
             // 
+            this.mainComponent1.Accessory = false;
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
-            this.mainComponent1.ClildNumber = 6;
+            this.mainComponent1.ChildList = MainComp.MainComponent.ChildListEnum.childComponent2;
+            this.mainComponent1.ClildNumber = 5;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
+            this.mainComponent1.CountRightChild = 3;
             this.mainComponent1.CustomChildImages = null;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
