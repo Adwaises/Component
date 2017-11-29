@@ -64,7 +64,7 @@
             this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
             this.mainComponent1.TabIndex = 0;
             this.mainComponent1.TextHelp = "Text help\r\nHelp text";
-            this.mainComponent1.TypeImage = MainComp.MainComponent.TypesOfImages.Refrigerator;
+            this.mainComponent1.TypeImage = MainComp.MainComponent.TypesOfImages.Face;
             this.mainComponent1.Load += new System.EventHandler(this.mainComponent1_Load_2);
             // 
             // Form1
