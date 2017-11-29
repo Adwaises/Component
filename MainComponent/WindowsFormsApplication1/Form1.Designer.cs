@@ -29,21 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.childComponent1 = new ChildComponent.ChildComponent();
             this.mainComponent1 = new MainComp.MainComponent();
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // childComponent1
-            // 
-            this.childComponent1.BackColor = System.Drawing.Color.Red;
-            this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent1.Location = new System.Drawing.Point(0, 0);
-            this.childComponent1.Name = "childComponent1";
-            this.childComponent1.RandomLocation = false;
-            this.childComponent1.Size = new System.Drawing.Size(25, 25);
-            this.childComponent1.TabIndex = 0;
-            this.childComponent1.TabStop = false;
             // 
             // mainComponent1
             // 
@@ -51,7 +38,7 @@
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
             this.mainComponent1.CaptchaPattern = MainComp.MainComponent.TypesOfImages.Face;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
-            this.mainComponent1.CountCorrectChild = 3;
+            this.mainComponent1.CountCorrectChild = 4;
             this.mainComponent1.CountNonCorrectChild = 3;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
@@ -73,13 +60,12 @@
             this.Controls.Add(this.mainComponent1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private ChildComponent.ChildComponent childComponent1;
+ 
         private MainComp.MainComponent mainComponent1;
     }
 }

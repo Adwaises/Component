@@ -233,16 +233,16 @@ namespace MainComp
         /// Свойства дочернего компонента
         /// </summary>
 
+            //чтоб смотреть лист
+        [Category("ChildComponent"), Description("Specifies the list of child elements.")]
+        public List<ChildComponent.ChildComponent> SelectChild
+        {
+            get
+            {
+                return childElemlist;
+            }
 
-        //[Category("ChildComponent"), Description("Specifies the list of child elements.")]
-        //public List<ChildComponent.ChildComponent> SelectChild
-        //{
-        //    get
-        //    {
-        //        return childElemlist;
-        //    }
-
-        //}
+        }
 
         /// <summary>
         /// Свойства Главного компонента
@@ -459,8 +459,21 @@ namespace MainComp
         {
             for (int i = 0; i < countNewChild; i++)
             {
+                ChildComponent.ChildComponent child;
+
+                //Если нужно добавить верный дочерний элемент
+                if (isCorrectChild)
+                {
+                    child = new ChildComponent.ChildComponent(true);
+                    child.BackgroundImage = FindNewCorrectImage();
+                }
+                else
+                {
+                    child = new ChildComponent.ChildComponent(false);
+                    child.BackgroundImage = SetRandomWrongImage(typeImages);
+                }
                 // Рандомим позицию
-                ChildComponent.ChildComponent child = new ChildComponent.ChildComponent();
+               
                 child.Location = new Point(random.Next(230), random.Next(150));
                 //определяем не наложились ли элементы
                 bool flag = true;
@@ -478,15 +491,7 @@ namespace MainComp
                         }
                     }
                 }
-                //Если нужно добавить верный дочерний элемент
-                if (isCorrectChild)
-                {
-                    child.BackgroundImage = FindNewCorrectImage();
-                }
-                else
-                {
-                    child.BackgroundImage = SetRandomWrongImage(typeImages);
-                }
+
 
                 Controls.Add(child);
                 childElemlist.Add(child);

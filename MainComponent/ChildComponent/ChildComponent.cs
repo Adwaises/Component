@@ -13,28 +13,29 @@ namespace ChildComponent
     public class ChildComponent : PictureBox
 
     {
-        public ChildComponent()
+        public ChildComponent(bool _accessory)
         {
             this.Size = new Size(32, 32);
             this.BackColor = Color.Transparent;
             this.BackgroundImageLayout = ImageLayout.Stretch;
+            accessory = _accessory;
         }
 
 
-        //private bool accessory = false;
-        //[Category("Child element"), Description("Specifies the accessory to the primary element.")]
-        //public bool Accessory
-        //{
-        //    get
-        //    {
-        //        return accessory;
-        //    }
-        //    set
-        //    {
-        //        accessory = value;
-        //        Invalidate();
-        //    }
-        //}
+        private bool accessory = false;
+        [Category("Child element"), Description("Specifies the accessory to the primary element.")]
+        public bool Accessory
+        {
+            get
+            {
+                return accessory;
+            }
+            set
+            {
+                accessory = value;
+                Invalidate();
+            }
+        }
 
         [Category("Child element"), Description("Specifies the random point of child element.")]
         public bool RandomLocation
