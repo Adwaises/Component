@@ -51,12 +51,13 @@
             this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
             this.mainComponent1.TabIndex = 0;
             this.mainComponent1.TextHelp = "Text\r\nhelp";
+            this.mainComponent1.Load += new System.EventHandler(this.mainComponent1_Load_3);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 404);
+            this.ClientSize = new System.Drawing.Size(431, 209);
             this.Controls.Add(this.mainComponent1);
             this.Name = "Form1";
             this.Text = "Form1";

@@ -21,7 +21,6 @@ namespace MainComp
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
         private int errorNumber = 3;
-
         private int countNonCorrectChild = 3;
         private int countCorrectChild = 3;
 
@@ -39,7 +38,6 @@ namespace MainComp
             //this.SetStyle(ControlStyles.UserPaint, true);
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
-
             //создание списка дочерних элементов и его заполение
             childElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
@@ -560,7 +558,7 @@ namespace MainComp
             e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
             base.OnPaint(e);
         }
-
+        #region move
 
         // события для движения
         static bool isPress = false;
@@ -595,7 +593,10 @@ namespace MainComp
                 isPress = false;
 
                 //Если дочерний компонент отпустили в координатах primary-comp
-                if (control.Top > controlPrim.Location.Y && control.Left > controlPrim.Location.X)
+                if (control.Top > controlPrim.Location.Y 
+                    && control.Top + control.Height < controlPrim.Location.Y + controlPrim.Height 
+                    && control.Left > controlPrim.Location.X
+                    && control.Left + control.Width < controlPrim.Location.X + controlPrim.Width )
                 {
                     TypesOfImages downTypeImage = CaptchaPattern;
 
@@ -626,9 +627,9 @@ namespace MainComp
                             (control as ChildComponent.ChildComponent).RandomLocation = true;
                         }
                     }
-                    
 
 
+                    #region okOrError
                     ////TryGetValue возвращает всегда ПЕРВЫЙ В СПИСКЕ тип для неправильных элементов 
                     //// Он устанавливается по дефолту
                     ////Неправильные элементы c# не может найти в нашем словаре. Почему ?? Хотя если приходят верные - все ОК 
@@ -661,6 +662,7 @@ namespace MainComp
                     //    MessageBox.Show("Ошибка");
                     //    (control as ChildComponent.ChildComponent).RandomLocation = true;
                     //}
+                    #endregion
                 }
             }
             else
@@ -674,9 +676,19 @@ namespace MainComp
         {
             if (isPress)
             {
+                //только для левой и верхней
                 Control control = (Control)sender;
-                control.Top += e.Y - startPst.Y;
-                control.Left += e.X - startPst.X;
+                if (control.Top > 0 && control.Left > 0 &&
+                    control.Top + control.Height < 180 && control.Left + control.Width < 400||//весь компонент
+                    (control.Top <=0 && control.Left<=0&& e.X - startPst.X>=0&& e.Y - startPst.Y>=0)||//угл лево верх
+                    (control.Top <= 0&& e.Y - startPst.Y >= 0)||//верх
+                    (control.Left <= 0 && e.X - startPst.X >= 0))//лево
+                {
+
+                    control.Left += e.X - startPst.X;
+                    control.Top += e.Y - startPst.Y;
+                }
+                
             }
         }
 
@@ -695,7 +707,7 @@ namespace MainComp
             controlPrim = (Control)sender;
             // control.MouseEnter += new EventHandler(onThePosition);
         }
-
+        #endregion
         /// <summary>
         /// Метод вывода подсказки
         /// </summary>
