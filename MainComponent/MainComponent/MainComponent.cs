@@ -409,44 +409,75 @@ namespace MainComp
             //    }
             //}
 
-            // пока по корректным
+            //КРИВО РАБОТАЕТ
+            //for (int i = 0; i < countDeleteChild; i++)
+            //{
+            //    int index = 0;
+            //    //иду по листу дочерних элементов
+            //    foreach (var elem in childElemlist)
+            //    {
+            //        // MessageBox.Show("Зашёл");
+            //        //сравниваю с типом
+            //        // if (AllImg[elem.BackgroundImage] != typeImages) // значит верный
+            //        if (isCorrectChild)
+            //        {
+            //            if (AllImg.ContainsKey(elem.BackgroundImage))
+            //            {
+            //                index++;
+            //            }
+            //        } else if (!isCorrectChild)
+            //        {
+            //            if (!AllImg.ContainsKey(elem.BackgroundImage))
+            //            {
+            //                index++;
+            //            }
+            //        }
+            //        this.childElemlist.RemoveAt(index);
+            //        this.Controls.RemoveAt(index);
+            //        break;
+            //    }
+            //}
 
-            //MessageBox.Show("Зашёл " + countDeleteChild);
-            // MessageBox.Show(childElemlist[0].BackgroundImage.ToString());
-            for (int i = 0; i < countDeleteChild; i++)
+            for (int n = 0; n < countDeleteChild; n++)
             {
-
-                //this.Controls.RemoveAt(Controls.Count - 1);
-                //childElemlist.RemoveAt(childElemlist.Count - 1);
-
                 int index = 0;
                 //иду по листу дочерних элементов
-                //MessageBox.Show("Зашёл " + index);
-                foreach (var elem in childElemlist)
+                for (int i = 0; i < childElemlist.Count; i++)
                 {
-                    // MessageBox.Show("Зашёл");
-                    //сравниваю с типом
-                    // if (AllImg[elem.BackgroundImage] != typeImages) // значит верный
-                    if (isCorrectChild)
+                    if (isCorrectChild) // удалить верный 
                     {
-                        if (AllImg.ContainsKey(elem.BackgroundImage))
+                        if ((childElemlist[i] as ChildComponent.ChildComponent).Accessory == true)
                         {
-                            index++;
-                        }
-                    } else if (!isCorrectChild)
-                    {
-                        if (!AllImg.ContainsKey(elem.BackgroundImage))
-                        {
-                            index++;
+                            index = i;
                         }
                     }
-                    this.childElemlist.RemoveAt(index);
-                    this.Controls.RemoveAt(index);
-                    break;
+                    else if (!isCorrectChild) // удалить не верный
+                    {
+                        if ((childElemlist[i] as ChildComponent.ChildComponent).Accessory == false)
+                        {
+                            index = i;
+                        }
+                    }
                 }
 
+
+                //поск в контроле
+                int indexControl = 0;
+                for (int i = 0; i < Controls.Count; i++)
+                {
+                    if(Controls[i].Name == childElemlist[index].Name)
+                    {
+                        indexControl = i;
+                    }
+                }
+
+                this.childElemlist.RemoveAt(index);
+                this.Controls.RemoveAt(indexControl);
+               
             }
 
+            //this.Controls.RemoveAt(Controls.Count - 1);
+            //childElemlist.RemoveAt(childElemlist.Count - 1);
 
 
         }
