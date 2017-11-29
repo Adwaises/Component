@@ -38,8 +38,8 @@
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
             this.mainComponent1.CaptchaPattern = MainComp.MainComponent.TypesOfImages.Face;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
-            this.mainComponent1.CountCorrectChild = 3;
-            this.mainComponent1.CountNonCorrectChild = 3;
+            this.mainComponent1.CountCorrectChild = 4;
+            this.mainComponent1.CountNonCorrectChild = 7;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
             this.mainComponent1.LocationPrimary = new System.Drawing.Point(267, 19);

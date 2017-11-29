@@ -465,9 +465,10 @@ namespace MainComp
                 int indexControl = 0;
                 for (int i = 0; i < Controls.Count; i++)
                 {
-                    if(Controls[i].Name == childElemlist[index].Name)
+                    if(Controls[i].BackgroundImage == childElemlist[index].BackgroundImage)
                     {
                         indexControl = i;
+                        //break;
                     }
                 }
 
@@ -513,9 +514,9 @@ namespace MainComp
                     flag = false;
                     foreach (var elem in childElemlist)
                     {
-                        if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 30 &&
-                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 30 ||
-                            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 150)
+                        if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 35 &&
+                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 35 ||
+                            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 150 || child.Location.X > 170)
                         {
                             child.Location = new Point(random.Next(230), random.Next(140));
                             flag = true;
@@ -597,21 +598,50 @@ namespace MainComp
                 {
                     TypesOfImages downTypeImage = CaptchaPattern;
 
-                    //TryGetValue возвращает всегда ПЕРВЫЙ В СПИСКЕ тип для неправильных элементов 
-                    // Он устанавливается по дефолту
-                    //Неправильные элементы c# не может найти в нашем словаре. Почему ?? Хотя если приходят верные - все ОК 
-                    //Далее ниже идет костыль
+                    //костыльное условие, почему то инвертируется всё
+                    if(control.Name == "")
+                    {
+                        if ((control as ChildComponent.ChildComponent).Accessory)
+                        {
+                            control.MouseDown -= new MouseEventHandler(mDown);
+                            control.MouseUp -= new MouseEventHandler(mUp);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка");
+                            (control as ChildComponent.ChildComponent).RandomLocation = true;
+                        }
+                    } else
+                    {
+                        if (!(control as ChildComponent.ChildComponent).Accessory)
+                        {
+                            control.MouseDown -= new MouseEventHandler(mDown);
+                            control.MouseUp -= new MouseEventHandler(mUp);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка");
+                            (control as ChildComponent.ChildComponent).RandomLocation = true;
+                        }
+                    }
+                    
 
-                    if (AllImg.ContainsKey(control.BackgroundImage))
-                    {
-                        control.MouseDown -= new MouseEventHandler(mDown);
-                        control.MouseUp -= new MouseEventHandler(mUp);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ошибка");
-                        (control as ChildComponent.ChildComponent).RandomLocation = true;
-                    }
+
+                    ////TryGetValue возвращает всегда ПЕРВЫЙ В СПИСКЕ тип для неправильных элементов 
+                    //// Он устанавливается по дефолту
+                    ////Неправильные элементы c# не может найти в нашем словаре. Почему ?? Хотя если приходят верные - все ОК 
+                    ////Далее ниже идет костыль
+
+                    //if (AllImg.ContainsKey(control.BackgroundImage))
+                    //{
+                    //    control.MouseDown -= new MouseEventHandler(mDown);
+                    //    control.MouseUp -= new MouseEventHandler(mUp);
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Ошибка");
+                    //    (control as ChildComponent.ChildComponent).RandomLocation = true;
+                    //}
 
 
                     //AllImg.TryGetValue(control.BackgroundImage as Bitmap, out downTypeImage);
