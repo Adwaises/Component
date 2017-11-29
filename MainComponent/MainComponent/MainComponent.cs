@@ -120,9 +120,10 @@ namespace MainComp
                 if (oldCountCorrectChild < countCorrectChild)
                 {
                     addChild(countCorrectChild - oldCountCorrectChild, true);
-                } else
+                }
+                else
                 {
-                    deleteChild(countCorrectChild - oldCountCorrectChild, true);
+                    deleteChild(oldCountCorrectChild - countCorrectChild, true);
                 }
 
                 Invalidate();
@@ -355,7 +356,7 @@ namespace MainComp
             {
                 //Мин-Макс проверка
                 int lastNum = countNonCorrectChild;
-                if (value > minChildNumber && value <= maxChildNumber)
+                if (value >= minChildNumber && value <= maxChildNumber)
                 {
                     countNonCorrectChild = value;
                 }
@@ -365,7 +366,8 @@ namespace MainComp
                 {
                     //Аргумент - сколько новых нужно // Добавление неподходящих картинок
                     addChild(countNonCorrectChild - lastNum, false);
-                } else if (lastNum > countNonCorrectChild)
+                }
+                else if (lastNum > countNonCorrectChild)
                 {
                     deleteChild(lastNum - countNonCorrectChild, false);
                 }
@@ -407,14 +409,46 @@ namespace MainComp
             //    }
             //}
 
+            // пока по корректным
 
-
+            //MessageBox.Show("Зашёл " + countDeleteChild);
+            // MessageBox.Show(childElemlist[0].BackgroundImage.ToString());
             for (int i = 0; i < countDeleteChild; i++)
             {
 
-                this.Controls.RemoveAt(Controls.Count - 1);
-                childElemlist.RemoveAt(childElemlist.Count - 1);
+                //this.Controls.RemoveAt(Controls.Count - 1);
+                //childElemlist.RemoveAt(childElemlist.Count - 1);
+
+                int index = 0;
+                //иду по листу дочерних элементов
+                //MessageBox.Show("Зашёл " + index);
+                foreach (var elem in childElemlist)
+                {
+                    // MessageBox.Show("Зашёл");
+                    //сравниваю с типом
+                    // if (AllImg[elem.BackgroundImage] != typeImages) // значит верный
+                    if (isCorrectChild)
+                    {
+                        if (AllImg.ContainsKey(elem.BackgroundImage))
+                        {
+                            index++;
+                        }
+                    } else if (!isCorrectChild)
+                    {
+                        if (!AllImg.ContainsKey(elem.BackgroundImage))
+                        {
+                            index++;
+                        }
+                    }
+                    this.childElemlist.RemoveAt(index);
+                    this.Controls.RemoveAt(index);
+                    break;
+                }
+
             }
+
+
+
         }
 
         /// <summary>
@@ -448,7 +482,8 @@ namespace MainComp
                 if (isCorrectChild)
                 {
                     child.BackgroundImage = FindNewCorrectImage();
-                } else
+                }
+                else
                 {
                     child.BackgroundImage = SetRandomWrongImage(typeImages);
                 }
@@ -505,12 +540,13 @@ namespace MainComp
                 isPress = true;
                 startPst = e.Location;
 
-            } else
+            }
+            else
             {   //проверка что нажата левая кнопка
                 return;
-            } 
+            }
         }
-        
+
         // Функция выполняется при отжатии перемещаемого контрола
         private void mUp(object sender, MouseEventArgs e)
         {
@@ -530,10 +566,12 @@ namespace MainComp
                     //Неправильные элементы c# не может найти в нашем словаре. Почему ?? Хотя если приходят верные - все ОК 
                     //Далее ниже идет костыль
 
-                    if (AllImg.ContainsKey(control.BackgroundImage)){
+                    if (AllImg.ContainsKey(control.BackgroundImage))
+                    {
                         control.MouseDown -= new MouseEventHandler(mDown);
                         control.MouseUp -= new MouseEventHandler(mUp);
-                    } else
+                    }
+                    else
                     {
                         MessageBox.Show("Ошибка");
                         (control as ChildComponent.ChildComponent).RandomLocation = true;
@@ -556,7 +594,8 @@ namespace MainComp
                     //    (control as ChildComponent.ChildComponent).RandomLocation = true;
                     //}
                 }
-            } else
+            }
+            else
             {//проверка что нажата левая кнопка
                 return;
             }

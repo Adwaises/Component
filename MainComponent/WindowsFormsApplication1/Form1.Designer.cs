@@ -55,7 +55,7 @@
             this.mainComponent1.CountNonCorrectChild = 3;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
-            this.mainComponent1.LocationPrimary = new System.Drawing.Point(255, 19);
+            this.mainComponent1.LocationPrimary = new System.Drawing.Point(267, 19);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
@@ -63,8 +63,7 @@
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
             this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
             this.mainComponent1.TabIndex = 0;
-            this.mainComponent1.TextHelp = "Text help\r\nHelp text";
-            this.mainComponent1.Load += new System.EventHandler(this.mainComponent1_Load_2);
+            this.mainComponent1.TextHelp = "Text\r\nhelp";
             // 
             // Form1
             // 
