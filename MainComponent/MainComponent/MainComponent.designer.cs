@@ -43,6 +43,12 @@ namespace MainComp
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainComponent));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.childComponent8 = new ChildComponent.ChildComponent(true);
+            this.childComponent5 = new ChildComponent.ChildComponent(true);
+            this.childComponent4 = new ChildComponent.ChildComponent(true);
+            this.childComponent3 = new ChildComponent.ChildComponent(false);
+            this.childComponent2 = new ChildComponent.ChildComponent(false);
+            this.childComponent1 = new ChildComponent.ChildComponent(false);
             this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
