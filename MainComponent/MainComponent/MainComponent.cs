@@ -111,9 +111,18 @@ namespace MainComp
             { return countCorrectChild; }
             set
             {
+                int oldCountCorrectChild = countCorrectChild;
                 if (value > 0 && value <= 4)
                 {
                     countCorrectChild = value;
+                }
+
+                if (oldCountCorrectChild < countCorrectChild)
+                {
+                    addChild(countCorrectChild - oldCountCorrectChild, true);
+                } else
+                {
+                    deleteChild(countCorrectChild - oldCountCorrectChild, true);
                 }
 
                 Invalidate();
@@ -128,7 +137,7 @@ namespace MainComp
             primaryFlower = Resources.vase;
             primaryRefriger = Resources.refrigerator;
 
-            AllImg.Add(Resources.eyes as Bitmap, TypesOfImages.Face);
+            AllImg.Add(Resources.happyEyes as Bitmap, TypesOfImages.Face);
             AllImg.Add(Resources.nose as Bitmap, TypesOfImages.Face);
             AllImg.Add(Resources.mouth as Bitmap, TypesOfImages.Face);
             AllImg.Add(Resources.moustache as Bitmap, TypesOfImages.Face);

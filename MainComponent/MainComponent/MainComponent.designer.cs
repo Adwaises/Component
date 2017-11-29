@@ -145,7 +145,6 @@ namespace MainComp
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::MainComponent.Properties.Resources.help_web_button;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(375, 155);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
