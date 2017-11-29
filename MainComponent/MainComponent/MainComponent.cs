@@ -465,6 +465,7 @@ namespace MainComp
                 int indexControl = 0;
                 for (int i = 0; i < Controls.Count; i++)
                 {
+                   // MessageBox.Show((Controls[i].BackgroundImage == childElemlist[index].BackgroundImage).ToString());
                     if(Controls[i].BackgroundImage == childElemlist[index].BackgroundImage)
                     {
                         indexControl = i;
@@ -516,7 +517,7 @@ namespace MainComp
                     {
                         if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 35 &&
                             Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 35 ||
-                            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 150 || child.Location.X > 170)
+                            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 140)
                         {
                             child.Location = new Point(random.Next(230), random.Next(140));
                             flag = true;
@@ -599,6 +600,7 @@ namespace MainComp
                     TypesOfImages downTypeImage = CaptchaPattern;
 
                     //костыльное условие, почему то инвертируется всё
+                  //  MessageBox.Show(control.Name);
                     if(control.Name == "")
                     {
                         if ((control as ChildComponent.ChildComponent).Accessory)
