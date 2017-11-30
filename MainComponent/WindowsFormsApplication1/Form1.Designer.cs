@@ -36,7 +36,7 @@
             // 
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
-            this.mainComponent1.CaptchaPattern = MainComp.MainComponent.TypesOfImages.Flower;
+            this.mainComponent1.CaptchaPattern = MainComp.MainComponent.TypesOfImages.Face;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
             this.mainComponent1.CountCorrectChild = 3;
             this.mainComponent1.CountNonCorrectChild = 3;
@@ -63,6 +63,7 @@
             this.ResumeLayout(false);
 
         }
+
 
 
         #endregion

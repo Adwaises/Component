@@ -7,11 +7,15 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ChildComponent;
 using System.IO;
+using System.ComponentModel.Design;
+using System.Web.UI.Design;
 
 namespace MainComp
 {
     public partial class MainComponent : UserControl
     {
+
+
         public enum TypesOfImages { Face, Refrigerator, Flower, Custom }
 
         Random random = new Random();
@@ -156,25 +160,52 @@ namespace MainComp
             AllImg.Add(Resources.poppy as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.roses as Bitmap, TypesOfImages.Flower);
 
-            List<string> PathChildFace = new List<string>();
-            try
-            {
-            //а это метод который тащит все существующие файлы из директории
-           
-            DirectoryInfo di = new DirectoryInfo(@"Resources//FaceImg");
-            FileInfo[] fi = di.GetFiles("*.png");
-            foreach (FileInfo fc in fi)
-            {
-                PathChildFace.Add("Resources//FaceImg//" + fc.Name);
-            }
-            MessageBox.Show("" + PathChildFace.Count);
-            } catch(Exception ex)
-            {
-                MessageBox.Show("" + Directory.GetCurrentDirectory() );
-            }
 
+            //MessageBox.Show("1 " + s);
 
+            //List<string> PathChildFace = new List<string>();
+            //try
+            //{
+            ////а это метод который тащит все существующие файлы из директории
+
+            //DirectoryInfo di = new DirectoryInfo(@"Resources//FaceImg");
+            //FileInfo[] fi = di.GetFiles("*.png");
+            //foreach (FileInfo fc in fi)
+            //{
+            //    PathChildFace.Add("Resources//FaceImg//" + fc.Name);
+            //}
+            //MessageBox.Show("" + PathChildFace.Count);
+            //} catch(Exception ex)
+            //{
+            //    MessageBox.Show("" + Directory.GetCurrentDirectory() );
+            //}
         }
+
+        ////бредовая идея: получить доступ к папке с ресурсами проекта где используется компонент
+        //// типо сови картинки можнор догружать
+        //string s = "";
+        ////используем сервис, чтобы получить инфу о проекте выше
+        //public override ISite Site
+        //{
+        //    get
+        //    {
+        //        return base.Site;
+        //    }
+        //    set
+        //    {
+        //        base.Site = value;
+        //        prepareInfo();
+        //    }
+        //}
+
+        //private void prepareInfo()
+        //{
+        //    if (base.Site == null)
+        //        return;
+        //    IProjectItem pi = (IProjectItem)Site.GetService(typeof(IProjectItem));
+        //    s = pi?.PhysicalPath;
+        //}
+
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
         {
