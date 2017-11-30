@@ -171,23 +171,23 @@ namespace MainComp
 
             //инициализация происходит раньше, чем срабатывает сервис
 
-            List<string> PathChildFace = new List<string>();
-            try
-            {
-                //а это метод который тащит все существующие файлы из директории
+            //List<string> PathChildFace = new List<string>();
+            //try
+            //{
+            //    //а это метод который тащит все существующие файлы из директории
 
-                DirectoryInfo di = new DirectoryInfo(@puthMainProject);
-                FileInfo[] fi = di.GetFiles("*.png");
-                foreach (FileInfo fc in fi)
-                {
-                    PathChildFace.Add("Resources//FaceImg//" + fc.Name);
-                }
-                MessageBox.Show("" + PathChildFace.Count);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("" + ex);
-            }
+            //    DirectoryInfo di = new DirectoryInfo(@puthMainProject);
+            //    FileInfo[] fi = di.GetFiles("*.png");
+            //    foreach (FileInfo fc in fi)
+            //    {
+            //        PathChildFace.Add("@puthMainProject//" + fc.Name);
+            //    }
+            //    MessageBox.Show("" + PathChildFace.Count);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("" + ex);
+            //}
 
 
 
