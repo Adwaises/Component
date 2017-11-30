@@ -9,6 +9,9 @@ using ChildComponent;
 using System.IO;
 using System.ComponentModel.Design;
 using System.Web.UI.Design;
+using EnvDTE;
+using System.Windows.Forms.Design.Behavior;
+using EnvDTE80;
 
 namespace MainComp
 {
@@ -33,9 +36,13 @@ namespace MainComp
 
         private Color colorLine = Color.Blue;
 
+        string puthMainProject;
 
         public MainComponent()
         {
+
+            puthMainProject = "";
+            SuspendLayout();
             InitializeComponent();
 
             pictureBox = new PictureBox();
@@ -161,50 +168,76 @@ namespace MainComp
             AllImg.Add(Resources.roses as Bitmap, TypesOfImages.Flower);
 
 
-            //MessageBox.Show("1 " + s);
 
-            //List<string> PathChildFace = new List<string>();
-            //try
-            //{
-            ////а это метод который тащит все существующие файлы из директории
+            //инициализация происходит раньше, чем срабатывает сервис
 
-            //DirectoryInfo di = new DirectoryInfo(@"Resources//FaceImg");
-            //FileInfo[] fi = di.GetFiles("*.png");
-            //foreach (FileInfo fc in fi)
-            //{
-            //    PathChildFace.Add("Resources//FaceImg//" + fc.Name);
-            //}
-            //MessageBox.Show("" + PathChildFace.Count);
-            //} catch(Exception ex)
-            //{
-            //    MessageBox.Show("" + Directory.GetCurrentDirectory() );
-            //}
+            List<string> PathChildFace = new List<string>();
+            try
+            {
+                //а это метод который тащит все существующие файлы из директории
+
+                DirectoryInfo di = new DirectoryInfo(@puthMainProject);
+                FileInfo[] fi = di.GetFiles("*.png");
+                foreach (FileInfo fc in fi)
+                {
+                    PathChildFace.Add("Resources//FaceImg//" + fc.Name);
+                }
+                MessageBox.Show("" + PathChildFace.Count);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("" + ex);
+            }
+
+
+
         }
 
-        ////бредовая идея: получить доступ к папке с ресурсами проекта где используется компонент
-        //// типо сови картинки можнор догружать
-        //string s = "";
-        ////используем сервис, чтобы получить инфу о проекте выше
-        //public override ISite Site
-        //{
-        //    get
-        //    {
-        //        return base.Site;
-        //    }
-        //    set
-        //    {
-        //        base.Site = value;
-        //        prepareInfo();
-        //    }
-        //}
+        private void createCorrectPuth()
+        {
+            //а тут берём папку ресурсов
+            //обрабатываем путь
+            //MessageBox.Show(puthMainProject);
+            string[] mas = puthMainProject.Split('\\');
+            //MessageBox.Show(mas[0]);
+            puthMainProject = "";
+            for (int i = 0; i < mas.Length - 1; i++)
+            {
+                puthMainProject += mas[i] + "\\";
+                //MessageBox.Show(mas[i]);
+            }
+            puthMainProject += "Resources";
+            //MessageBox.Show(puthMainProject);
+        }
 
-        //private void prepareInfo()
-        //{
-        //    if (base.Site == null)
-        //        return;
-        //    IProjectItem pi = (IProjectItem)Site.GetService(typeof(IProjectItem));
-        //    s = pi?.PhysicalPath;
-        //}
+        //бредовая идея: получить доступ к папке с ресурсами проекта где используется компонент
+        // типо сови картинки можнор догружать
+        
+        //используем сервис, чтобы получить инфу о проекте выше
+        public override ISite Site
+        {
+            get
+            {
+                return base.Site;
+            }
+            set
+            {
+                base.Site = value;
+                prepareInformation();
+            }
+        }
+
+
+        private void prepareInformation()
+        {
+            if (base.Site == null)
+                return;
+            ProjectItem pi = (ProjectItem)Site.GetService(typeof(ProjectItem));
+            //puthMainProject += $"форма {pi?.Name}" + "\r\n";
+            puthMainProject += ($"{pi?.Document?.FullName}");
+            //MessageBox.Show(puthMainProject);
+            createCorrectPuth();
+        }
 
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
