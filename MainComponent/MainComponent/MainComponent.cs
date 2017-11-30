@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ChildComponent;
+using System.IO;
 
 namespace MainComp
 {
@@ -154,6 +155,25 @@ namespace MainComp
             AllImg.Add(Resources.rose_1 as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.poppy as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.roses as Bitmap, TypesOfImages.Flower);
+
+            List<string> PathChildFace = new List<string>();
+            try
+            {
+            //а это метод который тащит все существующие файлы из директории
+           
+            DirectoryInfo di = new DirectoryInfo(@"Resources//FaceImg");
+            FileInfo[] fi = di.GetFiles("*.png");
+            foreach (FileInfo fc in fi)
+            {
+                PathChildFace.Add("Resources//FaceImg//" + fc.Name);
+            }
+            MessageBox.Show("" + PathChildFace.Count);
+            } catch(Exception ex)
+            {
+                MessageBox.Show("" + Directory.GetCurrentDirectory() );
+            }
+
+
         }
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
