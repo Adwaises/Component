@@ -300,22 +300,6 @@ namespace MainComp
             }
         }
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size MaximumSize
-        {
-            get { return new Size(400, 180); }
-            set { Size = new Size(400, 180); }
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size MinimumSize
-        {
-            get { return new Size(400, 180); }
-            set { Size = new Size(400, 180); }
-        }
-
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
         {
@@ -387,6 +371,703 @@ namespace MainComp
                 Invalidate();
             }
         }
+
+        #region DeleteProperty
+        // залоченные свойства
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MaximumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MinimumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Font Font
+        {
+            get { return new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);}
+            set { Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Color ForeColor
+        {
+            get { return  Color.Black; }
+            set { ForeColor = Color.Black; }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override RightToLeft RightToLeft
+        {
+            get { return RightToLeft.No; }
+            set { RightToLeft = RightToLeft.No; }
+        }
+
+        ////странность - падает при компиляции
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new bool UseWaitCursor
+        //{
+        //    get { return false; }
+        //    set { UseWaitCursor = false; }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool AutoScroll
+        {
+            get { return false; }
+            set { AutoScroll = false; }
+        }
+
+        ////странность
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new Point AutoScrollMargin
+        //{
+        //    get { return new Point(0,0); }
+        //    set { AutoScrollMargin = new Point(0, 0); }
+        //}
+
+        ////странность
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new Point AutoScrollMinSize
+        //{
+        //    get { return new Point(0, 0); }
+        //    set { AutoScrollMargin = new Point(0, 0); }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool AutoSize
+        {
+            get { return false; }
+            set { AutoSize = false; }
+        }
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new bool AutoSizeMode
+        //{
+        //    get { return false; }
+        //    set { AutoSize = false; }
+        //}
+
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool Padding
+        //{
+        //    get { return false; }
+        //    set { AutoSize = false; }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool AllowDrop
+        {
+            get { return false; }
+            set { AllowDrop = false; }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override AutoValidate AutoValidate
+        {
+            get { return AutoValidate.EnablePreventFocusChange; }
+            set { AutoValidate = AutoValidate.EnablePreventFocusChange; }
+        }
+
+        //падает
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override ContextMenuStrip ContextMenuStrip
+        //{
+        //    get { return ContextMenuStrip; }
+        //    set { ContextMenuStrip = ContextMenuStrip; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override ImeMode ImeMode
+        //{
+        //    get { return ImeMode.NoControl; }
+        //    set { ImeMode = ImeMode.NoControl; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool AccessibleDescription
+        //{
+        //    get { return false; }
+        //    set { AllowDrop = false; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool AccessibleName
+        //{
+        //    get { return false; }
+        //    set { AllowDrop = false; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool CausesValidation
+        //{
+        //    get { return false; }
+        //    set { AllowDrop = false; }
+        //}
+
+
+        // скрываем события
+
+        #endregion
+
+        #region DeleteEvents
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Paint
+        {
+            add { }
+            remove { }
+        }
+
+        //не хотят убираться
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler CollectionChanged
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public event EventHandler CollectionChanging
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Click
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DoubleClick
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseCaptureChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseClick
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseDoubleClick
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Scroll
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler KeyPress
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler KeyDown
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler KeyUp
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler PreviewKeyDown
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Layout
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MarginChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Move
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler PaddingChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Resize
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseDown
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseEnter
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseHover
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseLeave
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseMove
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseUp
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragDrop
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragEnter
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragLeave
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragOver
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler GiveFeedback
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler QueryContinueDrag
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ChangeUICues
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ControlAdded
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ControlRemoved
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler HelpRequested
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ImeModeChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Load
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler QueryAccessibilityHelp
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler StyleChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler SystemColorsChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler AutoSizeChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler AutoValidateChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BackColorChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BackgroundImageChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BackgroundImageLayoutChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BindingContextChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler CausesValidationChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ClientSizeChanged
+        {
+            add { }
+            remove { }
+        }
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ContextMenuChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ContextMenuStripChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler CursorChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DockChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler EnabledChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler FontChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ForeColorChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler LocationChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ParentChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler RegionChanged
+        {
+            add { }
+            remove { }
+        }
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler RightToLeftChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler SizeChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler TabIndexChanged
+        { 
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler TabStopChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler VisibleChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Enter
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Leave
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Validated
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Validating
+        {
+            add { }
+            remove { }
+        }
+
+        #endregion
 
         #endregion
 
