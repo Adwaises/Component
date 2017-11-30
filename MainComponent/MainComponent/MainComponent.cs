@@ -564,22 +564,23 @@ namespace MainComp
         //    remove { }
         //}
 
+            // мб звук поставить кто захочет
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler Click
-        {
-            add { }
-            remove { }
-        }
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler Click
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler DoubleClick
-        {
-            add { }
-            remove { }
-        }
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler DoubleClick
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -589,21 +590,21 @@ namespace MainComp
             remove { }
         }
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler MouseClick
-        {
-            add { }
-            remove { }
-        }
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler MouseClick
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler MouseDoubleClick
-        {
-            add { }
-            remove { }
-        }
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler MouseDoubleClick
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -613,29 +614,29 @@ namespace MainComp
             remove { }
         }
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler KeyPress
-        {
-            add { }
-            remove { }
-        }
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler KeyPress
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler KeyDown
-        {
-            add { }
-            remove { }
-        }
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler KeyDown
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler KeyUp
-        {
-            add { }
-            remove { }
-        }
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler KeyUp
+        //{
+        //    add { }
+        //    remove { }
+        //}
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
