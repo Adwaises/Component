@@ -169,75 +169,56 @@ namespace MainComp
 
 
 
-            //инициализация происходит раньше, чем срабатывает сервис
+            // не заходит сюда, надо переинициализировать
+            if (pathNoRightChildPicture != "") {
+                List<string> PathChildFace = new List<string>();
+                try
+                {
+                    //а это метод который тащит все существующие файлы из директории
 
-            //List<string> PathChildFace = new List<string>();
-            //try
-            //{
-            //    //а это метод который тащит все существующие файлы из директории
+                    DirectoryInfo di = new DirectoryInfo(@pathNoRightChildPicture);
 
-            //    DirectoryInfo di = new DirectoryInfo(@puthMainProject);
-            //    FileInfo[] fi = di.GetFiles("*.png");
-            //    foreach (FileInfo fc in fi)
-            //    {
-            //        PathChildFace.Add("@puthMainProject//" + fc.Name);
-            //    }
-            //    MessageBox.Show("" + PathChildFace.Count);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("" + ex);
-            //}
+                    FileInfo[] fi = di.GetFiles("*.png");
+
+                    //MessageBox.Show(@pathNoRightChildPicture);
+                    foreach (FileInfo fc in fi)
+                    {
+                        PathChildFace.Add(@pathNoRightChildPicture + "\\" + fc.Name);
+                    }
+                  //  MessageBox.Show("" + PathChildFace.Count);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("" + ex);
+                }
 
 
-
-        }
-
-        private void createCorrectPuth()
-        {
-            //а тут берём папку ресурсов
-            //обрабатываем путь
-            //MessageBox.Show(puthMainProject);
-            string[] mas = puthMainProject.Split('\\');
-            //MessageBox.Show(mas[0]);
-            puthMainProject = "";
-            for (int i = 0; i < mas.Length - 1; i++)
-            {
-                puthMainProject += mas[i] + "\\";
-                //MessageBox.Show(mas[i]);
             }
-            puthMainProject += "Resources";
-            //MessageBox.Show(puthMainProject);
         }
 
-        //бредовая идея: получить доступ к папке с ресурсами проекта где используется компонент
-        // типо сови картинки можнор догружать
-        
-        //используем сервис, чтобы получить инфу о проекте выше
-        public override ISite Site
+        private string pathNoRightChildPicture = "";
+        [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
+        //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        public string PathNoRightChildPicture
         {
             get
-            {
-                return base.Site;
-            }
+            { return pathNoRightChildPicture; }
             set
             {
-                base.Site = value;
-                prepareInformation();
+                pathNoRightChildPicture = value;
+                if (pathNoRightChildPicture != "" && pathNoRightChildPicture.Length > 3) {
+                    if (!pathNoRightChildPicture.Substring(1, 2).Equals(":\\"))
+                    {
+                        MessageBox.Show("Не строка");
+                        pathNoRightChildPicture = "";
+                        //MessageBox.Show("Строка не является путем");
+                    }
+                }
+                Invalidate();
             }
         }
 
-
-        private void prepareInformation()
-        {
-            if (base.Site == null)
-                return;
-            ProjectItem pi = (ProjectItem)Site.GetService(typeof(ProjectItem));
-            //puthMainProject += $"форма {pi?.Name}" + "\r\n";
-            puthMainProject += ($"{pi?.Document?.FullName}");
-            //MessageBox.Show(puthMainProject);
-            createCorrectPuth();
-        }
+       
 
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
