@@ -1456,7 +1456,7 @@ namespace MainComp
         }
         #endregion
         /// <summary>
-        /// Методы вывода подсказки и обновления
+        /// Метод вывода подсказки
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1464,26 +1464,6 @@ namespace MainComp
         {
             toolTip1.SetToolTip(pictureBox1, textHelp);
             toolTip1.IsBalloon = true;
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            //update
-            updateComponent();
-        }
-
-        private void updateComponent()
-        {
-            RandomLocationChild = true;
-            foreach (var elem in childElemlist)
-            {
-                elem.MouseDown -= new MouseEventHandler(mDown);
-                elem.MouseUp -= new MouseEventHandler(mUp);
-            }
-            foreach (var elem in childElemlist)
-            {
-                LearnToMove(elem);
-            }
         }
     }
 }
