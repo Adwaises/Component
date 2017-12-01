@@ -6,11 +6,19 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ChildComponent;
+using System.IO;
+using System.ComponentModel.Design;
+using System.Web.UI.Design;
+using EnvDTE;
+using System.Windows.Forms.Design.Behavior;
+using EnvDTE80;
 
 namespace MainComp
 {
     public partial class MainComponent : UserControl
     {
+
+
         public enum TypesOfImages { Face, Refrigerator, Flower, Custom }
 
         Random random = new Random();
@@ -21,7 +29,6 @@ namespace MainComp
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
         private int errorNumber = 3;
-
         private int countNonCorrectChild = 3;
         private int countCorrectChild = 3;
 
@@ -29,9 +36,13 @@ namespace MainComp
 
         private Color colorLine = Color.Blue;
 
+        string puthMainProject;
 
         public MainComponent()
         {
+
+            puthMainProject = "";
+            SuspendLayout();
             InitializeComponent();
 
             pictureBox = new PictureBox();
@@ -39,7 +50,6 @@ namespace MainComp
             //this.SetStyle(ControlStyles.UserPaint, true);
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
-
             //создание списка дочерних элементов и его заполение
             childElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
@@ -156,7 +166,60 @@ namespace MainComp
             AllImg.Add(Resources.rose_1 as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.poppy as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.roses as Bitmap, TypesOfImages.Flower);
+
+
+
+            // не заходит сюда, надо переинициализировать
+            if (pathNoRightChildPicture != "") {
+                List<string> PathChildFace = new List<string>();
+                try
+                {
+                    //а это метод который тащит все существующие файлы из директории
+
+                    DirectoryInfo di = new DirectoryInfo(@pathNoRightChildPicture);
+
+                    FileInfo[] fi = di.GetFiles("*.png");
+
+                    //MessageBox.Show(@pathNoRightChildPicture);
+                    foreach (FileInfo fc in fi)
+                    {
+                        PathChildFace.Add(@pathNoRightChildPicture + "\\" + fc.Name);
+                    }
+                  //  MessageBox.Show("" + PathChildFace.Count);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("" + ex);
+                }
+
+
+            }
         }
+
+        private string pathNoRightChildPicture = "";
+        [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
+        //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        public string PathNoRightChildPicture
+        {
+            get
+            { return pathNoRightChildPicture; }
+            set
+            {
+                pathNoRightChildPicture = value;
+                if (pathNoRightChildPicture != "" && pathNoRightChildPicture.Length > 3) {
+                    if (!pathNoRightChildPicture.Substring(1, 2).Equals(":\\"))
+                    {
+                        MessageBox.Show("Не строка");
+                        pathNoRightChildPicture = "";
+                        //MessageBox.Show("Строка не является путем");
+                    }
+                }
+                Invalidate();
+            }
+        }
+
+       
+
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
         {
@@ -302,22 +365,6 @@ namespace MainComp
             }
         }
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size MaximumSize
-        {
-            get { return new Size(400, 180); }
-            set { Size = new Size(400, 180); }
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Size MinimumSize
-        {
-            get { return new Size(400, 180); }
-            set { Size = new Size(400, 180); }
-        }
-
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
         {
@@ -389,6 +436,704 @@ namespace MainComp
                 Invalidate();
             }
         }
+
+        #region DeleteProperty
+        // залоченные свойства
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MaximumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Size MinimumSize
+        {
+            get { return new Size(400, 180); }
+            set { Size = new Size(400, 180); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Font Font
+        {
+            get { return new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);}
+            set { Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold); }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override Color ForeColor
+        {
+            get { return  Color.Black; }
+            set { ForeColor = Color.Black; }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override RightToLeft RightToLeft
+        {
+            get { return RightToLeft.No; }
+            set { RightToLeft = RightToLeft.No; }
+        }
+
+        ////странность - падает при компиляции
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new bool UseWaitCursor
+        //{
+        //    get { return false; }
+        //    set { UseWaitCursor = false; }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool AutoScroll
+        {
+            get { return false; }
+            set { AutoScroll = false; }
+        }
+
+        ////странность
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new Point AutoScrollMargin
+        //{
+        //    get { return new Point(0,0); }
+        //    set { AutoScrollMargin = new Point(0, 0); }
+        //}
+
+        ////странность
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new Point AutoScrollMinSize
+        //{
+        //    get { return new Point(0, 0); }
+        //    set { AutoScrollMargin = new Point(0, 0); }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool AutoSize
+        {
+            get { return false; }
+            set { AutoSize = false; }
+        }
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new bool AutoSizeMode
+        //{
+        //    get { return false; }
+        //    set { AutoSize = false; }
+        //}
+
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool Padding
+        //{
+        //    get { return false; }
+        //    set { AutoSize = false; }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool AllowDrop
+        {
+            get { return false; }
+            set { AllowDrop = false; }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override AutoValidate AutoValidate
+        {
+            get { return AutoValidate.EnablePreventFocusChange; }
+            set { AutoValidate = AutoValidate.EnablePreventFocusChange; }
+        }
+
+        //падает
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override ContextMenuStrip ContextMenuStrip
+        //{
+        //    get { return ContextMenuStrip; }
+        //    set { ContextMenuStrip = ContextMenuStrip; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override ImeMode ImeMode
+        //{
+        //    get { return ImeMode.NoControl; }
+        //    set { ImeMode = ImeMode.NoControl; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool AccessibleDescription
+        //{
+        //    get { return false; }
+        //    set { AllowDrop = false; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool AccessibleName
+        //{
+        //    get { return false; }
+        //    set { AllowDrop = false; }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public override bool CausesValidation
+        //{
+        //    get { return false; }
+        //    set { AllowDrop = false; }
+        //}
+
+
+        // скрываем события
+
+        #endregion
+
+        #region DeleteEvents
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Paint
+        {
+            add { }
+            remove { }
+        }
+
+        //не хотят убираться
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler CollectionChanged
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public event EventHandler CollectionChanging
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+            // мб звук поставить кто захочет
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler Click
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler DoubleClick
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseCaptureChanged
+        {
+            add { }
+            remove { }
+        }
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler MouseClick
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler MouseDoubleClick
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Scroll
+        {
+            add { }
+            remove { }
+        }
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler KeyPress
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler KeyDown
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+        //[Browsable(false)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public new event EventHandler KeyUp
+        //{
+        //    add { }
+        //    remove { }
+        //}
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler PreviewKeyDown
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Layout
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MarginChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Move
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler PaddingChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Resize
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseDown
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseEnter
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseHover
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseLeave
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseMove
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler MouseUp
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragDrop
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragEnter
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragLeave
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DragOver
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler GiveFeedback
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler QueryContinueDrag
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ChangeUICues
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ControlAdded
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ControlRemoved
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler HelpRequested
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ImeModeChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Load
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler QueryAccessibilityHelp
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler StyleChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler SystemColorsChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler AutoSizeChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler AutoValidateChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BackColorChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BackgroundImageChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BackgroundImageLayoutChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler BindingContextChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler CausesValidationChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ClientSizeChanged
+        {
+            add { }
+            remove { }
+        }
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ContextMenuChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ContextMenuStripChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler CursorChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler DockChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler EnabledChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler FontChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ForeColorChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler LocationChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler ParentChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler RegionChanged
+        {
+            add { }
+            remove { }
+        }
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler RightToLeftChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler SizeChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler TabIndexChanged
+        { 
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler TabStopChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler VisibleChanged
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Enter
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Leave
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Validated
+        {
+            add { }
+            remove { }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler Validating
+        {
+            add { }
+            remove { }
+        }
+
+        #endregion
 
         #endregion
 
@@ -560,7 +1305,7 @@ namespace MainComp
             e.Graphics.DrawRectangle(pen, 1, 1, Width - 3, Height - 3);
             base.OnPaint(e);
         }
-
+        #region move
 
         // события для движения
         static bool isPress = false;
@@ -595,7 +1340,10 @@ namespace MainComp
                 isPress = false;
 
                 //Если дочерний компонент отпустили в координатах primary-comp
-                if (control.Top > controlPrim.Location.Y && control.Left > controlPrim.Location.X)
+                if (control.Top > controlPrim.Location.Y 
+                    && control.Top + control.Height < controlPrim.Location.Y + controlPrim.Height 
+                    && control.Left > controlPrim.Location.X
+                    && control.Left + control.Width < controlPrim.Location.X + controlPrim.Width )
                 {
                     TypesOfImages downTypeImage = CaptchaPattern;
 
@@ -626,9 +1374,9 @@ namespace MainComp
                             (control as ChildComponent.ChildComponent).RandomLocation = true;
                         }
                     }
-                    
 
 
+                    #region okOrError
                     ////TryGetValue возвращает всегда ПЕРВЫЙ В СПИСКЕ тип для неправильных элементов 
                     //// Он устанавливается по дефолту
                     ////Неправильные элементы c# не может найти в нашем словаре. Почему ?? Хотя если приходят верные - все ОК 
@@ -661,6 +1409,7 @@ namespace MainComp
                     //    MessageBox.Show("Ошибка");
                     //    (control as ChildComponent.ChildComponent).RandomLocation = true;
                     //}
+                    #endregion
                 }
             }
             else
@@ -674,9 +1423,19 @@ namespace MainComp
         {
             if (isPress)
             {
+                //только для левой и верхней
                 Control control = (Control)sender;
-                control.Top += e.Y - startPst.Y;
-                control.Left += e.X - startPst.X;
+                if (control.Top > 0 && control.Left > 0 &&
+                    control.Top + control.Height < 180 && control.Left + control.Width < 400||//весь компонент
+                    (control.Top <=0 && control.Left<=0&& e.X - startPst.X>=0&& e.Y - startPst.Y>=0)||//угл лево верх
+                    (control.Top <= 0&& e.Y - startPst.Y >= 0)||//верх
+                    (control.Left <= 0 && e.X - startPst.X >= 0))//лево
+                {
+
+                    control.Left += e.X - startPst.X;
+                    control.Top += e.Y - startPst.Y;
+                }
+                
             }
         }
 
@@ -695,7 +1454,7 @@ namespace MainComp
             controlPrim = (Control)sender;
             // control.MouseEnter += new EventHandler(onThePosition);
         }
-
+        #endregion
         /// <summary>
         /// Метод вывода подсказки
         /// </summary>
