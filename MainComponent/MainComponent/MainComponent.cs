@@ -170,7 +170,8 @@ namespace MainComp
 
 
             // не заходит сюда, надо переинициализировать
-            if (pathNoRightChildPicture != "") {
+            if (pathNoRightChildPicture != "")
+            {
                 List<string> PathChildFace = new List<string>();
                 try
                 {
@@ -185,7 +186,7 @@ namespace MainComp
                     {
                         PathChildFace.Add(@pathNoRightChildPicture + "\\" + fc.Name);
                     }
-                  //  MessageBox.Show("" + PathChildFace.Count);
+                    //  MessageBox.Show("" + PathChildFace.Count);
                 }
                 catch (Exception ex)
                 {
@@ -205,20 +206,63 @@ namespace MainComp
             { return pathNoRightChildPicture; }
             set
             {
-                pathNoRightChildPicture = value;
-                if (pathNoRightChildPicture != "" && pathNoRightChildPicture.Length > 3) {
-                    if (!pathNoRightChildPicture.Substring(1, 2).Equals(":\\"))
-                    {
-                        MessageBox.Show("Не строка");
-                        pathNoRightChildPicture = "";
-                        //MessageBox.Show("Строка не является путем");
-                    }
+                if (isPath(value))
+                {
+                    pathNoRightChildPicture = value;
+                }
+                else
+                {
+                    pathNoRightChildPicture = "";
                 }
                 Invalidate();
             }
         }
 
-       
+        private string pathRightChildPicture = "";
+        [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
+        //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        public string PathRightChildPicture
+        {
+            get
+            { return pathRightChildPicture; }
+            set
+            {
+                if (isPath(value))
+                {
+                    pathRightChildPicture = value;
+                } else
+                {
+                    pathRightChildPicture = "";
+                }
+
+                Invalidate();
+            }
+        }
+
+        private bool isPath(string str)
+        {
+            //MessageBox.Show(str);
+            //pathRightChildPicture = value;
+            if (str != "" && str.Length > 2)
+            {
+                if (!str.Substring(1, 2).Equals(":\\"))
+                {
+                    MessageBox.Show("Не путь");
+                    return false;
+                    //pathRightChildPicture = "";
+                }
+                else
+                {
+                   // MessageBox.Show("Cтрока");
+                    return true;
+                }
+            }
+            else
+            {
+                //MessageBox.Show("Не путь");
+                return false;
+            }
+        }
 
 
         Image SetRandomWrongImage(TypesOfImages exceptionTypeImg)
@@ -296,16 +340,16 @@ namespace MainComp
         /// Свойства дочернего компонента
         /// </summary>
 
-            //чтоб смотреть лист
-        [Category("ChildComponent"), Description("Specifies the list of child elements.")]
-        public List<ChildComponent.ChildComponent> SelectChild
-        {
-            get
-            {
-                return childElemlist;
-            }
+        //    //чтоб смотреть лист
+        //[Category("ChildComponent"), Description("Specifies the list of child elements.")]
+        //public List<ChildComponent.ChildComponent> SelectChild
+        //{
+        //    get
+        //    {
+        //        return childElemlist;
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// Свойства Главного компонента
@@ -459,7 +503,7 @@ namespace MainComp
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override Font Font
         {
-            get { return new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);}
+            get { return new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold); }
             set { Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold); }
         }
 
@@ -467,7 +511,7 @@ namespace MainComp
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override Color ForeColor
         {
-            get { return  Color.Black; }
+            get { return Color.Black; }
             set { ForeColor = Color.Black; }
         }
 
@@ -1210,8 +1254,8 @@ namespace MainComp
                 int indexControl = 0;
                 for (int i = 0; i < Controls.Count; i++)
                 {
-                   // MessageBox.Show((Controls[i].BackgroundImage == childElemlist[index].BackgroundImage).ToString());
-                    if(Controls[i].BackgroundImage == childElemlist[index].BackgroundImage)
+                    // MessageBox.Show((Controls[i].BackgroundImage == childElemlist[index].BackgroundImage).ToString());
+                    if (Controls[i].BackgroundImage == childElemlist[index].BackgroundImage)
                     {
                         indexControl = i;
                         //break;
@@ -1253,7 +1297,7 @@ namespace MainComp
                     child.BackgroundImage = SetRandomWrongImage(typeImages);
                 }
                 // Рандомим позицию
-               
+
                 child.Location = new Point(random.Next(230), random.Next(150));
                 //определяем не наложились ли элементы
                 bool flag = true;
@@ -1342,10 +1386,10 @@ namespace MainComp
                 isPress = false;
 
                 //Если дочерний компонент отпустили в координатах primary-comp
-                if (control.Top > controlPrim.Location.Y 
-                    && control.Top + control.Height < controlPrim.Location.Y + controlPrim.Height 
+                if (control.Top > controlPrim.Location.Y
+                    && control.Top + control.Height < controlPrim.Location.Y + controlPrim.Height
                     && control.Left > controlPrim.Location.X
-                    && control.Left + control.Width < controlPrim.Location.X + controlPrim.Width )
+                    && control.Left + control.Width < controlPrim.Location.X + controlPrim.Width)
                 {
                     TypesOfImages downTypeImage = CaptchaPattern;
 
@@ -1438,16 +1482,16 @@ namespace MainComp
                 //только для левой и верхней
                 Control control = (Control)sender;
                 if (control.Top > 0 && control.Left > 0 &&
-                    control.Top + control.Height < 180 && control.Left + control.Width < 400||//весь компонент
-                    (control.Top <=0 && control.Left<=0&& e.X - startPst.X>=0&& e.Y - startPst.Y>=0)||//угл лево верх
-                    (control.Top <= 0&& e.Y - startPst.Y >= 0)||//верх
+                    control.Top + control.Height < 180 && control.Left + control.Width < 400 ||//весь компонент
+                    (control.Top <= 0 && control.Left <= 0 && e.X - startPst.X >= 0 && e.Y - startPst.Y >= 0) ||//угл лево верх
+                    (control.Top <= 0 && e.Y - startPst.Y >= 0) ||//верх
                     (control.Left <= 0 && e.X - startPst.X >= 0))//лево
                 {
 
                     control.Left += e.X - startPst.X;
                     control.Top += e.Y - startPst.Y;
                 }
-                
+
             }
         }
 
@@ -1518,14 +1562,15 @@ namespace MainComp
                     onPrimaryComponent++;
                 }
             }
-            if(onPrimaryComponent == countCorrectChild)
+            if (onPrimaryComponent == countCorrectChild)
             {
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }
-            
+
         }
 
     }

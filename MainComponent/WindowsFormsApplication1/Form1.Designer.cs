@@ -47,6 +47,7 @@
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
             this.mainComponent1.PathNoRightChildPicture = "";
+            this.mainComponent1.PathRightChildPicture = "";
             this.mainComponent1.RandomLocationChild = false;
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
             this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
