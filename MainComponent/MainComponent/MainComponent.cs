@@ -29,8 +29,8 @@ namespace MainComp
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
         private int errorNumber = 3;
-        private int countNonCorrectChild = 3;
-        private int countCorrectChild = 3;
+        private int countNonCorrectChild = 7;
+        private int countCorrectChild = 4;
 
         private static TypesOfImages typeImages = TypesOfImages.Flower;
 
@@ -1220,7 +1220,7 @@ namespace MainComp
 
                 this.childElemlist.RemoveAt(index);
                 this.Controls.RemoveAt(indexControl);
-               
+                Invalidate();
             }
 
             //this.Controls.RemoveAt(Controls.Count - 1);
@@ -1242,12 +1242,14 @@ namespace MainComp
                 //Если нужно добавить верный дочерний элемент
                 if (isCorrectChild)
                 {
-                    child = new ChildComponent.ChildComponent(true);
+                    child = new ChildComponent.ChildComponent();
+                    child.Accessory = true;
                     child.BackgroundImage = FindNewCorrectImage();
                 }
                 else
                 {
-                    child = new ChildComponent.ChildComponent(false);
+                    child = new ChildComponent.ChildComponent();
+                    child.Accessory = false;
                     child.BackgroundImage = SetRandomWrongImage(typeImages);
                 }
                 // Рандомим позицию

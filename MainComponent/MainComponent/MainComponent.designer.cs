@@ -43,41 +43,40 @@ namespace MainComp
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainComponent));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.childComponent8 = new ChildComponent.ChildComponent(true);
-            this.childComponent5 = new ChildComponent.ChildComponent(true);
-            this.childComponent4 = new ChildComponent.ChildComponent(true);
-            this.childComponent3 = new ChildComponent.ChildComponent(false);
-            this.childComponent2 = new ChildComponent.ChildComponent(false);
-            this.childComponent1 = new ChildComponent.ChildComponent(false);
+            this.childComponent8 = new ChildComponent.ChildComponent();
+            this.childComponent5 = new ChildComponent.ChildComponent();
+            this.childComponent4 = new ChildComponent.ChildComponent();
+            this.childComponent3 = new ChildComponent.ChildComponent();
+            this.childComponent2 = new ChildComponent.ChildComponent();
+            this.childComponent1 = new ChildComponent.ChildComponent();
             this.primaryComponent1 = new PrimaryComponent.PrimaryComponent();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
+            this.childComponent6 = new ChildComponent.ChildComponent();
+            this.childComponent7 = new ChildComponent.ChildComponent();
+            this.childComponent9 = new ChildComponent.ChildComponent();
+            this.childComponent10 = new ChildComponent.ChildComponent();
+            this.childComponent11 = new ChildComponent.ChildComponent();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent11)).BeginInit();
             this.SuspendLayout();
-            // 
-            // primaryComponent1
-            // 
-            this.primaryComponent1.BackColor = System.Drawing.Color.Transparent;
-            this.primaryComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.primaryComponent1.InitialImage = ((System.Drawing.Image)(resources.GetObject("primaryComponent1.InitialImage")));
-            this.primaryComponent1.Location = new System.Drawing.Point(267, 3);
-            this.primaryComponent1.Name = "primaryComponent1";
-            this.primaryComponent1.Size = new System.Drawing.Size(128, 128);
-            this.primaryComponent1.TabIndex = 8;
-            this.primaryComponent1.TabStop = false;
             // 
             // childComponent8
             // 
-            this.childComponent8.Accessory = true;
+            this.childComponent8.Accessory = false;
             this.childComponent8.BackColor = System.Drawing.Color.Transparent;
             this.childComponent8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent8.Location = new System.Drawing.Point(3, 41);
+            this.childComponent8.Location = new System.Drawing.Point(79, 41);
             this.childComponent8.Name = "childComponent8";
             this.childComponent8.RandomLocation = false;
             this.childComponent8.Size = new System.Drawing.Size(32, 32);
@@ -86,10 +85,10 @@ namespace MainComp
             // 
             // childComponent5
             // 
-            this.childComponent5.Accessory = true;
+            this.childComponent5.Accessory = false;
             this.childComponent5.BackColor = System.Drawing.Color.Transparent;
             this.childComponent5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent5.Location = new System.Drawing.Point(155, 3);
+            this.childComponent5.Location = new System.Drawing.Point(41, 41);
             this.childComponent5.Name = "childComponent5";
             this.childComponent5.RandomLocation = false;
             this.childComponent5.Size = new System.Drawing.Size(32, 32);
@@ -98,10 +97,10 @@ namespace MainComp
             // 
             // childComponent4
             // 
-            this.childComponent4.Accessory = true;
+            this.childComponent4.Accessory = false;
             this.childComponent4.BackColor = System.Drawing.Color.Transparent;
             this.childComponent4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.childComponent4.Location = new System.Drawing.Point(117, 3);
+            this.childComponent4.Location = new System.Drawing.Point(3, 41);
             this.childComponent4.Name = "childComponent4";
             this.childComponent4.RandomLocation = false;
             this.childComponent4.Size = new System.Drawing.Size(32, 32);
@@ -144,6 +143,17 @@ namespace MainComp
             this.childComponent1.TabIndex = 9;
             this.childComponent1.TabStop = false;
             // 
+            // primaryComponent1
+            // 
+            this.primaryComponent1.BackColor = System.Drawing.Color.Transparent;
+            this.primaryComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.primaryComponent1.InitialImage = ((System.Drawing.Image)(resources.GetObject("primaryComponent1.InitialImage")));
+            this.primaryComponent1.Location = new System.Drawing.Point(267, 3);
+            this.primaryComponent1.Name = "primaryComponent1";
+            this.primaryComponent1.Size = new System.Drawing.Size(128, 128);
+            this.primaryComponent1.TabIndex = 8;
+            this.primaryComponent1.TabStop = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -156,9 +166,74 @@ namespace MainComp
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
             // 
+            // childComponent6
+            // 
+            this.childComponent6.Accessory = false;
+            this.childComponent6.BackColor = System.Drawing.Color.Transparent;
+            this.childComponent6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent6.Location = new System.Drawing.Point(3, 79);
+            this.childComponent6.Name = "childComponent6";
+            this.childComponent6.RandomLocation = false;
+            this.childComponent6.Size = new System.Drawing.Size(32, 32);
+            this.childComponent6.TabIndex = 15;
+            this.childComponent6.TabStop = false;
+            // 
+            // childComponent7
+            // 
+            this.childComponent7.Accessory = true;
+            this.childComponent7.BackColor = System.Drawing.Color.Transparent;
+            this.childComponent7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent7.Location = new System.Drawing.Point(157, 4);
+            this.childComponent7.Name = "childComponent7";
+            this.childComponent7.RandomLocation = false;
+            this.childComponent7.Size = new System.Drawing.Size(32, 32);
+            this.childComponent7.TabIndex = 16;
+            this.childComponent7.TabStop = false;
+            // 
+            // childComponent9
+            // 
+            this.childComponent9.Accessory = true;
+            this.childComponent9.BackColor = System.Drawing.Color.Transparent;
+            this.childComponent9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent9.Location = new System.Drawing.Point(196, 4);
+            this.childComponent9.Name = "childComponent9";
+            this.childComponent9.RandomLocation = false;
+            this.childComponent9.Size = new System.Drawing.Size(32, 32);
+            this.childComponent9.TabIndex = 17;
+            this.childComponent9.TabStop = false;
+            // 
+            // childComponent10
+            // 
+            this.childComponent10.Accessory = true;
+            this.childComponent10.BackColor = System.Drawing.Color.Transparent;
+            this.childComponent10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent10.Location = new System.Drawing.Point(196, 43);
+            this.childComponent10.Name = "childComponent10";
+            this.childComponent10.RandomLocation = false;
+            this.childComponent10.Size = new System.Drawing.Size(32, 32);
+            this.childComponent10.TabIndex = 18;
+            this.childComponent10.TabStop = false;
+            // 
+            // childComponent11
+            // 
+            this.childComponent11.Accessory = true;
+            this.childComponent11.BackColor = System.Drawing.Color.Transparent;
+            this.childComponent11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.childComponent11.Location = new System.Drawing.Point(157, 43);
+            this.childComponent11.Name = "childComponent11";
+            this.childComponent11.RandomLocation = false;
+            this.childComponent11.Size = new System.Drawing.Size(32, 32);
+            this.childComponent11.TabIndex = 19;
+            this.childComponent11.TabStop = false;
+            // 
             // MainComponent
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.childComponent11);
+            this.Controls.Add(this.childComponent10);
+            this.Controls.Add(this.childComponent9);
+            this.Controls.Add(this.childComponent7);
+            this.Controls.Add(this.childComponent6);
             this.Controls.Add(this.childComponent8);
             this.Controls.Add(this.childComponent5);
             this.Controls.Add(this.childComponent4);
@@ -171,14 +246,19 @@ namespace MainComp
             this.MinimumSize = new System.Drawing.Size(400, 180);
             this.Name = "MainComponent";
             this.Size = new System.Drawing.Size(400, 180);
-            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.primaryComponent1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.childComponent11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -191,6 +271,11 @@ namespace MainComp
         private ChildComponent.ChildComponent childComponent4;
         private ChildComponent.ChildComponent childComponent5;
         private ChildComponent.ChildComponent childComponent8;
+        private ChildComponent.ChildComponent childComponent6;
+        private ChildComponent.ChildComponent childComponent7;
+        private ChildComponent.ChildComponent childComponent9;
+        private ChildComponent.ChildComponent childComponent10;
+        private ChildComponent.ChildComponent childComponent11;
     }
 }
 

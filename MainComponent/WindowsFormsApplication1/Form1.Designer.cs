@@ -38,16 +38,15 @@
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
             this.mainComponent1.CaptchaPattern = MainComp.MainComponent.TypesOfImages.Face;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
-            this.mainComponent1.CountCorrectChild = 3;
-            this.mainComponent1.CountNonCorrectChild = 3;
+            this.mainComponent1.CountCorrectChild = 4;
+            this.mainComponent1.CountNonCorrectChild = 7;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(12, 12);
             this.mainComponent1.LocationPrimary = new System.Drawing.Point(267, 3);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
-            this.mainComponent1.PathNoRightChildPicture = "C:\\Users\\Andrey\\Source\\Repos\\RepoComponent\\MainComponent\\WindowsFormsApplication1" +
-    "\\Resources";
+            this.mainComponent1.PathNoRightChildPicture = "";
             this.mainComponent1.RandomLocationChild = false;
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
             this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);

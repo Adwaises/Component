@@ -13,12 +13,12 @@ namespace ChildComponent
     public class ChildComponent : PictureBox
 
     {
-        public ChildComponent(bool _accessory)
+        public ChildComponent()
         {
             this.Size = new Size(32, 32);
             this.BackColor = Color.Transparent;
             this.BackgroundImageLayout = ImageLayout.Stretch;
-            accessory = _accessory;
+            //accessory = _accessory;
         }
 
 
