@@ -481,6 +481,19 @@ namespace MainComp
             }
         }
 
+
+        private bool result = false;
+        public bool Result
+        {
+            get
+            { return result; }
+            //set
+            //{
+            //    result = value;
+            //    Invalidate();
+            //}
+        }
+
         #region DeleteProperty
         // залоченные свойства
         [Browsable(false)]
@@ -1418,8 +1431,10 @@ namespace MainComp
                         if (checkIsOver())
                         {
                             MessageBox.Show("Проверка окончена");
+                            result = true;
                             //это пока
                             Enabled = false;
+                            //надо как то вернуть значение истины!
                         }
                     }
                     else
