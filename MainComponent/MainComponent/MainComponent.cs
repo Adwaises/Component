@@ -1421,13 +1421,21 @@ namespace MainComp
                             //это пока
                             Enabled = false;
                         }
-
                     }
                     else
                     {
-                        MessageBox.Show("Ошибка! Всё заново!");
-                        updateComponent();
-                        (control as ChildComponent.ChildComponent).RandomLocation = true;
+                        if (checkError())
+                        {
+                            MessageBox.Show("Вы допустили слишком много ошибок");
+                            Enabled = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка! Всё заново!");
+                            errorNumber--;
+                            updateComponent();
+                            (control as ChildComponent.ChildComponent).RandomLocation = true;
+                        }
                     }
                     //}
 
@@ -1570,7 +1578,18 @@ namespace MainComp
             {
                 return false;
             }
+        }
 
+        private bool checkError()
+        {
+           if(ErrorNumber < 2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
