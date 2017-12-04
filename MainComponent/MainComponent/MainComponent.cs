@@ -1350,7 +1350,7 @@ namespace MainComp
                     TypesOfImages downTypeImage = CaptchaPattern;
 
                     //костыльное условие, почему то инвертируется всё
-                  //  MessageBox.Show(control.Name);
+                    //  MessageBox.Show(control.Name);
                     //if(control.Name == "")
                     //{
                     //    if ((control as ChildComponent.ChildComponent).Accessory)
@@ -1366,17 +1366,25 @@ namespace MainComp
                     //    }
                     //} else
                     //{
-                        if (!(control as ChildComponent.ChildComponent).Accessory)
+                    if (!(control as ChildComponent.ChildComponent).Accessory)
+                    {
+                        control.MouseDown -= new MouseEventHandler(mDown);
+                        control.MouseUp -= new MouseEventHandler(mUp);
+                        (control as ChildComponent.ChildComponent).OnPrimaryComponent = true;
+                        if (checkIsOver())
                         {
-                            control.MouseDown -= new MouseEventHandler(mDown);
-                            control.MouseUp -= new MouseEventHandler(mUp);
+                            MessageBox.Show("Проверка окончена");
+                            //это пока
+                            Enabled = false;
                         }
-                        else
-                        {
-                            MessageBox.Show("Ошибка! Всё заново!");
-                            updateComponent();
-                            (control as ChildComponent.ChildComponent).RandomLocation = true;
-                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка! Всё заново!");
+                        updateComponent();
+                        (control as ChildComponent.ChildComponent).RandomLocation = true;
+                    }
                     //}
 
 
@@ -1491,18 +1499,33 @@ namespace MainComp
             {
                 LearnToMove(elem);
             }
+
+            foreach (var elem in childElemlist)
+            {
+                elem.OnPrimaryComponent = false;
+            }
         }
 
         //надо проверить элементы, все ли правильные на главаном
         // как то проверить надо
         private bool checkIsOver()
         {
-            foreach(var elem in childElemlist)
+            int onPrimaryComponent = 0;
+            foreach (var elem in childElemlist)
             {
-               
+                if (elem.OnPrimaryComponent)
+                {
+                    onPrimaryComponent++;
+                }
             }
-
-            return true;
+            if(onPrimaryComponent == countCorrectChild)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+            
         }
 
     }

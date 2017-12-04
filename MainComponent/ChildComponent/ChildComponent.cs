@@ -22,6 +22,21 @@ namespace ChildComponent
         }
 
 
+        private bool onPrimaryComponent = false;
+        [Category("Child element"), Description("Specifies the location on primary component.")]
+        public bool OnPrimaryComponent
+        {
+            get
+            {
+                return onPrimaryComponent;
+            }
+            set
+            {
+                onPrimaryComponent = value;
+                Invalidate();
+            }
+        }
+
         private bool accessory = false;
         [Category("Child element"), Description("Specifies the accessory to the primary element.")]
         public bool Accessory
