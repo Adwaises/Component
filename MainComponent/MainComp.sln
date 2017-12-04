@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimaryComponent", "Primary
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildComponent", "ChildComponent\ChildComponent.csproj", "{03256A1B-FBA6-4874-97AD-9BE9053D5737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{CC6527CD-85B3-4B70-BD3A-81E7A96B2353}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{03256A1B-FBA6-4874-97AD-9BE9053D5737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03256A1B-FBA6-4874-97AD-9BE9053D5737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03256A1B-FBA6-4874-97AD-9BE9053D5737}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC6527CD-85B3-4B70-BD3A-81E7A96B2353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC6527CD-85B3-4B70-BD3A-81E7A96B2353}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC6527CD-85B3-4B70-BD3A-81E7A96B2353}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC6527CD-85B3-4B70-BD3A-81E7A96B2353}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

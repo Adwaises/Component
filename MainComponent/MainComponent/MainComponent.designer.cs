@@ -56,6 +56,7 @@ namespace MainComp
             this.childComponent9 = new ChildComponent.ChildComponent();
             this.childComponent10 = new ChildComponent.ChildComponent();
             this.childComponent11 = new ChildComponent.ChildComponent();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent4)).BeginInit();
@@ -69,6 +70,7 @@ namespace MainComp
             ((System.ComponentModel.ISupportInitialize)(this.childComponent9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // childComponent8
@@ -148,7 +150,7 @@ namespace MainComp
             this.primaryComponent1.BackColor = System.Drawing.Color.Transparent;
             this.primaryComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.primaryComponent1.InitialImage = ((System.Drawing.Image)(resources.GetObject("primaryComponent1.InitialImage")));
-            this.primaryComponent1.Location = new System.Drawing.Point(267, 3);
+            this.primaryComponent1.Location = new System.Drawing.Point(267, 19);
             this.primaryComponent1.Name = "primaryComponent1";
             this.primaryComponent1.Size = new System.Drawing.Size(128, 128);
             this.primaryComponent1.TabIndex = 8;
@@ -157,6 +159,7 @@ namespace MainComp
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::MainComponent.Properties.Resources.help_web_button;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(375, 155);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
@@ -226,9 +229,20 @@ namespace MainComp
             this.childComponent11.TabIndex = 19;
             this.childComponent11.TabStop = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pictureBox2.Location = new System.Drawing.Point(347, 155);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // MainComponent
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.childComponent11);
             this.Controls.Add(this.childComponent10);
             this.Controls.Add(this.childComponent9);
@@ -259,6 +273,7 @@ namespace MainComp
             ((System.ComponentModel.ISupportInitialize)(this.childComponent9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.childComponent11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -276,6 +291,7 @@ namespace MainComp
         private ChildComponent.ChildComponent childComponent9;
         private ChildComponent.ChildComponent childComponent10;
         private ChildComponent.ChildComponent childComponent11;
+        private PictureBox pictureBox2;
     }
 }
 

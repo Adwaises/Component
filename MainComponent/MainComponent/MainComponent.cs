@@ -290,7 +290,7 @@ namespace MainComp
 
         #endregion
 
-        #region Property
+        #region Property and events
 
         /// <summary>
         /// Свойства дочернего компонента
@@ -629,7 +629,7 @@ namespace MainComp
         //    remove { }
         //}
 
-            // мб звук поставить кто захочет
+        // мб звук поставить кто захочет
 
         //[Browsable(false)]
         //[EditorBrowsable(EditorBrowsableState.Never)]
@@ -1080,7 +1080,7 @@ namespace MainComp
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler TabIndexChanged
-        { 
+        {
             add { }
             remove { }
         }
@@ -1351,20 +1351,21 @@ namespace MainComp
 
                     //костыльное условие, почему то инвертируется всё
                   //  MessageBox.Show(control.Name);
-                    if(control.Name == "")
-                    {
-                        if ((control as ChildComponent.ChildComponent).Accessory)
-                        {
-                            control.MouseDown -= new MouseEventHandler(mDown);
-                            control.MouseUp -= new MouseEventHandler(mUp);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ошибка");
-                            (control as ChildComponent.ChildComponent).RandomLocation = true;
-                        }
-                    } else
-                    {
+                    //if(control.Name == "")
+                    //{
+                    //    if ((control as ChildComponent.ChildComponent).Accessory)
+                    //    {
+                    //        control.MouseDown -= new MouseEventHandler(mDown);
+                    //        control.MouseUp -= new MouseEventHandler(mUp);
+                    //    }
+                    //    else
+                    //    {
+                    //        MessageBox.Show("Ошибка! Всё заново!");
+                    //        updateComponent();
+                    //        (control as ChildComponent.ChildComponent).RandomLocation = true;
+                    //    }
+                    //} else
+                    //{
                         if (!(control as ChildComponent.ChildComponent).Accessory)
                         {
                             control.MouseDown -= new MouseEventHandler(mDown);
@@ -1372,10 +1373,11 @@ namespace MainComp
                         }
                         else
                         {
-                            MessageBox.Show("Ошибка");
+                            MessageBox.Show("Ошибка! Всё заново!");
+                            updateComponent();
                             (control as ChildComponent.ChildComponent).RandomLocation = true;
                         }
-                    }
+                    //}
 
 
                     #region okOrError
@@ -1467,5 +1469,41 @@ namespace MainComp
             toolTip1.SetToolTip(pictureBox1, textHelp);
             toolTip1.IsBalloon = true;
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            updateComponent();
+        }
+
+
+        private void updateComponent()
+        {
+            RandomLocationChild = true;
+            foreach (var elem in childElemlist)
+            {
+                //elem.MouseDown -= new MouseEventHandler(mDown);
+                //elem.MouseUp -= new MouseEventHandler(mUp);
+                elem.MouseDown -= new MouseEventHandler(mDown);
+                elem.MouseUp -= new MouseEventHandler(mUp);
+                elem.MouseMove -= new MouseEventHandler(mMove);
+            }
+            foreach (var elem in childElemlist)
+            {
+                LearnToMove(elem);
+            }
+        }
+
+        //надо проверить элементы, все ли правильные на главаном
+        // как то проверить надо
+        private bool checkIsOver()
+        {
+            foreach(var elem in childElemlist)
+            {
+               
+            }
+
+            return true;
+        }
+
     }
 }
