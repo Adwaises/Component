@@ -197,7 +197,6 @@ namespace MainComp
                 int i = 0;
                 foreach (var elem in childElemlist)
                 {
-                    //почему то на правильные элементы срабатывает это условие
                     if (elem.Accessory == accessory)
                     {
                         if (PathChildFace.Count >= i)
@@ -242,7 +241,7 @@ namespace MainComp
         }
 
         private string pathRightChildPicture = "";
-        [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
+        [Category("ChildComponent"), Description("Specifies the path picture of right child component.")]
         //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string PathRightChildPicture
         {
@@ -258,7 +257,7 @@ namespace MainComp
                 } else
                 {
                     pathRightChildPicture = "";
-                    //SetImagesFromType(typeImages);
+                   // SetImagesFromType(typeImages);
                 
                 
                 }
@@ -369,16 +368,16 @@ namespace MainComp
         /// Свойства дочернего компонента
         /// </summary>
 
-        //чтоб смотреть лист
-        [Category("ChildComponent"), Description("Specifies the list of child elements.")]
-        public List<ChildComponent.ChildComponent> SelectChild
-        {
-            get
-            {
-                return childElemlist;
-            }
+        ////чтоб смотреть лист //Пока не удалять
+        //[Category("ChildComponent"), Description("Specifies the list of child elements.")]
+        //public List<ChildComponent.ChildComponent> SelectChild
+        //{
+        //    get
+        //    {
+        //        return childElemlist;
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// Свойства Главного компонента
