@@ -201,7 +201,6 @@ namespace MainComp
                     {
                         if (PathChildFace.Count >= i)
                         {
-                            //криво загружает
                             elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
                             i++;
 
@@ -219,7 +218,6 @@ namespace MainComp
 
         private string pathNoRightChildPicture = "";
         [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
-        //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string PathNoRightChildPicture
         {
             get
@@ -242,7 +240,6 @@ namespace MainComp
 
         private string pathRightChildPicture = "";
         [Category("ChildComponent"), Description("Specifies the path picture of right child component.")]
-        //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string PathRightChildPicture
         {
             get
