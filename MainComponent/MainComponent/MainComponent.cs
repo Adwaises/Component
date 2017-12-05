@@ -36,12 +36,12 @@ namespace MainComp
 
         private Color colorLine = Color.Blue;
 
-        string puthMainProject;
+        
 
         public MainComponent()
         {
 
-            puthMainProject = "";
+           
             SuspendLayout();
             InitializeComponent();
 
@@ -169,33 +169,57 @@ namespace MainComp
 
 
 
-            // не заходит сюда, надо переинициализировать
-            if (pathNoRightChildPicture != "")
+        }
+        
+        private void loadFiles(string path, bool accessory)
+        {
+            if (path != "")
             {
                 List<string> PathChildFace = new List<string>();
                 try
                 {
                     //а это метод который тащит все существующие файлы из директории
 
-                    DirectoryInfo di = new DirectoryInfo(@pathNoRightChildPicture);
+                    DirectoryInfo di = new DirectoryInfo(path);
 
                     FileInfo[] fi = di.GetFiles("*.png");
 
                     //MessageBox.Show(@pathNoRightChildPicture);
                     foreach (FileInfo fc in fi)
                     {
-                        PathChildFace.Add(@pathNoRightChildPicture + "\\" + fc.Name);
+                        PathChildFace.Add(path + "\\" + fc.Name);
                     }
-                    //  MessageBox.Show("" + PathChildFace.Count);
+                    // MessageBox.Show("" + PathChildFace.Count);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("" + ex);
                 }
 
+                //добавление на фон
+                int i = 0;
+                foreach (var elem in childElemlist)
+                {
+                    //почему на правильные элементы срабатывает это условие
+                    if (elem.Accessory == accessory)
+                    {
+                        if (PathChildFace.Count >= i)
+                        {
+                            //криво загружает
+                            elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
+                            i++;
+
+                        }
+                        else
+                        {
+                            i = 0;
+                        }
+                    }
+                }
 
             }
         }
+
 
         private string pathNoRightChildPicture = "";
         [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
@@ -209,6 +233,8 @@ namespace MainComp
                 if (isPath(value))
                 {
                     pathNoRightChildPicture = value;
+                    loadFiles(pathNoRightChildPicture, false);
+                
                 }
                 else
                 {
@@ -230,6 +256,8 @@ namespace MainComp
                 if (isPath(value))
                 {
                     pathRightChildPicture = value;
+                    loadFiles(pathRightChildPicture, true);
+                   
                 } else
                 {
                     pathRightChildPicture = "";
