@@ -166,9 +166,6 @@ namespace MainComp
             AllImg.Add(Resources.rose_1 as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.poppy as Bitmap, TypesOfImages.Flower);
             AllImg.Add(Resources.roses as Bitmap, TypesOfImages.Flower);
-
-
-
         }
         
         private void loadFiles(string path, bool accessory)
@@ -200,7 +197,7 @@ namespace MainComp
                 int i = 0;
                 foreach (var elem in childElemlist)
                 {
-                    //почему на правильные элементы срабатывает это условие
+                    //почему то на правильные элементы срабатывает это условие
                     if (elem.Accessory == accessory)
                     {
                         if (PathChildFace.Count >= i)
@@ -234,11 +231,11 @@ namespace MainComp
                 {
                     pathNoRightChildPicture = value;
                     loadFiles(pathNoRightChildPicture, false);
-                
                 }
                 else
                 {
                     pathNoRightChildPicture = "";
+                   // SetImagesFromType(typeImages); //инвертирует всё (true становится false)
                 }
                 Invalidate();
             }
@@ -261,9 +258,13 @@ namespace MainComp
                 } else
                 {
                     pathRightChildPicture = "";
+                    //SetImagesFromType(typeImages);
+                
+                
                 }
 
                 Invalidate();
+                this.Refresh();
             }
         }
 
@@ -368,16 +369,16 @@ namespace MainComp
         /// Свойства дочернего компонента
         /// </summary>
 
-        //    //чтоб смотреть лист
-        //[Category("ChildComponent"), Description("Specifies the list of child elements.")]
-        //public List<ChildComponent.ChildComponent> SelectChild
-        //{
-        //    get
-        //    {
-        //        return childElemlist;
-        //    }
+        //чтоб смотреть лист
+        [Category("ChildComponent"), Description("Specifies the list of child elements.")]
+        public List<ChildComponent.ChildComponent> SelectChild
+        {
+            get
+            {
+                return childElemlist;
+            }
 
-        //}
+        }
 
         /// <summary>
         /// Свойства Главного компонента
@@ -1339,29 +1340,54 @@ namespace MainComp
                 }
                 // Рандомим позицию
 
-                child.Location = new Point(random.Next(230), random.Next(150));
+                child.Location = newPoint();
                 //определяем не наложились ли элементы
-                bool flag = true;
-                while (flag)
-                {
-                    flag = false;
-                    foreach (var elem in childElemlist)
-                    {
-                        if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 35 &&
-                            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 35 ||
-                            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 140)
-                        {
-                            child.Location = new Point(random.Next(230), random.Next(140));
-                            flag = true;
-                        }
-                    }
-                }
+                //bool flag = true;
+                //while (flag)
+                //{
+                //    flag = false;
+                //    foreach (var elem in childElemlist)
+                //    {
+                //        if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 35 &&
+                //            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 35 ||
+                //            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 140)
+                //        {
+                //            child.Location = new Point(random.Next(230), random.Next(140));
+                //            flag = true;
+                //        }
+                //    }
+                //}
 
 
                 Controls.Add(child);
                 childElemlist.Add(child);
                 LearnToMove(child);
             }
+        }
+
+        private Point newPoint()
+        {
+            Random rand = new Random();
+            Point point = new Point(rand.Next(230), rand.Next(150));
+            //определяем не наложились ли элементы
+            bool flag = true;
+            while (flag)
+            {
+                flag = false;
+                foreach (var elem in childElemlist)
+                {
+                   
+                        if (Math.Abs((elem.Location.X + 13) - (point.X + 13)) < 30 &&
+                            Math.Abs((elem.Location.Y + 13) - (point.Y + 13)) < 30 ||
+                            point.X < 5 || point.Y < 5 || point.Y > 140)
+                        {
+                            point = new Point(rand.Next(230), rand.Next(140));
+                            flag = true;
+                        }
+                    
+                }
+            }
+            return point;
         }
 
         private Image FindNewCorrectImage()
