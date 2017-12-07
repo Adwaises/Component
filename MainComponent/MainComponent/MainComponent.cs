@@ -359,7 +359,7 @@ namespace MainComp
         /// Свойства основного коспонента
         /// </summary>
 
-        [Category("Component"), Description("Specifies the random point of child element.")]
+        //[Category("Component"), Description("Specifies the random point of child element.")]
         public bool RandomLocationChild
         {
             get
