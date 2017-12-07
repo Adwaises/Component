@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageDictionary.cs" />
     <Compile Include="MainComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
