@@ -46,7 +46,6 @@ namespace MainComp
             InitializeComponent();
 
             pictureBox = new PictureBox();
-
             //this.SetStyle(ControlStyles.UserPaint, true);
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
@@ -1419,8 +1418,8 @@ namespace MainComp
         // события для движения
         static bool isPress = false;
         static Point startPst;
-
-        static Control controlTemp;
+       // static Control controlTemp;
+        static Point location_0;
         // Функция выполняется при нажатии на перемещаемый контрол
         private static void mDown(object sender, MouseEventArgs e)
         {
@@ -1428,9 +1427,11 @@ namespace MainComp
             {
                 Control control = (Control)sender;
                 //запоминаем компонент который тянем 
-                controlTemp = control;
+              //  controlTemp = control;
                 isPress = true;
                 startPst = e.Location;
+                location_0 = new Point(Cursor.Position.X - e.Location.X - control.Location.X, Cursor.Position.Y - e.Location.Y - control.Location.Y); 
+               
 
             }
             else
@@ -1442,12 +1443,13 @@ namespace MainComp
         // Функция выполняется при отжатии перемещаемого контрола
         private void mUp(object sender, MouseEventArgs e)
         {
+            
             if (e.Button == MouseButtons.Left)
             {
+               
                 //Control childComponent
                 Control control = (Control)sender;
                 isPress = false;
-
                 //Если дочерний компонент отпустили в координатах primary-comp
                 if (control.Top > controlPrim.Location.Y
                     && control.Top + control.Height < controlPrim.Location.Y + controlPrim.Height
@@ -1456,6 +1458,7 @@ namespace MainComp
                 {
                     TypesOfImages downTypeImage = CaptchaPattern;
 
+                    /*
                     //костыльное условие, почему то инвертируется всё
                     //  MessageBox.Show(control.Name);
                     //if(control.Name == "")
@@ -1472,7 +1475,8 @@ namespace MainComp
                     //        (control as ChildComponent.ChildComponent).RandomLocation = true;
                     //    }
                     //} else
-                    //{
+                    //{*/
+
                     if (!(control as ChildComponent.ChildComponent).Accessory)
                     {
                         control.MouseDown -= new MouseEventHandler(mDown);
@@ -1552,18 +1556,31 @@ namespace MainComp
         {
             if (isPress)
             {
-                //только для левой и верхней
+               
                 Control control = (Control)sender;
-                if (control.Top > 0 && control.Left > 0 &&
-                    control.Top + control.Height < 180 && control.Left + control.Width < 400 ||//весь компонент
-                    (control.Top <= 0 && control.Left <= 0 && e.X - startPst.X >= 0 && e.Y - startPst.Y >= 0) ||//угл лево верх
-                    (control.Top <= 0 && e.Y - startPst.Y >= 0) ||//верх
-                    (control.Left <= 0 && e.X - startPst.X >= 0))//лево
-                {
-
-                    control.Left += e.X - startPst.X;
-                    control.Top += e.Y - startPst.Y;
+                //не даем выйти курсору когда он тянет элемент
+                if (Cursor.Position.X - e.X <= location_0.X) {
+                    Cursor.Position =new Point( location_0.X +1 + e.X, Cursor.Position.Y);
                 }
+                if (Cursor.Position.Y - e.Y<= location_0.Y)
+                {
+                    Cursor.Position = new Point(Cursor.Position.X, location_0.Y + 1 + e.Y);
+                }
+                if (Cursor.Position.X +(control.Width- e.X )>= location_0.X+400)
+                {
+                    Cursor.Position = new Point(location_0.X+400 - 1- (control.Width - e.X), Cursor.Position.Y);
+                }
+                if (Cursor.Position.Y + (control.Height - e.Y) >= location_0.Y + 180)
+                {
+                    Cursor.Position = new Point(Cursor.Position.X, location_0.Y + 180 - 1 - (control.Height - e.Y));
+                }
+               
+                control.Left += e.X - startPst.X;
+                control.Top += e.Y - startPst.Y;
+                
+
+
+
 
             }
         }

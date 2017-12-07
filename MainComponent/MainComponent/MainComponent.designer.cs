@@ -80,6 +80,7 @@ namespace MainComp
             this.childComponent8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent8.Location = new System.Drawing.Point(79, 41);
             this.childComponent8.Name = "childComponent8";
+            this.childComponent8.OnPrimaryComponent = false;
             this.childComponent8.RandomLocation = false;
             this.childComponent8.Size = new System.Drawing.Size(32, 32);
             this.childComponent8.TabIndex = 14;
@@ -92,6 +93,7 @@ namespace MainComp
             this.childComponent5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent5.Location = new System.Drawing.Point(41, 41);
             this.childComponent5.Name = "childComponent5";
+            this.childComponent5.OnPrimaryComponent = false;
             this.childComponent5.RandomLocation = false;
             this.childComponent5.Size = new System.Drawing.Size(32, 32);
             this.childComponent5.TabIndex = 13;
@@ -104,6 +106,7 @@ namespace MainComp
             this.childComponent4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent4.Location = new System.Drawing.Point(3, 41);
             this.childComponent4.Name = "childComponent4";
+            this.childComponent4.OnPrimaryComponent = false;
             this.childComponent4.RandomLocation = false;
             this.childComponent4.Size = new System.Drawing.Size(32, 32);
             this.childComponent4.TabIndex = 12;
@@ -116,6 +119,7 @@ namespace MainComp
             this.childComponent3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent3.Location = new System.Drawing.Point(79, 3);
             this.childComponent3.Name = "childComponent3";
+            this.childComponent3.OnPrimaryComponent = false;
             this.childComponent3.RandomLocation = false;
             this.childComponent3.Size = new System.Drawing.Size(32, 32);
             this.childComponent3.TabIndex = 11;
@@ -128,6 +132,7 @@ namespace MainComp
             this.childComponent2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent2.Location = new System.Drawing.Point(41, 3);
             this.childComponent2.Name = "childComponent2";
+            this.childComponent2.OnPrimaryComponent = false;
             this.childComponent2.RandomLocation = false;
             this.childComponent2.Size = new System.Drawing.Size(32, 32);
             this.childComponent2.TabIndex = 10;
@@ -140,6 +145,7 @@ namespace MainComp
             this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent1.Location = new System.Drawing.Point(3, 3);
             this.childComponent1.Name = "childComponent1";
+            this.childComponent1.OnPrimaryComponent = false;
             this.childComponent1.RandomLocation = false;
             this.childComponent1.Size = new System.Drawing.Size(32, 32);
             this.childComponent1.TabIndex = 9;
@@ -176,6 +182,7 @@ namespace MainComp
             this.childComponent6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent6.Location = new System.Drawing.Point(3, 79);
             this.childComponent6.Name = "childComponent6";
+            this.childComponent6.OnPrimaryComponent = false;
             this.childComponent6.RandomLocation = false;
             this.childComponent6.Size = new System.Drawing.Size(32, 32);
             this.childComponent6.TabIndex = 15;
@@ -188,6 +195,7 @@ namespace MainComp
             this.childComponent7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent7.Location = new System.Drawing.Point(157, 4);
             this.childComponent7.Name = "childComponent7";
+            this.childComponent7.OnPrimaryComponent = false;
             this.childComponent7.RandomLocation = false;
             this.childComponent7.Size = new System.Drawing.Size(32, 32);
             this.childComponent7.TabIndex = 16;
@@ -200,6 +208,7 @@ namespace MainComp
             this.childComponent9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent9.Location = new System.Drawing.Point(196, 4);
             this.childComponent9.Name = "childComponent9";
+            this.childComponent9.OnPrimaryComponent = false;
             this.childComponent9.RandomLocation = false;
             this.childComponent9.Size = new System.Drawing.Size(32, 32);
             this.childComponent9.TabIndex = 17;
@@ -212,6 +221,7 @@ namespace MainComp
             this.childComponent10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent10.Location = new System.Drawing.Point(196, 43);
             this.childComponent10.Name = "childComponent10";
+            this.childComponent10.OnPrimaryComponent = false;
             this.childComponent10.RandomLocation = false;
             this.childComponent10.Size = new System.Drawing.Size(32, 32);
             this.childComponent10.TabIndex = 18;
@@ -224,6 +234,7 @@ namespace MainComp
             this.childComponent11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent11.Location = new System.Drawing.Point(157, 43);
             this.childComponent11.Name = "childComponent11";
+            this.childComponent11.OnPrimaryComponent = false;
             this.childComponent11.RandomLocation = false;
             this.childComponent11.Size = new System.Drawing.Size(32, 32);
             this.childComponent11.TabIndex = 19;
