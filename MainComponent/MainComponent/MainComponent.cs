@@ -392,27 +392,27 @@ namespace MainComp
             }
         }
 
-        [Category("PrimaryComponent"), Description("Specifies the location of primary element.")]
-        public Point LocationPrimary
-        {
-            get { return primaryComponent1.Location; }
-            set
-            {
-                primaryComponent1.Location = value;
-                Invalidate();
-            }
-        }
+        //[Category("PrimaryComponent"), Description("Specifies the location of primary element.")]
+        //public Point LocationPrimary
+        //{
+        //    get { return primaryComponent1.Location; }
+        //    set
+        //    {
+        //        primaryComponent1.Location = value;
+        //        Invalidate();
+        //    }
+        //}
 
-        [Category("PrimaryComponent"), Description("Specifies the size of primary element.")]
-        public Size SizePrimary
-        {
-            get { return primaryComponent1.Size; }
-            set
-            {
-                primaryComponent1.Size = value;
-                Invalidate();
-            }
-        }
+        //[Category("PrimaryComponent"), Description("Specifies the size of primary element.")]
+        //public Size SizePrimary
+        //{
+        //    get { return primaryComponent1.Size; }
+        //    set
+        //    {
+        //        primaryComponent1.Size = value;
+        //        Invalidate();
+        //    }
+        //}
 
         /// <summary>
         /// Свойства основного коспонента

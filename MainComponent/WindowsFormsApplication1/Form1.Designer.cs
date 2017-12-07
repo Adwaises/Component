@@ -62,7 +62,6 @@
             this.mainComponent1.CountNonCorrectChild = 3;
             this.mainComponent1.ErrorNumber = 3;
             this.mainComponent1.Location = new System.Drawing.Point(13, 13);
-            this.mainComponent1.LocationPrimary = new System.Drawing.Point(267, 19);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
@@ -70,7 +69,7 @@
             this.mainComponent1.PathRightChildPicture = "";
             this.mainComponent1.RandomLocationChild = false;
             this.mainComponent1.Size = new System.Drawing.Size(400, 180);
-            this.mainComponent1.SizePrimary = new System.Drawing.Size(128, 128);
+       
             this.mainComponent1.TabIndex = 3;
             this.mainComponent1.TextHelp = "Text\r\nhelp";
             // 
