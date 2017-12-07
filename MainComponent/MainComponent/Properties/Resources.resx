@@ -151,6 +151,9 @@
   <data name="fish" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RefrigerImg\fish.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="backgroundRefriger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RefrigerImg\backgroundRefriger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="roses" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FlowersImg\roses.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,17 +166,23 @@
   <data name="face" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FaceImg\face.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="backgroundFlower" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FlowersImg\backgroundFlower.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sunflower" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FlowersImg\sunflower.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FaceImg\eyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FlowersImg\rose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Interface\update.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="can" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RefrigerImg\can.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FlowersImg\rose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mouth" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FaceImg\mouth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -183,5 +192,8 @@
   </data>
   <data name="happyEyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FaceImg\happyEyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="backgroundFace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FaceImg\backgroundFace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -141,6 +141,18 @@
   <ItemGroup>
     <None Include="Resources\FaceImg\happyEyes.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Interface\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RefrigerImg\backgroundRefriger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FlowersImg\backgroundFlower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FaceImg\backgroundFace.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

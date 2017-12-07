@@ -32,7 +32,7 @@ namespace MainComp
         private int countNonCorrectChild = 7;
         private int countCorrectChild = 4;
 
-        private static TypesOfImages typeImages = TypesOfImages.Flower;
+        private static TypesOfImages typeImages = TypesOfImages.Face;
 
         private Color colorLine = Color.Blue;
 
@@ -44,6 +44,9 @@ namespace MainComp
            
             SuspendLayout();
             InitializeComponent();
+
+            pictureBox1.BackgroundImage = Resources.help_web_button;
+            pictureBox2.BackgroundImage = Resources.update;
 
             pictureBox = new PictureBox();
             //this.SetStyle(ControlStyles.UserPaint, true);
@@ -108,8 +111,30 @@ namespace MainComp
             {
                 typeImages = value;
                 SetImagesFromType(typeImages);
+                SetBackground(typeImages);
                 Invalidate();
                 this.Refresh();
+            }
+        }
+
+        void SetBackground(TypesOfImages typeImg)
+        {
+            //Задает изображение для primary-компонента
+            if (typeImg == TypesOfImages.Face)
+            {
+                this.BackgroundImage = Resources.backgroundFace;
+            }
+            else if (typeImg == TypesOfImages.Refrigerator)
+            {
+                this.BackgroundImage = Resources.backgroundRefriger;
+            }
+            else if (typeImg == TypesOfImages.Flower)
+            {
+                this.BackgroundImage = Resources.backgroundFlower;
+            }
+            else if (typeImg == TypesOfImages.Custom)
+            {
+                this.BackgroundImage = Resources.backgroundFace;
             }
         }
 
