@@ -148,22 +148,23 @@ namespace MainComp
                 {
                     MessageBox.Show("" + ex);
                 }
-
-                //добавление на фон
-                int i = 0;
-                foreach (var elem in childElemlist)
-                {
-                    if (elem.Accessory == accessory)
+                if (PathChildFace.Count>0) {
+                    //добавление на фон
+                    int i = 0;
+                    foreach (var elem in childElemlist)
                     {
-                        if (PathChildFace.Count >= i)
+                        if (elem.Accessory == accessory)
                         {
-                            elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
-                            i++;
+                            if (PathChildFace.Count >= i)
+                            {
+                                elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
+                                i++;
 
-                        }
-                        else
-                        {
-                            i = 0;
+                            }
+                            else
+                            {
+                                i = 0;
+                            }
                         }
                     }
                 }

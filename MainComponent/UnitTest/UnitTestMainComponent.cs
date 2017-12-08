@@ -70,5 +70,85 @@ namespace UnitTest
             Assert.AreEqual(num, mainComp.CountNonCorrectChild);
         }
 
+        [TestMethod]
+        public void MainTestCountCorrectChild()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            //var num = mainComp.CountNonCorrectChild;
+            mainComp.CountCorrectChild = 3;
+
+            Assert.AreEqual(3, mainComp.CountCorrectChild);
+        }
+
+        [TestMethod]
+        public void MainTestCountCorrectChildNonTrue()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            var num = mainComp.CountCorrectChild;
+            mainComp.CountCorrectChild = 51;
+
+            Assert.AreEqual(num, mainComp.CountCorrectChild);
+        }
+
+        
+        [TestMethod]
+        public void MainTestTextHelp()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            //var num = mainComp.CountNonCorrectChild;
+            mainComp.TextHelp = "HEEEELLLPPPP";
+
+            Assert.AreEqual("HEEEELLLPPPP", mainComp.TextHelp);
+        }
+
+
+        [TestMethod]
+        public void MainTestPathRightChildPicture()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            //var num = mainComp.CountNonCorrectChild;
+            mainComp.PathRightChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
+
+            Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathRightChildPicture);
+        }
+
+        [TestMethod]
+        public void MainTestPathRightChildPictureNonTrue()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            //var num = mainComp.CountNonCorrectChild;
+            mainComp.PathRightChildPicture = "cfgmighi";
+
+            Assert.AreEqual("", mainComp.PathRightChildPicture);
+        }
+
+
+        [TestMethod]
+        public void MainTestPathNoRightChildPicture()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            //var num = mainComp.CountNonCorrectChild;
+            mainComp.PathNoRightChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
+
+            Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathNoRightChildPicture);
+        }
+
+        [TestMethod]
+        public void MainTestPathNoRightChildPictureNonTrue()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            //var num = mainComp.CountNonCorrectChild;
+            mainComp.PathNoRightChildPicture = "cfgmighi";
+
+            Assert.AreEqual("", mainComp.PathNoRightChildPicture);
+        }
+
     }
 }

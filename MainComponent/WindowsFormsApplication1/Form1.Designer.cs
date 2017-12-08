@@ -42,7 +42,7 @@
             this.mainComponent1.CountCorrectChild = 4;
             this.mainComponent1.CountNonCorrectChild = 7;
             this.mainComponent1.ErrorNumber = 3;
-            this.mainComponent1.Location = new System.Drawing.Point(12, 12);
+            this.mainComponent1.Location = new System.Drawing.Point(13, 13);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
