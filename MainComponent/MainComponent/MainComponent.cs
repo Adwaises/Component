@@ -208,7 +208,7 @@ namespace MainComp
                 } else
                 {
                     pathRightChildPicture = "";
-                   // SetImagesFromType(typeImages);
+                    SetImagesFromType(typeImages);
                 
                 }
 
@@ -254,21 +254,25 @@ namespace MainComp
             {
                 primaryComponent1.BackgroundImage = PatternImgResources.primaryFace;
                 this.BackgroundImage = PatternImgResources.BackgroundFace;
+                TextHelp = "С помощью мыши перетащите элементы, чтобы собрать изображение лица";
             }
             else if (typeImg == TypesOfImages.Refrigerator)
             {
                 primaryComponent1.BackgroundImage = PatternImgResources.primaryRefriger;
                 this.BackgroundImage = PatternImgResources.BackgroundRefriger;
+                TextHelp = "С помощью мыши перетащите всё продукты в холодильник";
             }
             else if (typeImg == TypesOfImages.Flower)
             {
                 primaryComponent1.BackgroundImage = PatternImgResources.primaryFlower;
                 this.BackgroundImage = PatternImgResources.BackgroundFlower;
+                TextHelp = "С помощью мыши перетащите всё цветы в вазу";
             }
             else if (typeImg == TypesOfImages.Custom)
             {
                 primaryComponent1.BackgroundImage = PatternImgResources.primaryCustomImg;
                 this.BackgroundImage = PatternImgResources.BackgroundFace;
+                TextHelp = "Делайте что хотите. Мне пофигу";
             }
         }
 

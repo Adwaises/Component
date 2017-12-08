@@ -54,12 +54,12 @@
             this.mainComponent2.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent2.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent2.Name = "mainComponent2";
-            this.mainComponent2.PathRightChildPicture = "";
+            this.mainComponent2.PathRightChildPicture = "C:\\Users\\Sergey\\Documents\\PictureForCaptcha\\1";
             this.mainComponent2.PathWrongChildPicture = "";
             this.mainComponent2.RandomLocationChild = false;
             this.mainComponent2.Size = new System.Drawing.Size(400, 180);
             this.mainComponent2.TabIndex = 0;
-            this.mainComponent2.TextHelp = "Text\r\nhelp";
+            this.mainComponent2.TextHelp = "С помощью мыши перетащите элементы, чтобы собрать изображение лица";
             // 
             // Form1
             // 
