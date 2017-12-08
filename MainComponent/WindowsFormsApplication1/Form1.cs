@@ -30,10 +30,10 @@ namespace WindowsFormsApplication1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if(mainComponent1.Result)
-            {
-                textBox1.Enabled = true;
-            }
+            //if(mainComponent1.Result)
+            //{
+            //    textBox1.Enabled = true;
+            //}
         }
     }
 }

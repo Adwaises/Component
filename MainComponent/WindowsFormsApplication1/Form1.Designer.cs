@@ -39,8 +39,8 @@
             this.mainComponent2.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent2.BackgroundImagePrimary")));
             this.mainComponent2.CaptchaPattern = TypesOfImages.Face;
             this.mainComponent2.ColorLine = System.Drawing.Color.Blue;
-            this.mainComponent2.CountCorrectChild = 3;
-            this.mainComponent2.CountNonCorrectChild = 3;
+            this.mainComponent2.CountCorrectChild = 4;
+            this.mainComponent2.CountNonCorrectChild = 7;
             this.mainComponent2.ErrorNumber = 3;
             this.mainComponent2.Location = new System.Drawing.Point(12, 12);
             this.mainComponent2.MaximumSize = new System.Drawing.Size(400, 180);
@@ -52,33 +52,6 @@
             this.mainComponent2.Size = new System.Drawing.Size(400, 180);
             this.mainComponent2.TabIndex = 0;
             this.mainComponent2.TextHelp = "Text\r\nhelp";
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(522, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
-            // 
-            // mainComponent1
-            // 
-            this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
-            this.mainComponent1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImage")));
-            this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
-            this.mainComponent1.CaptchaPattern = MainComp.MainComponent.TypesOfImages.Face;
-            this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
-            this.mainComponent1.CountCorrectChild = 4;
-            this.mainComponent1.CountNonCorrectChild = 7;
-            this.mainComponent1.ErrorNumber = 3;
-            this.mainComponent1.Location = new System.Drawing.Point(24, 25);
-            this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
-            this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
-            this.mainComponent1.Name = "mainComponent1";
-            this.mainComponent1.PathNoRightChildPicture = "";
-            this.mainComponent1.PathRightChildPicture = "";
-            this.mainComponent1.RandomLocationChild = false;
-            this.mainComponent1.Size = new System.Drawing.Size(400, 180);
-            this.mainComponent1.TabIndex = 3;
-            this.mainComponent1.TextHelp = "Text\r\nhelp";
             // 
             // Form1
             // 
@@ -92,9 +65,7 @@
 
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private MainComp.MainComponent mainComponent1;
+
         private MainComp.MainComponent mainComponent2;
     }
 }

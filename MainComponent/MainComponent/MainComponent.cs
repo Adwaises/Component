@@ -46,7 +46,6 @@ namespace MainComp
             pictureBox2.BackgroundImage = Resources.update;
 
             pictureBox = new PictureBox();
-            //this.SetStyle(ControlStyles.UserPaint, true);
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
             //создание списка дочерних элементов и его заполение
@@ -138,17 +137,12 @@ namespace MainComp
                 try
                 {
                     //а это метод который тащит все существующие файлы из директории
-
                     DirectoryInfo di = new DirectoryInfo(path);
-
                     FileInfo[] fi = di.GetFiles("*.png");
-
-                    //MessageBox.Show(@pathNoRightChildPicture);
                     foreach (FileInfo fc in fi)
                     {
                         PathChildFace.Add(path + "\\" + fc.Name);
                     }
-                    // MessageBox.Show("" + PathChildFace.Count);
                 }
                 catch (Exception ex)
                 {
@@ -217,35 +211,33 @@ namespace MainComp
                     pathRightChildPicture = "";
                    // SetImagesFromType(typeImages);
                 
-                
                 }
 
                 Invalidate();
                 this.Refresh();
             }
         }
-
+        /// <summary>
+        /// Проверяет пстроку на путь
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         private bool isPath(string str)
         {
-            //MessageBox.Show(str);
-            //pathRightChildPicture = value;
             if (str != "" && str.Length > 2)
             {
                 if (!str.Substring(1, 2).Equals(":\\"))
                 {
                     MessageBox.Show("Не путь");
                     return false;
-                    //pathRightChildPicture = "";
                 }
                 else
                 {
-                   // MessageBox.Show("Cтрока");
                     return true;
                 }
             }
             else
             {
-                //MessageBox.Show("Не путь");
                 return false;
             }
         }
@@ -305,16 +297,6 @@ namespace MainComp
         /// Свойства дочернего компонента
         /// </summary>
 
-        ////чтоб смотреть лист //Пока не удалять
-        //[Category("ChildComponent"), Description("Specifies the list of child elements.")]
-        //public List<ChildComponent.ChildComponent> SelectChild
-        //{
-        //    get
-        //    {
-        //        return childElemlist;
-        //    }
-
-        //}
 
         /// <summary>
         /// Свойства Главного компонента
@@ -333,27 +315,6 @@ namespace MainComp
             }
         }
 
-        //[Category("PrimaryComponent"), Description("Specifies the location of primary element.")]
-        //public Point LocationPrimary
-        //{
-        //    get { return primaryComponent1.Location; }
-        //    set
-        //    {
-        //        primaryComponent1.Location = value;
-        //        Invalidate();
-        //    }
-        //}
-
-        //[Category("PrimaryComponent"), Description("Specifies the size of primary element.")]
-        //public Size SizePrimary
-        //{
-        //    get { return primaryComponent1.Size; }
-        //    set
-        //    {
-        //        primaryComponent1.Size = value;
-        //        Invalidate();
-        //    }
-        //}
 
         /// <summary>
         /// Свойства основного коспонента
@@ -452,16 +413,8 @@ namespace MainComp
         {
             get
             { return result; }
-            //set
-            //{
-            //    result = value;
-            //    Invalidate();
-            //}
         }
 
-        
-
-        
 
         #endregion
 
@@ -471,46 +424,6 @@ namespace MainComp
         /// <param name="n"></param>
         private void deleteChild(int countDeleteChild, bool isCorrectChild)
         {
-            //for (int i = 0; i < childElemlist.Count; i++){
-            //    //Если нужно удалить верный 
-            //    if (isCorrectChild)
-            //    {
-
-            //    } else //Если нужно удалить неверный
-            //    {
-
-            //    }
-            //}
-
-            //КРИВО РАБОТАЕТ
-            //for (int i = 0; i < countDeleteChild; i++)
-            //{
-            //    int index = 0;
-            //    //иду по листу дочерних элементов
-            //    foreach (var elem in childElemlist)
-            //    {
-            //        // MessageBox.Show("Зашёл");
-            //        //сравниваю с типом
-            //        // if (AllImg[elem.BackgroundImage] != typeImages) // значит верный
-            //        if (isCorrectChild)
-            //        {
-            //            if (AllImg.ContainsKey(elem.BackgroundImage))
-            //            {
-            //                index++;
-            //            }
-            //        } else if (!isCorrectChild)
-            //        {
-            //            if (!AllImg.ContainsKey(elem.BackgroundImage))
-            //            {
-            //                index++;
-            //            }
-            //        }
-            //        this.childElemlist.RemoveAt(index);
-            //        this.Controls.RemoveAt(index);
-            //        break;
-            //    }
-            //}
-
             for (int n = 0; n < countDeleteChild; n++)
             {
                 int index = 0;
@@ -538,11 +451,9 @@ namespace MainComp
                 int indexControl = 0;
                 for (int i = 0; i < Controls.Count; i++)
                 {
-                    // MessageBox.Show((Controls[i].BackgroundImage == childElemlist[index].BackgroundImage).ToString());
                     if (Controls[i].BackgroundImage == childElemlist[index].BackgroundImage)
                     {
                         indexControl = i;
-                        //break;
                     }
                 }
 
@@ -550,11 +461,6 @@ namespace MainComp
                 this.Controls.RemoveAt(indexControl);
                 Invalidate();
             }
-
-            //this.Controls.RemoveAt(Controls.Count - 1);
-            //childElemlist.RemoveAt(childElemlist.Count - 1);
-
-
         }
 
         /// <summary>
@@ -581,26 +487,7 @@ namespace MainComp
                     child.BackgroundImage = PatternImgResources.GetRandomWrongImage(typeImages);
                 }
                 // Рандомим позицию
-
                 child.Location = newPoint();
-                //определяем не наложились ли элементы
-                //bool flag = true;
-                //while (flag)
-                //{
-                //    flag = false;
-                //    foreach (var elem in childElemlist)
-                //    {
-                //        if (Math.Abs((elem.Location.X + 13) - (child.Location.X + 13)) < 35 &&
-                //            Math.Abs((elem.Location.Y + 13) - (child.Location.Y + 13)) < 35 ||
-                //            child.Location.X < 5 || child.Location.Y < 5 || child.Location.Y > 140)
-                //        {
-                //            child.Location = new Point(random.Next(230), random.Next(140));
-                //            flag = true;
-                //        }
-                //    }
-                //}
-
-
                 Controls.Add(child);
                 childElemlist.Add(child);
                 LearnToMove(child);
@@ -626,7 +513,6 @@ namespace MainComp
                             point = new Point(rand.Next(230), rand.Next(140));
                             flag = true;
                         }
-                    
                 }
             }
             return point;
@@ -674,7 +560,6 @@ namespace MainComp
             {
                 Control control = (Control)sender;
                 //запоминаем компонент который тянем 
-              //  controlTemp = control;
                 isPress = true;
                 startPst = e.Location;
                 location_0 = new Point(Cursor.Position.X - e.Location.X - control.Location.X, Cursor.Position.Y - e.Location.Y - control.Location.Y); 
@@ -704,25 +589,6 @@ namespace MainComp
                     && control.Left + control.Width < controlPrim.Location.X + controlPrim.Width)
                 {
                     TypesOfImages downTypeImage = CaptchaPattern;
-
-                    /*
-                    //костыльное условие, почему то инвертируется всё
-                    //  MessageBox.Show(control.Name);
-                    //if(control.Name == "")
-                    //{
-                    //    if ((control as ChildComponent.ChildComponent).Accessory)
-                    //    {
-                    //        control.MouseDown -= new MouseEventHandler(mDown);
-                    //        control.MouseUp -= new MouseEventHandler(mUp);
-                    //    }
-                    //    else
-                    //    {
-                    //        MessageBox.Show("Ошибка! Всё заново!");
-                    //        updateComponent();
-                    //        (control as ChildComponent.ChildComponent).RandomLocation = true;
-                    //    }
-                    //} else
-                    //{*/
 
                     if (!(control as ChildComponent.ChildComponent).Accessory)
                     {
@@ -762,43 +628,6 @@ namespace MainComp
                             (control as ChildComponent.ChildComponent).RandomLocation = true;
                         }
                     }
-                    //}
-
-
-                    #region okOrError
-                    ////TryGetValue возвращает всегда ПЕРВЫЙ В СПИСКЕ тип для неправильных элементов 
-                    //// Он устанавливается по дефолту
-                    ////Неправильные элементы c# не может найти в нашем словаре. Почему ?? Хотя если приходят верные - все ОК 
-                    ////Далее ниже идет костыль
-
-                    //if (AllImg.ContainsKey(control.BackgroundImage))
-                    //{
-                    //    control.MouseDown -= new MouseEventHandler(mDown);
-                    //    control.MouseUp -= new MouseEventHandler(mUp);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Ошибка");
-                    //    (control as ChildComponent.ChildComponent).RandomLocation = true;
-                    //}
-
-
-                    //AllImg.TryGetValue(control.BackgroundImage as Bitmap, out downTypeImage);
-
-                    //MessageBox.Show(" Элемент: " + downTypeImage + " CaptchaPattern " + CaptchaPattern);
-
-                    ////Проверка сходятся ли типы primary и дочернего
-                    //if (downTypeImage.Equals(CaptchaPattern))
-                    //{
-                    //    control.MouseDown -= new MouseEventHandler(mDown);
-                    //    control.MouseUp -= new MouseEventHandler(mUp);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Ошибка");
-                    //    (control as ChildComponent.ChildComponent).RandomLocation = true;
-                    //}
-                    #endregion
                 }
             }
             else
@@ -812,7 +641,6 @@ namespace MainComp
         {
             if (isPress)
             {
-               
                 Control control = (Control)sender;
                 //не даем выйти курсору когда он тянет элемент
                 if (Cursor.Position.X - e.X <= location_0.X) {
@@ -849,7 +677,6 @@ namespace MainComp
         public static void ToPosition(object sender)
         {
             controlPrim = (Control)sender;
-            // control.MouseEnter += new EventHandler(onThePosition);
         }
         #endregion
         /// <summary>
@@ -874,15 +701,9 @@ namespace MainComp
             foreach (var elem in childElemlist)
             {
                 elem.Parent = this;
-
-                //elem.MouseDown -= new MouseEventHandler(mDown);
-                //elem.MouseUp -= new MouseEventHandler(mUp);
                 elem.MouseDown -= new MouseEventHandler(mDown);
                 elem.MouseUp -= new MouseEventHandler(mUp);
                 elem.MouseMove -= new MouseEventHandler(mMove);
-
-                //primaryComponent1.Controls.Remove(elem);
-                //this.Controls.Add(elem);
             }
 
             RandomLocationChild = true;
