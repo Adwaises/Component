@@ -7,7 +7,7 @@ namespace UnitTest
     public class UnitTestPrimaryComp
     {
         [TestMethod]
-        public void TestCreatePrimariComp()
+        public void PrimaryTestCreatePrimariComp()
         {
             var primaryComp = new PrimaryComponent.PrimaryComponent();
 

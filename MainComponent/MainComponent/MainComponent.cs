@@ -291,132 +291,7 @@ namespace MainComp
             }
         }
 
-        #region Property and events
 
-        /// <summary>
-        /// Свойства дочернего компонента
-        /// </summary>
-
-
-        /// <summary>
-        /// Свойства Главного компонента
-        /// </summary>
-        [Category("PrimaryComponent"), Description("Specifies the background image of primary element.")]
-        public Image BackgroundImagePrimary
-        {
-            get
-            {
-                return primaryComponent1.BackgroundImage;
-            }
-            set
-            {
-                primaryComponent1.BackgroundImage = value;
-                Invalidate();
-            }
-        }
-
-
-        /// <summary>
-        /// Свойства основного коспонента
-        /// </summary>
-
-        //[Category("Component"), Description("Specifies the random point of child element.")]
-        public bool RandomLocationChild
-        {
-            get
-            { return false; }
-            set
-            {
-                foreach (var elem in childElemlist)
-                {
-                    elem.RandomLocation = true;
-                }
-                Invalidate();
-            }
-        }
-
-        [Category("Component"), Description("Specifies the color of line of component.")]
-        public Color ColorLine
-        {
-            get
-            { return colorLine; }
-            set
-            {
-                colorLine = value;
-                Invalidate();
-            }
-        }
-
-        [Category("Component"), Description("Specifies the error number of component. Value from 1 to 10.")]
-        public int ErrorNumber
-        {
-            get
-            { return errorNumber; }
-            set
-            {
-                if (value > 0 && value <= 10)
-                    errorNumber = value;
-                Invalidate();
-            }
-        }
-
-
-        private int minChildNumber = 1;
-        private int maxChildNumber = 7;
-
-        [Category("Component"), Description("Specifies the number of child component. Value from 1 to 7.")]
-        public int CountNonCorrectChild
-        {
-            get
-            { return countNonCorrectChild; }
-            set
-            {
-                //Мин-Макс проверка
-                int lastNum = countNonCorrectChild;
-                if (value >= minChildNumber && value <= maxChildNumber)
-                {
-                    countNonCorrectChild = value;
-                }
-
-
-                if (countNonCorrectChild > lastNum)
-                {
-                    //Аргумент - сколько новых нужно // Добавление неподходящих картинок
-                    addChild(countNonCorrectChild - lastNum, false);
-                }
-                else if (lastNum > countNonCorrectChild)
-                {
-                    deleteChild(lastNum - countNonCorrectChild, false);
-                }
-
-                Invalidate();
-            }
-        }
-
-        [Category("Component"), Description("Specifies the text help of component.")]
-        [Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        public string TextHelp
-        {
-            get
-            { return textHelp; }
-            set
-            {
-                textHelp = value;
-                textHelp.Replace("\r\n", Environment.NewLine);
-                Invalidate();
-            }
-        }
-
-
-        private bool result = false;
-        public bool Result
-        {
-            get
-            { return result; }
-        }
-
-
-        #endregion
 
         /// <summary>
         /// Метод удаления дочернего элемента с формы и листа
@@ -754,7 +629,135 @@ namespace MainComp
         }
 
 
+        #region Property and events
 
+        /// <summary>
+        /// Свойства дочернего компонента
+        /// </summary>
+
+
+        /// <summary>
+        /// Свойства Главного компонента
+        /// </summary>
+        [Category("PrimaryComponent"), Description("Specifies the background image of primary element.")]
+        public Image BackgroundImagePrimary
+        {
+            get
+            {
+                return primaryComponent1.BackgroundImage;
+            }
+            set
+            {
+                primaryComponent1.BackgroundImage = value;
+                Invalidate();
+            }
+        }
+
+
+        /// <summary>
+        /// Свойства основного коспонента
+        /// </summary>
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RandomLocationChild
+        {
+            get
+            { return false; }
+            set
+            {
+                foreach (var elem in childElemlist)
+                {
+                    elem.RandomLocation = true;
+                }
+                Invalidate();
+            }
+        }
+
+        [Category("Component"), Description("Specifies the color of line of component.")]
+        public Color ColorLine
+        {
+            get
+            { return colorLine; }
+            set
+            {
+                colorLine = value;
+                Invalidate();
+            }
+        }
+
+        [Category("Component"), Description("Specifies the error number of component. Value from 1 to 10.")]
+        public int ErrorNumber
+        {
+            get
+            { return errorNumber; }
+            set
+            {
+                if (value > 0 && value <= 10)
+                    errorNumber = value;
+                Invalidate();
+            }
+        }
+
+
+        private int minChildNumber = 1;
+        private int maxChildNumber = 7;
+
+        [Category("Component"), Description("Specifies the number of child component. Value from 1 to 7.")]
+        public int CountNonCorrectChild
+        {
+            get
+            { return countNonCorrectChild; }
+            set
+            {
+                //Мин-Макс проверка
+                int lastNum = countNonCorrectChild;
+                if (value >= minChildNumber && value <= maxChildNumber)
+                {
+                    countNonCorrectChild = value;
+                }
+
+
+                if (countNonCorrectChild > lastNum)
+                {
+                    //Аргумент - сколько новых нужно // Добавление неподходящих картинок
+                    addChild(countNonCorrectChild - lastNum, false);
+                }
+                else if (lastNum > countNonCorrectChild)
+                {
+                    deleteChild(lastNum - countNonCorrectChild, false);
+                }
+
+                Invalidate();
+            }
+        }
+
+        [Category("Component"), Description("Specifies the text help of component.")]
+        [Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        public string TextHelp
+        {
+            get
+            { return textHelp; }
+            set
+            {
+                textHelp = value;
+                textHelp.Replace("\r\n", Environment.NewLine);
+                Invalidate();
+            }
+        }
+
+
+        private bool result = false;
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Result
+        {
+            get
+            { return result; }
+        }
+
+
+        #endregion
 
         #region DeleteProperty
         // залоченные свойства
@@ -798,15 +801,6 @@ namespace MainComp
             set { RightToLeft = RightToLeft.No; }
         }
 
-        ////странность - падает при компиляции
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new bool UseWaitCursor
-        //{
-        //    get { return false; }
-        //    set { UseWaitCursor = false; }
-        //}
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool AutoScroll
@@ -815,24 +809,6 @@ namespace MainComp
             set { AutoScroll = false; }
         }
 
-        ////странность
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new Point AutoScrollMargin
-        //{
-        //    get { return new Point(0,0); }
-        //    set { AutoScrollMargin = new Point(0, 0); }
-        //}
-
-        ////странность
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new Point AutoScrollMinSize
-        //{
-        //    get { return new Point(0, 0); }
-        //    set { AutoScrollMargin = new Point(0, 0); }
-        //}
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool AutoSize
@@ -840,23 +816,6 @@ namespace MainComp
             get { return false; }
             set { AutoSize = false; }
         }
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new bool AutoSizeMode
-        //{
-        //    get { return false; }
-        //    set { AutoSize = false; }
-        //}
-
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public override bool Padding
-        //{
-        //    get { return false; }
-        //    set { AutoSize = false; }
-        //}
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -874,47 +833,6 @@ namespace MainComp
             set { AutoValidate = AutoValidate.EnablePreventFocusChange; }
         }
 
-        //падает
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public override ContextMenuStrip ContextMenuStrip
-        //{
-        //    get { return ContextMenuStrip; }
-        //    set { ContextMenuStrip = ContextMenuStrip; }
-        //}
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public override ImeMode ImeMode
-        //{
-        //    get { return ImeMode.NoControl; }
-        //    set { ImeMode = ImeMode.NoControl; }
-        //}
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public override bool AccessibleDescription
-        //{
-        //    get { return false; }
-        //    set { AllowDrop = false; }
-        //}
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public override bool AccessibleName
-        //{
-        //    get { return false; }
-        //    set { AllowDrop = false; }
-        //}
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public override bool CausesValidation
-        //{
-        //    get { return false; }
-        //    set { AllowDrop = false; }
-        //}
-
 
         // скрываем события
 
@@ -930,41 +848,7 @@ namespace MainComp
             remove { }
         }
 
-        //не хотят убираться
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler CollectionChanged
-        //{
-        //    add { }
-        //    remove { }
-        //}
-
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public event EventHandler CollectionChanging
-        //{
-        //    add { }
-        //    remove { }
-        //}
-
-        // мб звук поставить кто захочет
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler Click
-        //{
-        //    add { }
-        //    remove { }
-        //}
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler DoubleClick
-        //{
-        //    add { }
-        //    remove { }
-        //}
+        
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -974,21 +858,7 @@ namespace MainComp
             remove { }
         }
 
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler MouseClick
-        //{
-        //    add { }
-        //    remove { }
-        //}
 
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler MouseDoubleClick
-        //{
-        //    add { }
-        //    remove { }
-        //}
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -998,29 +868,6 @@ namespace MainComp
             remove { }
         }
 
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler KeyPress
-        //{
-        //    add { }
-        //    remove { }
-        //}
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler KeyDown
-        //{
-        //    add { }
-        //    remove { }
-        //}
-
-        //[Browsable(false)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public new event EventHandler KeyUp
-        //{
-        //    add { }
-        //    remove { }
-        //}
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]

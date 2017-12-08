@@ -9,7 +9,7 @@ namespace UnitTest
     public class UnitTestChildComp
     {
         [TestMethod]
-        public void TestAccessory()
+        public void ChildTestAccessory()
         {
             var childComponent = new ChildComponent.ChildComponent();
 
@@ -19,7 +19,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void TestOnPrimaryComp()
+        public void ChildTestOnPrimaryComp()
         {
             var childComponent = new ChildComponent.ChildComponent();
 
@@ -29,7 +29,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void TestRandomLocation()
+        public void ChildTestRandomLocation()
         {
             var childComponent = new ChildComponent.ChildComponent();
 
