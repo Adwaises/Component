@@ -37,12 +37,12 @@
             this.mainComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.mainComponent1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImage")));
             this.mainComponent1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent1.BackgroundImagePrimary")));
-            this.mainComponent1.CaptchaPattern = TypesOfImages.Refrigerator;
+            this.mainComponent1.CaptchaPattern = MainComp.MainComponent.TypesOfImages.Face;
             this.mainComponent1.ColorLine = System.Drawing.Color.Blue;
             this.mainComponent1.CountCorrectChild = 3;
             this.mainComponent1.CountNonCorrectChild = 3;
             this.mainComponent1.ErrorNumber = 3;
-            this.mainComponent1.Location = new System.Drawing.Point(23, 12);
+            this.mainComponent1.Location = new System.Drawing.Point(24, 25);
             this.mainComponent1.MaximumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.MinimumSize = new System.Drawing.Size(400, 180);
             this.mainComponent1.Name = "mainComponent1";
@@ -55,10 +55,8 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 368);
-            this.Controls.Add(this.mainComponent1);
+            this.ClientSize = new System.Drawing.Size(637, 308);
+            this.Controls.Add(this.mainComponent2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
