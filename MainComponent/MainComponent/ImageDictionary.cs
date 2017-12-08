@@ -12,15 +12,15 @@ namespace MainComp
     public class ImageDictionary : Dictionary<Image, TypesOfImages>
     {
         //Картинки Primary компонента
-        public Image primaryFace;
-        public Image primaryRefriger;
-        public Image primaryFlower;
-        public Image primaryCustomImg;
+        public Image primaryFace { get; set; }
+        public Image primaryRefriger { get; set; }
+        public Image primaryFlower { get; set; }
+        public Image primaryCustomImg { get; set; }
 
-        public Image BackgroundFace;
-        public Image BackgroundRefriger;
-        public Image BackgroundFlower;
-        public Image BackgroundCustom;
+        public Image BackgroundFace { get; set; }
+        public Image BackgroundRefriger { get; set; }
+        public Image BackgroundFlower { get; set; }
+        public Image BackgroundCustom { get; set; }
 
         public ImageDictionary()
         {
@@ -86,6 +86,28 @@ namespace MainComp
                 }
             }
             return newImageList;
+        }
+
+        public Image FindNewCorrectImage(TypesOfImages typeImg, List<ChildComponent.ChildComponent> listChild)
+        {
+            //Проход по всей коллекции картинок
+            foreach (var elem in this)
+            {
+                //Если тип картинки в коллекции совпадает с текущим шаблоном капчи
+                if (elem.Value == typeImg)
+                {
+                    //Проход по всем дочерним элементам с целью найти не использованное изображение
+                    for (int i = 0; i < listChild.Count; i++)
+                    {
+                        if (!listChild[i].BackgroundImage.Equals(elem.Key))
+                        {
+                            return elem.Key;
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
 
     }

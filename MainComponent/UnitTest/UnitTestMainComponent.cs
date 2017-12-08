@@ -161,6 +161,6 @@ namespace UnitTest
             Assert.AreEqual(TypesOfImages.Face, mainComp.CaptchaPattern);
         }
 
-       
+
     }
 }

@@ -35,9 +35,9 @@ namespace MainComp
         private static TypesOfImages typeImages = TypesOfImages.Face;
 
         private Color colorLine = Color.Blue;
-       
+
         public MainComponent()
-        {          
+        {
             SuspendLayout();
             InitializeComponent();
 
@@ -48,6 +48,7 @@ namespace MainComp
             pictureBox = new PictureBox();
             pictureBox.Invalidate(true);
             pictureBox.Size = new Size(400, 180);
+
             //создание списка дочерних элементов и его заполение
             childElemlist = new List<ChildComponent.ChildComponent>();
             foreach (var elem in this.Controls)
@@ -55,15 +56,12 @@ namespace MainComp
                 if (elem is ChildComponent.ChildComponent)
                 {
                     ChildComponent.ChildComponent ch = elem as ChildComponent.ChildComponent;
-                    //MessageBox.Show("Name " + ch.Name.ToString() + " Accessory " + ch.Accessory.ToString());
                     childElemlist.Add(ch);
                 }
             }
             ToPosition(this.primaryComponent1);
 
             //Загрузка картинок в зависимости от установленного TypesOfImages 
-
-            //Задает изображение для primary-компонента
             SetImagesFromType(typeImages);
 
             //После загрузки - перемещение
@@ -80,7 +78,7 @@ namespace MainComp
         //вместе с их принадлежностью (из нумератора) 
         //+ картинки для праймари компонента
         ImageDictionary PatternImgResources = new ImageDictionary();
-        
+
         //Свойство для выбора типа шаблона
         [Category("Component"), Description("Current type images of component")]
         public TypesOfImages CaptchaPattern
@@ -96,9 +94,7 @@ namespace MainComp
                 //Загрузка картинок в зависимости от установленного TypesOfImages 
                 SetImagesFromType(typeImages);
 
-
                 Invalidate();
-                this.Refresh();
             }
         }
 
@@ -128,49 +124,43 @@ namespace MainComp
                 Invalidate();
             }
         }
-        
+
         private void LoadFiles(string path, bool accessory)
         {
             if (!string.IsNullOrEmpty(path))
-            {
-                List<string> PathChildFace = new List<string>();
-                try
-                {
-                    //а это метод который тащит все существующие файлы из директории
-                    DirectoryInfo di = new DirectoryInfo(path);
-                    FileInfo[] fi = di.GetFiles("*.png");
-                    foreach (FileInfo fc in fi)
-                    {
-                        PathChildFace.Add(path + "\\" + fc.Name);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("" + ex);
-                }
+                return;
 
-                //добавление на фон
-                int i = 0;
-                foreach (var elem in childElemlist)
+            List<string> PathChildFace = new List<string>();
+
+            //а это метод который тащит все существующие файлы из директории
+            DirectoryInfo di = new DirectoryInfo(path);
+            FileInfo[] fi = di.GetFiles("*.png");
+            foreach (FileInfo fc in fi)
+            {
+                PathChildFace.Add(path + "\\" + fc.Name);
+            }
+
+            //добавление на фон
+            int i = 0;
+            foreach (var elem in childElemlist)
+            {
+                if (elem.Accessory.Equals(accessory))
                 {
-                    if (elem.Accessory.Equals(accessory))
+                    if (PathChildFace.Count >= i)
                     {
-                        if (PathChildFace.Count >= i)
-                        {
-                            elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
-                            i++;
-                        }
-                        else
-                        {
-                            i = 0;
-                        }
+                        elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
+                        i++;
+                    }
+                    else
+                    {
+                        i = 0;
                     }
                 }
             }
         }
 
 
-        private string pathWrongChildPicture = "";
+        private string pathWrongChildPicture = String.Empty;
         [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
         public string PathWrongChildPicture
         {
@@ -180,19 +170,21 @@ namespace MainComp
             {
                 if (isPath(value))
                 {
+                    //Если путь верен отображаем картинки из папки
                     pathWrongChildPicture = value;
                     LoadFiles(pathWrongChildPicture, false);
                 }
                 else
                 {
-                    pathWrongChildPicture = "";
-                    SetImagesFromType(typeImages); //инвертирует всё (true становится false)
+                    //Иначе - подгрузка из шаблонов
+                    pathWrongChildPicture = String.Empty;
+                    SetImagesFromType(typeImages);
                 }
                 Invalidate();
             }
         }
 
-        private string pathRightChildPicture = "";
+        private string pathRightChildPicture = String.Empty;
         [Category("ChildComponent"), Description("Specifies the path picture of right child component.")]
         public string PathRightChildPicture
         {
@@ -204,16 +196,14 @@ namespace MainComp
                 {
                     pathRightChildPicture = value;
                     LoadFiles(pathRightChildPicture, true);
-                   
-                } else
+                }
+                else
                 {
-                    pathRightChildPicture = "";
+                    pathRightChildPicture = String.Empty;
                     SetImagesFromType(typeImages);
-                
                 }
 
                 Invalidate();
-                this.Refresh();
             }
         }
         /// <summary>
@@ -223,11 +213,11 @@ namespace MainComp
         /// <returns></returns>
         private bool isPath(string str)
         {
-            if (str != "" && str.Length > 2)
+            if (String.IsNullOrEmpty(str) && str.Length > 2)
             {
                 if (!str.Substring(1, 2).Equals(":\\"))
                 {
-                    MessageBox.Show("Не путь");
+                    MessageBox.Show("Неверно указан путь");
                     return false;
                 }
                 else
@@ -235,13 +225,11 @@ namespace MainComp
                     return true;
                 }
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
-        private void SetImagesFromType (TypesOfImages typeImg)
+        private void SetImagesFromType(TypesOfImages typeImg)
         {
             SetPrimaryAndBackgroundImage(typeImg);
             SetChildsImages(typeImg);
@@ -283,7 +271,7 @@ namespace MainComp
 
             //Задает дочерним компонентам изображение из нового списка
             //Пока картинки есть и дочерние компоненты => делаем присваивание
-            int i = 0; 
+            int i = 0;
             //Добавление подходящих компонентов
             for (int p = 0; p < CountCorrectChild; p++)
             {
@@ -329,7 +317,6 @@ namespace MainComp
                     }
                 }
 
-
                 //поск в контроле
                 int indexControl = 0;
                 for (int i = 0; i < Controls.Count; i++)
@@ -361,7 +348,7 @@ namespace MainComp
                 {
                     child = new ChildComponent.ChildComponent();
                     child.Accessory = true;
-                    child.BackgroundImage = FindNewCorrectImage();
+                    child.BackgroundImage = PatternImgResources.FindNewCorrectImage(typeImages, childElemlist);
                 }
                 else
                 {
@@ -370,14 +357,14 @@ namespace MainComp
                     child.BackgroundImage = PatternImgResources.GetRandomWrongImage(typeImages);
                 }
                 // Рандомим позицию
-                child.Location = newPoint();
+                child.Location = RandomNewPoint();
                 Controls.Add(child);
                 childElemlist.Add(child);
                 LearnToMove(child);
             }
         }
 
-        private Point newPoint()
+        private Point RandomNewPoint()
         {
             Random rand = new Random();
             Point point = new Point(rand.Next(230), rand.Next(150));
@@ -388,40 +375,18 @@ namespace MainComp
                 flag = false;
                 foreach (var elem in childElemlist)
                 {
-                   
-                        if (Math.Abs((elem.Location.X + 13) - (point.X + 13)) < 30 &&
-                            Math.Abs((elem.Location.Y + 13) - (point.Y + 13)) < 30 ||
-                            point.X < 5 || point.Y < 5 || point.Y > 140)
-                        {
-                            point = new Point(rand.Next(230), rand.Next(140));
-                            flag = true;
-                        }
+                    if (Math.Abs((elem.Location.X + 13) - (point.X + 13)) < 30 &&
+                        Math.Abs((elem.Location.Y + 13) - (point.Y + 13)) < 30 ||
+                        point.X < 5 || point.Y < 5 || point.Y > 140)
+                    {
+                        point = new Point(rand.Next(230), rand.Next(140));
+                        flag = true;
+                    }
                 }
             }
             return point;
         }
 
-        private Image FindNewCorrectImage()
-        {
-            //Проход по всей коллекции картинок
-            foreach (var elem in PatternImgResources)
-            {
-                //Если тип картинки в коллекции совпадает с текущим шаблоном капчи
-                if (elem.Value == typeImages)
-                {
-                    //Проход по всем дочерним элементам с целью найти не использованное изображение
-                    for (int i = 0; i < childElemlist.Count; i++)
-                    {
-                        if (!childElemlist[i].BackgroundImage.Equals(elem.Key))
-                        {
-                            return elem.Key;
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -434,7 +399,7 @@ namespace MainComp
         // события для движения
         static bool isPress = false;
         static Point startPst;
-       // static Control controlTemp;
+        // static Control controlTemp;
         static Point location_0;
         // Функция выполняется при нажатии на перемещаемый контрол
         private static void mDown(object sender, MouseEventArgs e)
@@ -445,23 +410,17 @@ namespace MainComp
                 //запоминаем компонент который тянем 
                 isPress = true;
                 startPst = e.Location;
-                location_0 = new Point(Cursor.Position.X - e.Location.X - control.Location.X, Cursor.Position.Y - e.Location.Y - control.Location.Y); 
-               
+                location_0 = new Point(Cursor.Position.X - e.Location.X - control.Location.X, Cursor.Position.Y - e.Location.Y - control.Location.Y);
+            }
 
-            }
-            else
-            {   //проверка что нажата левая кнопка
-                return;
-            }
+            return;
         }
 
         // Функция выполняется при отжатии перемещаемого контрола
         private void mUp(object sender, MouseEventArgs e)
         {
-            
             if (e.Button == MouseButtons.Left)
             {
-               
                 //Control childComponent
                 Control control = (Control)sender;
                 isPress = false;
@@ -482,8 +441,8 @@ namespace MainComp
                         //Привязываем дочерний к праймари компоненту для прозрачного отображения
                         Point oldPoint = control.Location;
 
-                        control.Parent = primaryComponent1;              
-                        control.Location = new Point(oldPoint.X - primaryComponent1.Location.X, 
+                        control.Parent = primaryComponent1;
+                        control.Location = new Point(oldPoint.X - primaryComponent1.Location.X,
                             oldPoint.Y - primaryComponent1.Location.Y);
 
                         //MessageBox.Show((control as ChildComponent.ChildComponent).Accessory.ToString());
@@ -514,10 +473,8 @@ namespace MainComp
                     }
                 }
             }
-            else
-            {//проверка что нажата левая кнопка
-                return;
-            }
+
+            return;
         }
 
         // Функция выполняется при перемещении контрола
@@ -527,24 +484,25 @@ namespace MainComp
             {
                 Control control = (Control)sender;
                 //не даем выйти курсору когда он тянет элемент
-                if (Cursor.Position.X - e.X <= location_0.X) {
-                    Cursor.Position =new Point( location_0.X +1 + e.X, Cursor.Position.Y);
+                if (Cursor.Position.X - e.X <= location_0.X)
+                {
+                    Cursor.Position = new Point(location_0.X + 1 + e.X, Cursor.Position.Y);
                 }
-                if (Cursor.Position.Y - e.Y<= location_0.Y)
+                if (Cursor.Position.Y - e.Y <= location_0.Y)
                 {
                     Cursor.Position = new Point(Cursor.Position.X, location_0.Y + 1 + e.Y);
                 }
-                if (Cursor.Position.X +(control.Width- e.X )>= location_0.X+400)
+                if (Cursor.Position.X + (control.Width - e.X) >= location_0.X + 400)
                 {
-                    Cursor.Position = new Point(location_0.X+400 - 1- (control.Width - e.X), Cursor.Position.Y);
+                    Cursor.Position = new Point(location_0.X + 400 - 1 - (control.Width - e.X), Cursor.Position.Y);
                 }
                 if (Cursor.Position.Y + (control.Height - e.Y) >= location_0.Y + 180)
                 {
                     Cursor.Position = new Point(Cursor.Position.X, location_0.Y + 180 - 1 - (control.Height - e.Y));
                 }
-               
+
                 control.Left += e.X - startPst.X;
-                control.Top += e.Y - startPst.Y;              
+                control.Top += e.Y - startPst.Y;
             }
         }
 
@@ -579,9 +537,8 @@ namespace MainComp
             UpdateComponent();
         }
 
-
         private void UpdateComponent()
-        {            
+        {
             foreach (var elem in childElemlist)
             {
                 elem.Parent = this;
@@ -603,8 +560,7 @@ namespace MainComp
             }
         }
 
-        //надо проверить элементы, все ли правильные на главаном
-        // как то проверить надо
+        //Проверяет завершена ли проверка
         private bool checkIsOver()
         {
             int onPrimaryComponent = 0;
@@ -615,26 +571,24 @@ namespace MainComp
                     onPrimaryComponent++;
                 }
             }
+
             if (onPrimaryComponent == countCorrectChild)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
+        //Проверяющий кол-во ошибок
         private bool checkError()
         {
-           if(ErrorNumber < 2)
+            if (ErrorNumber < 2)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
 
@@ -708,7 +662,6 @@ namespace MainComp
             }
         }
 
-
         private int minChildNumber = 1;
         private int maxChildNumber = 7;
 
@@ -725,7 +678,6 @@ namespace MainComp
                 {
                     countNonCorrectChild = value;
                 }
-
 
                 if (countNonCorrectChild > lastNum)
                 {
@@ -857,7 +809,7 @@ namespace MainComp
             remove { }
         }
 
-        
+
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]

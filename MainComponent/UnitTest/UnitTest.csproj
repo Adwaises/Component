@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="UnitTestImageDictionary.cs" />
     <Compile Include="UnitTestMainComponent.cs" />
     <Compile Include="UnitTestPrimaryComp.cs" />
     <Compile Include="UnitTestChildComp.cs" />
@@ -72,6 +73,11 @@
       <Project>{bd812e40-532c-4520-b515-1c01a53abd00}</Project>
       <Name>PrimaryComponent</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OrderedTest1.orderedtest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

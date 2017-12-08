@@ -46,9 +46,9 @@
             this.mainComponent2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("mainComponent2.BackgroundImage")));
             this.mainComponent2.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("mainComponent2.BackgroundImagePrimary")));
             this.mainComponent2.CaptchaPattern = TypesOfImages.Face;
-            this.mainComponent2.ColorLine = System.Drawing.Color.Blue;
+            this.mainComponent2.ColorLine = System.Drawing.Color.CornflowerBlue;
             this.mainComponent2.CountCorrectChild = 3;
-            this.mainComponent2.CountNonCorrectChild = 3;
+            this.mainComponent2.CountNonCorrectChild = 5;
             this.mainComponent2.ErrorNumber = 3;
             this.mainComponent2.Location = new System.Drawing.Point(12, 12);
             this.mainComponent2.MaximumSize = new System.Drawing.Size(400, 180);
