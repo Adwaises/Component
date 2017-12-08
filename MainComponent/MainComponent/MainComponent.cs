@@ -54,7 +54,9 @@ namespace MainComp
             {
                 if (elem is ChildComponent.ChildComponent)
                 {
-                    childElemlist.Add(elem as ChildComponent.ChildComponent);
+                    ChildComponent.ChildComponent ch = elem as ChildComponent.ChildComponent;
+                    MessageBox.Show("Name " + ch.Name.ToString() + " Accessory " + ch.Accessory.ToString());
+                    childElemlist.Add(ch);
                 }
             }
             ToPosition(this.primaryComponent1);
@@ -153,13 +155,12 @@ namespace MainComp
                 int i = 0;
                 foreach (var elem in childElemlist)
                 {
-                    if (elem.Accessory == accessory)
+                    if (elem.Accessory.Equals(accessory))
                     {
                         if (PathChildFace.Count >= i)
                         {
                             elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
                             i++;
-
                         }
                         else
                         {
@@ -465,7 +466,7 @@ namespace MainComp
                 {
                     TypesOfImages downTypeImage = CaptchaPattern;
 
-                    if (!(control as ChildComponent.ChildComponent).Accessory)
+                    if ((control as ChildComponent.ChildComponent).Accessory)
                     {
                         control.MouseDown -= new MouseEventHandler(mDown);
                         control.MouseUp -= new MouseEventHandler(mUp);
@@ -478,6 +479,7 @@ namespace MainComp
                         control.Location = new Point(oldPoint.X - primaryComponent1.Location.X, 
                             oldPoint.Y - primaryComponent1.Location.Y);
 
+                        MessageBox.Show((control as ChildComponent.ChildComponent).Accessory.ToString());
 
                         if (checkIsOver())
                         {

@@ -77,7 +77,7 @@ namespace MainComp
             // 
             // childComponent11
             // 
-            this.childComponent11.Accessory = true;
+            this.childComponent11.Accessory = false;
             this.childComponent11.BackColor = System.Drawing.Color.Transparent;
             this.childComponent11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent11.Location = new System.Drawing.Point(234, 4);
@@ -90,7 +90,7 @@ namespace MainComp
             // 
             // childComponent9
             // 
-            this.childComponent9.Accessory = true;
+            this.childComponent9.Accessory = false;
             this.childComponent9.BackColor = System.Drawing.Color.Transparent;
             this.childComponent9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent9.Location = new System.Drawing.Point(196, 4);
@@ -103,7 +103,7 @@ namespace MainComp
             // 
             // childComponent7
             // 
-            this.childComponent7.Accessory = true;
+            this.childComponent7.Accessory = false;
             this.childComponent7.BackColor = System.Drawing.Color.Transparent;
             this.childComponent7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent7.Location = new System.Drawing.Point(157, 4);
@@ -116,7 +116,7 @@ namespace MainComp
             // 
             // childComponent3
             // 
-            this.childComponent3.Accessory = false;
+            this.childComponent3.Accessory = true;
             this.childComponent3.BackColor = System.Drawing.Color.Transparent;
             this.childComponent3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent3.Location = new System.Drawing.Point(79, 3);
@@ -129,7 +129,7 @@ namespace MainComp
             // 
             // childComponent2
             // 
-            this.childComponent2.Accessory = false;
+            this.childComponent2.Accessory = true;
             this.childComponent2.BackColor = System.Drawing.Color.Transparent;
             this.childComponent2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent2.Location = new System.Drawing.Point(41, 3);
@@ -142,7 +142,7 @@ namespace MainComp
             // 
             // childComponent1
             // 
-            this.childComponent1.Accessory = false;
+            this.childComponent1.Accessory = true;
             this.childComponent1.BackColor = System.Drawing.Color.Transparent;
             this.childComponent1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.childComponent1.Location = new System.Drawing.Point(3, 3);

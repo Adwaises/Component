@@ -134,9 +134,9 @@ namespace UnitTest
             var mainComp = new MainComp.MainComponent();
 
             //var num = mainComp.CountNonCorrectChild;
-            mainComp.PathNoRightChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
+            mainComp.PathWrongChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
 
-            Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathNoRightChildPicture);
+            Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathWrongChildPicture);
         }
 
         [TestMethod]
@@ -145,9 +145,9 @@ namespace UnitTest
             var mainComp = new MainComp.MainComponent();
 
             //var num = mainComp.CountNonCorrectChild;
-            mainComp.PathNoRightChildPicture = "cfgmighi";
+            mainComp.PathWrongChildPicture = "cfgmighi";
 
-            Assert.AreEqual("", mainComp.PathNoRightChildPicture);
+            Assert.AreEqual("", mainComp.PathWrongChildPicture);
         }
 
         [TestMethod]

@@ -29,9 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.mainComponent2 = new MainComp.MainComponent();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.mainComponent2 = new MainComp.MainComponent();
             this.SuspendLayout();
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(445, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 1;
             // 
             // mainComponent2
             // 
@@ -53,13 +60,6 @@
             this.mainComponent2.Size = new System.Drawing.Size(400, 180);
             this.mainComponent2.TabIndex = 0;
             this.mainComponent2.TextHelp = "Text\r\nhelp";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(445, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
             // 
             // Form1
             // 
