@@ -55,7 +55,7 @@ namespace MainComp
                 if (elem is ChildComponent.ChildComponent)
                 {
                     ChildComponent.ChildComponent ch = elem as ChildComponent.ChildComponent;
-                    MessageBox.Show("Name " + ch.Name.ToString() + " Accessory " + ch.Accessory.ToString());
+                    //MessageBox.Show("Name " + ch.Name.ToString() + " Accessory " + ch.Accessory.ToString());
                     childElemlist.Add(ch);
                 }
             }
@@ -64,9 +64,7 @@ namespace MainComp
             //Загрузка картинок в зависимости от установленного TypesOfImages 
 
             //Задает изображение для primary-компонента
-            SetPrimaryAndBackgroundImage(typeImages);
-            //Задает изображение для child-компонентов
-            SetChildsImages(typeImages);
+            SetImagesFromType(typeImages);
 
             //После загрузки - перемещение
             childElemlist.Reverse();
@@ -94,10 +92,10 @@ namespace MainComp
             set
             {
                 typeImages = value;
-                
+
                 //Загрузка картинок в зависимости от установленного TypesOfImages 
-                SetPrimaryAndBackgroundImage(typeImages);
-                SetChildsImages(typeImages);
+                SetImagesFromType(typeImages);
+
 
                 Invalidate();
                 this.Refresh();
@@ -188,7 +186,7 @@ namespace MainComp
                 else
                 {
                     pathWrongChildPicture = "";
-                   // SetImagesFromType(typeImages); //инвертирует всё (true становится false)
+                    SetImagesFromType(typeImages); //инвертирует всё (true становится false)
                 }
                 Invalidate();
             }
@@ -243,6 +241,11 @@ namespace MainComp
             }
         }
 
+        private void SetImagesFromType (TypesOfImages typeImg)
+        {
+            SetPrimaryAndBackgroundImage(typeImg);
+            SetChildsImages(typeImg);
+        }
 
         //Set picture
         private void SetPrimaryAndBackgroundImage(TypesOfImages typeImg)
@@ -479,7 +482,7 @@ namespace MainComp
                         control.Location = new Point(oldPoint.X - primaryComponent1.Location.X, 
                             oldPoint.Y - primaryComponent1.Location.Y);
 
-                        MessageBox.Show((control as ChildComponent.ChildComponent).Accessory.ToString());
+                        //MessageBox.Show((control as ChildComponent.ChildComponent).Accessory.ToString());
 
                         if (checkIsOver())
                         {
