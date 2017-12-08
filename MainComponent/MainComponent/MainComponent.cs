@@ -29,8 +29,8 @@ namespace MainComp
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
         private int errorNumber = 3;
-        private int countNonCorrectChild = 7;
-        private int countCorrectChild = 4;
+        private int countNonCorrectChild = 3;
+        private int countCorrectChild = 3;
 
         private static TypesOfImages typeImages = TypesOfImages.Face;
 
@@ -130,9 +130,9 @@ namespace MainComp
             }
         }
         
-        private void loadFiles(string path, bool accessory)
+        private void LoadFiles(string path, bool accessory)
         {
-            if (path != "")
+            if (!string.IsNullOrEmpty(path))
             {
                 List<string> PathChildFace = new List<string>();
                 try
@@ -159,13 +159,12 @@ namespace MainComp
                 int i = 0;
                 foreach (var elem in childElemlist)
                 {
-                    if (elem.Accessory == accessory)
+                    if (!elem.Accessory.Equals(accessory))
                     {
                         if (PathChildFace.Count >= i)
                         {
                             elem.BackgroundImage = Image.FromFile(PathChildFace[i]);
                             i++;
-
                         }
                         else
                         {
@@ -177,22 +176,22 @@ namespace MainComp
         }
 
 
-        private string pathNoRightChildPicture = "";
+        private string pathWrongChildPicture = "";
         [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
-        public string PathNoRightChildPicture
+        public string PathWrongChildPicture
         {
             get
-            { return pathNoRightChildPicture; }
+            { return pathWrongChildPicture; }
             set
             {
                 if (isPath(value))
                 {
-                    pathNoRightChildPicture = value;
-                    loadFiles(pathNoRightChildPicture, false);
+                    pathWrongChildPicture = value;
+                    LoadFiles(pathWrongChildPicture, false);
                 }
                 else
                 {
-                    pathNoRightChildPicture = "";
+                    pathWrongChildPicture = "";
                    // SetImagesFromType(typeImages); //инвертирует всё (true становится false)
                 }
                 Invalidate();
@@ -210,7 +209,7 @@ namespace MainComp
                 if (isPath(value))
                 {
                     pathRightChildPicture = value;
-                    loadFiles(pathRightChildPicture, true);
+                    LoadFiles(pathRightChildPicture, true);
                    
                 } else
                 {
