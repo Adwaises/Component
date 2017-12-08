@@ -150,5 +150,17 @@ namespace UnitTest
             Assert.AreEqual("", mainComp.PathNoRightChildPicture);
         }
 
+        [TestMethod]
+        public void MainTestCaptchaPattern()
+        {
+            var mainComp = new MainComp.MainComponent();
+
+            //var num = mainComp.CountNonCorrectChild;
+            mainComp.CaptchaPattern = TypesOfImages.Face;
+
+            Assert.AreEqual(TypesOfImages.Face, mainComp.CaptchaPattern);
+        }
+
+       
     }
 }
