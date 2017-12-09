@@ -28,15 +28,15 @@ namespace UnitTest
             Assert.AreEqual(true, childComponent.OnPrimaryComponent);
         }
 
-        [TestMethod]
-        public void ChildTestRandomLocation()
-        {
-            var childComponent = new ChildComponent.ChildComponent();
+        //[TestMethod]
+        //public void ChildTestRandomLocation()
+        //{
+        //    var childComponent = new ChildComponent.ChildComponent();
 
-            childComponent.RandomLocation = true;
+        //    childComponent.RandomLocation = true;
 
-            Assert.AreEqual(false, childComponent.RandomLocation);
-        }
+        //    Assert.AreEqual(false, childComponent.RandomLocation);
+        //}
 
         //[TestMethod]
         //public void TestNewPoint()

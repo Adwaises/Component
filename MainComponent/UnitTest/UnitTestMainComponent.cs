@@ -105,16 +105,16 @@ namespace UnitTest
         }
 
 
-        [TestMethod]
-        public void MainTestPathRightChildPicture()
-        {
-            var mainComp = new MainComp.MainComponent();
+        //[TestMethod]
+        //public void MainTestPathRightChildPicture()
+        //{
+        //    var mainComp = new MainComp.MainComponent();
 
-            //var num = mainComp.CountNonCorrectChild;
-            mainComp.PathRightChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
+        //    //var num = mainComp.CountNonCorrectChild;
+        //    mainComp.PathRightChildPicture = "C:\\Users";
 
-            Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathRightChildPicture);
-        }
+        //    Assert.AreEqual("C:\\Users", mainComp.PathRightChildPicture);
+        //}
 
         [TestMethod]
         public void MainTestPathRightChildPictureNonTrue()
@@ -128,16 +128,16 @@ namespace UnitTest
         }
 
 
-        [TestMethod]
-        public void MainTestPathNoRightChildPicture()
-        {
-            var mainComp = new MainComp.MainComponent();
+        //[TestMethod]
+        //public void MainTestPathNoRightChildPicture()
+        //{
+        //    var mainComp = new MainComp.MainComponent();
 
-            //var num = mainComp.CountNonCorrectChild;
-            mainComp.PathWrongChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
+        //    //var num = mainComp.CountNonCorrectChild;
+        //    mainComp.PathWrongChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
 
-            Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathWrongChildPicture);
-        }
+        //    Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathWrongChildPicture);
+        //}
 
         [TestMethod]
         public void MainTestPathNoRightChildPictureNonTrue()
