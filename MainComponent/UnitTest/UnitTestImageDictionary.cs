@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 using System.Windows.Forms;
-using MainComp;
+using HumanVerification;
 using System.Collections.Generic;
 
 namespace UnitTest

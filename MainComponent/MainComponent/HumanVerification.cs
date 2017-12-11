@@ -8,18 +8,15 @@ using System.Windows.Forms;
 using ChildComponent;
 using System.IO;
 using System.ComponentModel.Design;
-using System.Web.UI.Design;
 using EnvDTE;
-using System.Windows.Forms.Design.Behavior;
 using EnvDTE80;
-
 
 public enum TypesOfImages { Face, Refrigerator, Flower, Custom }
 
-namespace MainComp
+namespace HumanVerification
 {
 
-    public partial class MainComponent : UserControl
+    public partial class HumanVerification : UserControl
     {
         public static Random random = new Random();
         private PictureBox pictureBox = null;
@@ -46,7 +43,7 @@ namespace MainComp
         //+ картинки для праймари компонента
         ImageDictionary PatternImgResources = new ImageDictionary();
 
-        public MainComponent()
+        public HumanVerification()
         {
             SuspendLayout();
             InitializeComponent();
@@ -731,7 +728,7 @@ namespace MainComp
 
         //помощь
         [Category("Component"), Description("Specifies the text help of component.")]
-        [Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string TextHelp
         {
             get

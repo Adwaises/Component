@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MainComponent</RootNamespace>
     <AssemblyName>MainComponent</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,7 +39,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImageDictionary.cs" />
-    <Compile Include="MainComponent.cs">
+    <Compile Include="HumanVerification.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainComponent.designer.cs">
-      <DependentUpon>MainComponent.cs</DependentUpon>
+    <Compile Include="HumanVerification.designer.cs">
+      <DependentUpon>HumanVerification.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -74,8 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainComponent.resx">
-      <DependentUpon>MainComponent.cs</DependentUpon>
+    <EmbeddedResource Include="HumanVerification.resx">
+      <DependentUpon>HumanVerification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

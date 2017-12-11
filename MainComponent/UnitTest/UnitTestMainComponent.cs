@@ -20,7 +20,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestColorLine()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             mainComp.ColorLine = Color.Blue;
 
@@ -30,7 +30,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestErrorNumber()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             mainComp.ErrorNumber = 5;
 
@@ -40,7 +40,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestErrorNumberNonTrue()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             var num = mainComp.ErrorNumber;
             mainComp.ErrorNumber = 51;
@@ -51,7 +51,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestCountNonCorrectChild()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
             mainComp.CountNonCorrectChild = 5;
@@ -62,7 +62,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestCountNonCorrectChildNonTrue()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             var num = mainComp.CountNonCorrectChild;
             mainComp.CountNonCorrectChild = 51;
@@ -73,7 +73,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestCountCorrectChild()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
             mainComp.CountCorrectChild = 3;
@@ -84,7 +84,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestCountCorrectChildNonTrue()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             var num = mainComp.CountCorrectChild;
             mainComp.CountCorrectChild = 51;
@@ -96,7 +96,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestTextHelp()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
             mainComp.TextHelp = "HEEEELLLPPPP";
@@ -119,7 +119,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestPathRightChildPictureNonTrue()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
             mainComp.PathRightChildPicture = "cfgmighi";
@@ -142,7 +142,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestPathNoRightChildPictureNonTrue()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
             mainComp.PathWrongChildPicture = "cfgmighi";
@@ -153,7 +153,7 @@ namespace UnitTest
         [TestMethod]
         public void MainTestCaptchaPattern()
         {
-            var mainComp = new MainComp.MainComponent();
+            var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
             mainComp.CaptchaPattern = TypesOfImages.Face;

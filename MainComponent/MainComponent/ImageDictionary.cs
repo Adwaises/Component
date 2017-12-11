@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainComp
+namespace HumanVerification
 {
     public class ImageDictionary : Dictionary<Image, TypesOfImages>
     {
@@ -70,7 +70,7 @@ namespace MainComp
 
             //Image newImage = imgsNonType.Images[random.Next(0, imgsNonType.Images.Count - 1)];
             //Возвращает рандомный элемент из списка
-            return imgsNonType.Images[MainComponent.random.Next(0, imgsNonType.Images.Count - 1)];
+            return imgsNonType.Images[HumanVerification.random.Next(0, imgsNonType.Images.Count - 1)];
         }
 
         public List<Image> GetImageListFromPattern(TypesOfImages typeImg)

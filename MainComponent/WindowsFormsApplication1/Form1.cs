@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            if (mainComponent2.Result)
+            if (humanVerification1.Result)
             {
                 textBox1.Enabled = true;
             }

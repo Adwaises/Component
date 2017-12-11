@@ -65,9 +65,9 @@
       <Project>{03256a1b-fba6-4874-97ad-9be9053d5737}</Project>
       <Name>ChildComponent</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MainComponent\MainComponent.csproj">
+    <ProjectReference Include="..\MainComponent\HumanVerification.csproj">
       <Project>{222ef75f-96ae-4471-b901-375e68d737dd}</Project>
-      <Name>MainComponent</Name>
+      <Name>HumanVerification</Name>
     </ProjectReference>
     <ProjectReference Include="..\PrimaryComponent\PrimaryComponent.csproj">
       <Project>{bd812e40-532c-4520-b515-1c01a53abd00}</Project>

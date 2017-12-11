@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainComp
+namespace HumanVerification
 {
-    partial class MainComponent
+    partial class HumanVerification
     {
         /// <summary> 
         /// Требуется переменная конструктора.
@@ -41,7 +41,7 @@ namespace MainComp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainComponent));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HumanVerification));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.childComponent11 = new ChildComponent.ChildComponent();
