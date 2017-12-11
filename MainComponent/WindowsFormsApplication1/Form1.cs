@@ -22,15 +22,14 @@ namespace WindowsFormsApplication1
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            
-            //this.Container.Add(new ChildComponent.ChildComponent());
+
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click_2(object sender, EventArgs e)
         {
-            if(mainComponent1.Result)
+            if (mainComponent2.Result)
             {
                 textBox1.Enabled = true;
             }

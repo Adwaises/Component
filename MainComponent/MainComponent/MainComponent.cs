@@ -22,7 +22,6 @@ namespace MainComp
     public partial class MainComponent : UserControl
     {
         public static Random random = new Random();
-
         private PictureBox pictureBox = null;
         private List<ChildComponent.ChildComponent> childElemlist;
 
@@ -31,10 +30,21 @@ namespace MainComp
         private int errorNumber = 3;
         private int countNonCorrectChild = 3;
         private int countCorrectChild = 3;
+        private Color colorLine = Color.Blue;
+        private bool result = false;
+        private int minChildNumber = 1;
+        private int maxChildNumber = 7;
+
+        private string pathRightChildPicture = String.Empty;
+        private string pathWrongChildPicture = String.Empty;
 
         private static TypesOfImages typeImages = TypesOfImages.Face;
 
-        private Color colorLine = Color.Blue;
+
+        //Хранит все картинки для дочерних элементов
+        //вместе с их принадлежностью (из нумератора) 
+        //+ картинки для праймари компонента
+        ImageDictionary PatternImgResources = new ImageDictionary();
 
         public MainComponent()
         {
@@ -74,57 +84,12 @@ namespace MainComp
             Invalidate();
         }
 
-        //Хранит все картинки для дочерних элементов
-        //вместе с их принадлежностью (из нумератора) 
-        //+ картинки для праймари компонента
-        ImageDictionary PatternImgResources = new ImageDictionary();
 
-        //Свойство для выбора типа шаблона
-        [Category("Component"), Description("Current type images of component")]
-        public TypesOfImages CaptchaPattern
-        {
-            get
-            {
-                return typeImages;
-            }
-            set
-            {
-                typeImages = value;
-
-                //Загрузка картинок в зависимости от установленного TypesOfImages 
-                SetImagesFromType(typeImages);
-
-                Invalidate();
-            }
-        }
-
-        [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
-        public int CountCorrectChild
-        {
-            get
-            { return countCorrectChild; }
-            set
-            {
-                int oldCountCorrectChild = countCorrectChild;
-                if (value > 0 && value <= 4)
-                {
-                    countCorrectChild = value;
-                }
-
-                //Добавлять или удалять элементы?
-                if (oldCountCorrectChild < countCorrectChild)
-                {
-                    addChild(countCorrectChild - oldCountCorrectChild, true);
-                }
-                else
-                {
-                    deleteChild(oldCountCorrectChild - countCorrectChild, true);
-                }
-
-                Invalidate();
-            }
-        }
-
+        /// <summary>
+        /// загружает файлы из директории
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="accessory"></param>
         private void LoadFiles(string path, bool accessory)
         {
             if (!string.IsNullOrEmpty(path))
@@ -160,54 +125,9 @@ namespace MainComp
         }
 
 
-        private string pathWrongChildPicture = String.Empty;
-        [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
-        public string PathWrongChildPicture
-        {
-            get
-            { return pathWrongChildPicture; }
-            set
-            {
-                if (isPath(value))
-                {
-                    //Если путь верен отображаем картинки из папки
-                    pathWrongChildPicture = value;
-                    LoadFiles(pathWrongChildPicture, false);
-                }
-                else
-                {
-                    //Иначе - подгрузка из шаблонов
-                    pathWrongChildPicture = String.Empty;
-                    SetImagesFromType(typeImages);
-                }
-                Invalidate();
-            }
-        }
 
-        private string pathRightChildPicture = String.Empty;
-        [Category("ChildComponent"), Description("Specifies the path picture of right child component.")]
-        public string PathRightChildPicture
-        {
-            get
-            { return pathRightChildPicture; }
-            set
-            {
-                if (isPath(value))
-                {
-                    pathRightChildPicture = value;
-                    LoadFiles(pathRightChildPicture, true);
-                }
-                else
-                {
-                    pathRightChildPicture = String.Empty;
-                    SetImagesFromType(typeImages);
-                }
-
-                Invalidate();
-            }
-        }
         /// <summary>
-        /// Проверяет пстроку на путь
+        /// Проверяет строку на путь
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -287,8 +207,6 @@ namespace MainComp
             }
         }
 
-
-
         /// <summary>
         /// Метод удаления дочернего элемента с формы и листа
         /// </summary>
@@ -364,6 +282,10 @@ namespace MainComp
             }
         }
 
+        /// <summary>
+        /// метод, вощвращающий координату дочернего элемента
+        /// </summary>
+        /// <returns></returns>
         private Point RandomNewPoint()
         {
             Random rand = new Random();
@@ -387,7 +309,10 @@ namespace MainComp
             return point;
         }
 
-
+        /// <summary>
+        /// Переопределение метода отрисовки
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
             Pen pen = new Pen(colorLine, 3);
@@ -522,7 +447,7 @@ namespace MainComp
         }
         #endregion
         /// <summary>
-        /// Метод вывода подсказки
+        /// вызов подсказки
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -532,11 +457,19 @@ namespace MainComp
             toolTip1.IsBalloon = true;
         }
 
+        /// <summary>
+        /// вызов обновления компонента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             UpdateComponent();
         }
 
+        /// <summary>
+        /// Мето обновления компонента
+        /// </summary>
         private void UpdateComponent()
         {
             foreach (var elem in childElemlist)
@@ -560,7 +493,10 @@ namespace MainComp
             }
         }
 
-        //Проверяет завершена ли проверка
+        /// <summary>
+        /// Проверяет завершена ли проверка
+        /// </summary>
+        /// <returns></returns>
         private bool checkIsOver()
         {
             int onPrimaryComponent = 0;
@@ -580,7 +516,10 @@ namespace MainComp
             return false;
         }
 
-        //Проверяющий кол-во ошибок
+        /// <summary>
+        /// Проверяет кол-во ошибок
+        /// </summary>
+        /// <returns></returns>
         private bool checkError()
         {
             if (ErrorNumber < 2)
@@ -598,10 +537,58 @@ namespace MainComp
         /// Свойства дочернего компонента
         /// </summary>
 
+        //путь к директории не правильных дочерних элементов
+        [Category("ChildComponent"), Description("Specifies the path picture of no right child component.")]
+        public string PathWrongChildPicture
+        {
+            get
+            { return pathWrongChildPicture; }
+            set
+            {
+                if (isPath(value))
+                {
+                    //Если путь верен отображаем картинки из папки
+                    pathWrongChildPicture = value;
+                    LoadFiles(pathWrongChildPicture, false);
+                }
+                else
+                {
+                    //Иначе - подгрузка из шаблонов
+                    pathWrongChildPicture = String.Empty;
+                    SetImagesFromType(typeImages);
+                }
+                Invalidate();
+            }
+        }
+
+        //путь к директории для правильных дочерних элементов
+        [Category("ChildComponent"), Description("Specifies the path picture of right child component.")]
+        public string PathRightChildPicture
+        {
+            get
+            { return pathRightChildPicture; }
+            set
+            {
+                if (isPath(value))
+                {
+                    pathRightChildPicture = value;
+                    LoadFiles(pathRightChildPicture, true);
+                }
+                else
+                {
+                    pathRightChildPicture = String.Empty;
+                    SetImagesFromType(typeImages);
+                }
+
+                Invalidate();
+            }
+        }
 
         /// <summary>
         /// Свойства Главного компонента
         /// </summary>
+
+        //фон главного компонента
         [Category("PrimaryComponent"), Description("Specifies the background image of primary element.")]
         public Image BackgroundImagePrimary
         {
@@ -616,11 +603,32 @@ namespace MainComp
             }
         }
 
-
         /// <summary>
         /// Свойства основного коспонента
         /// </summary>
 
+        //Свойство для выбора типа шаблона
+        [Category("Component"), Description("Current type images of component")]
+        public TypesOfImages CaptchaPattern
+        {
+            get
+            {
+                return typeImages;
+            }
+            set
+            {
+                typeImages = value;
+
+                //Загрузка картинок в зависимости от установленного TypesOfImages 
+                SetImagesFromType(typeImages);
+
+                Invalidate();
+            }
+        }
+
+
+
+        // рандомит все элеметы
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool RandomLocationChild
@@ -637,6 +645,7 @@ namespace MainComp
             }
         }
 
+        //цвет отводки компонента
         [Category("Component"), Description("Specifies the color of line of component.")]
         public Color ColorLine
         {
@@ -649,6 +658,7 @@ namespace MainComp
             }
         }
 
+        //количество ошибок
         [Category("Component"), Description("Specifies the error number of component. Value from 1 to 10.")]
         public int ErrorNumber
         {
@@ -662,9 +672,35 @@ namespace MainComp
             }
         }
 
-        private int minChildNumber = 1;
-        private int maxChildNumber = 7;
+        //свойсво определяющее количество правильных дочерних элементов
+        [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
+        public int CountCorrectChild
+        {
+            get
+            { return countCorrectChild; }
+            set
+            {
+                int oldCountCorrectChild = countCorrectChild;
+                if (value > 0 && value <= 4)
+                {
+                    countCorrectChild = value;
+                }
 
+                //Добавлять или удалять элементы?
+                if (oldCountCorrectChild < countCorrectChild)
+                {
+                    addChild(countCorrectChild - oldCountCorrectChild, true);
+                }
+                else
+                {
+                    deleteChild(oldCountCorrectChild - countCorrectChild, true);
+                }
+
+                Invalidate();
+            }
+        }
+
+        //количество не правильных дочерних элементов
         [Category("Component"), Description("Specifies the number of child component. Value from 1 to 7.")]
         public int CountNonCorrectChild
         {
@@ -693,6 +729,7 @@ namespace MainComp
             }
         }
 
+        //помощь
         [Category("Component"), Description("Specifies the text help of component.")]
         [Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string TextHelp
@@ -707,8 +744,7 @@ namespace MainComp
             }
         }
 
-
-        private bool result = false;
+        //свойство результата (задать его может только сам компонент)
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Result
@@ -800,7 +836,7 @@ namespace MainComp
         #endregion
 
         #region DeleteEvents
-
+        //залоченные события
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler Paint
