@@ -150,7 +150,8 @@ namespace HumanVerification
         private void SetImagesFromType(TypesOfImages typeImg)
         {
             SetPrimaryAndBackgroundImage(typeImg);
-            SetChildsImages(typeImg);
+            SetChildsImages(typeImg,true);
+            SetChildsImages(typeImg,false);
         }
 
         //Set picture
@@ -177,28 +178,35 @@ namespace HumanVerification
 
         }
 
-        private void SetChildsImages(TypesOfImages typeImg)
+        private void SetChildsImages(TypesOfImages typeImg, bool accessory)
         {
             // Проход по всем картинкам и выборка изображений данного типа
             var newImageList = PatternImgResources.GetImageListFromPattern(typeImg);
 
             //Задает дочерним компонентам изображение из нового списка
             //Пока картинки есть и дочерние компоненты => делаем присваивание
-            int i = 0;
-            //Добавление подходящих компонентов
-            for (int p = 0; p < CountRightChild; p++)
-            {
-                childElemlist[i].BackgroundImage = newImageList[p];
-                i++;
-            }
-
-            //Добавление неправильных компонентов
-            for (int j = 0; j < CountWrongChild; j++)
-            {
-                childElemlist[i].BackgroundImage = PatternImgResources.GetRandomWrongImage(typeImages);
-                i++;
+            
+            if (accessory) {
+                int i = 0;
+                //Добавление подходящих компонентов
+                for (int p = 0; p < CountRightChild; p++)
+                {
+                    childElemlist[i].BackgroundImage = newImageList[p];
+                    i++;
+                }
+            } else if (!accessory) {
+                int i = countRightChild;
+                //Добавление неправильных компонентов
+                for (int j = 0; j < CountWrongChild; j++)
+                {
+                    childElemlist[i].BackgroundImage = PatternImgResources.GetRandomWrongImage(typeImages);
+                    i++;
+                }
             }
         }
+
+
+
 
         /// <summary>
         /// Метод удаления дочернего элемента с формы и листа
@@ -550,6 +558,7 @@ namespace HumanVerification
                     //Иначе - подгрузка из шаблонов
                     pathWrongChildPicture = String.Empty;
                     //SetImagesFromType(typeImages);
+                    SetChildsImages(typeImages, false);
                 }
                 Invalidate();
             }
@@ -573,6 +582,8 @@ namespace HumanVerification
                 {
                     pathRightChildPicture = String.Empty;
                     //SetImagesFromType(typeImages);
+                    SetChildsImages(typeImages, true);
+            
                 }
 
                 Invalidate();

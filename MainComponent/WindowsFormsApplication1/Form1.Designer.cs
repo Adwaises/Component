@@ -66,12 +66,12 @@
             this.humanVerification1.MaximumSize = new System.Drawing.Size(400, 180);
             this.humanVerification1.MinimumSize = new System.Drawing.Size(400, 180);
             this.humanVerification1.Name = "humanVerification1";
-            this.humanVerification1.PathRightChildPicture = "C:\\Users\\Sergey\\Documents\\PictureForCaptcha\\1";
-            this.humanVerification1.PathWrongChildPicture = "C:\\Users\\Sergey\\Documents\\PictureForCaptcha\\2";
+            this.humanVerification1.PathRightChildPicture = "";
+            this.humanVerification1.PathWrongChildPicture = "";
             this.humanVerification1.RandomLocationChild = false;
             this.humanVerification1.Size = new System.Drawing.Size(400, 180);
             this.humanVerification1.TabIndex = 3;
-            this.humanVerification1.TextHelp = "С помощью мыши перетащите элементы, чтобы собрать изображение лица";
+            this.humanVerification1.TextHelp = "Text\r\nhelp";
             // 
             // Form1
             // 
