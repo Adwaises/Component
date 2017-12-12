@@ -62,7 +62,7 @@
             this.humanVerification1.CountCorrectChild = 3;
             this.humanVerification1.CountNonCorrectChild = 3;
             this.humanVerification1.ErrorNumber = 3;
-            this.humanVerification1.Location = new System.Drawing.Point(12, 12);
+            this.humanVerification1.Location = new System.Drawing.Point(13, 13);
             this.humanVerification1.MaximumSize = new System.Drawing.Size(400, 180);
             this.humanVerification1.MinimumSize = new System.Drawing.Size(400, 180);
             this.humanVerification1.Name = "humanVerification1";

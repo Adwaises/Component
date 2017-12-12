@@ -11,7 +11,7 @@ using System.ComponentModel.Design;
 using EnvDTE;
 using EnvDTE80;
 
-public enum TypesOfImages { Face, Refrigerator, Flower, Custom }
+public enum TypesOfImages { Face, Refrigerator, Flower }
 
 namespace HumanVerification
 {
@@ -89,9 +89,9 @@ namespace HumanVerification
         /// <param name="accessory"></param>
         private void LoadFiles(string path, bool accessory)
         {
-            if (!string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
                 return;
-
+           
             List<string> PathChildFace = new List<string>();
 
             //а это метод который тащит все существующие файлы из директории
@@ -130,8 +130,9 @@ namespace HumanVerification
         /// <returns></returns>
         private bool isPath(string str)
         {
-            if (String.IsNullOrEmpty(str) && str.Length > 2)
+            if (!String.IsNullOrEmpty(str) && str.Length > 2)
             {
+               
                 if (!str.Substring(1, 2).Equals(":\\"))
                 {
                     MessageBox.Show("Неверно указан путь");
@@ -173,12 +174,7 @@ namespace HumanVerification
                 this.BackgroundImage = PatternImgResources.BackgroundFlower;
                 TextHelp = "С помощью мыши перетащите всё цветы в вазу";
             }
-            else if (typeImg == TypesOfImages.Custom)
-            {
-                primaryComponent1.BackgroundImage = PatternImgResources.primaryCustomImg;
-                this.BackgroundImage = PatternImgResources.BackgroundFace;
-                TextHelp = "Делайте что хотите. Мне пофигу";
-            }
+
         }
 
         private void SetChildsImages(TypesOfImages typeImg)
@@ -542,6 +538,7 @@ namespace HumanVerification
             { return pathWrongChildPicture; }
             set
             {
+               
                 if (isPath(value))
                 {
                     //Если путь верен отображаем картинки из папки
@@ -568,6 +565,7 @@ namespace HumanVerification
             {
                 if (isPath(value))
                 {
+                    
                     pathRightChildPicture = value;
                     LoadFiles(pathRightChildPicture, true);
                 }
@@ -728,7 +726,6 @@ namespace HumanVerification
 
         //помощь
         [Category("Component"), Description("Specifies the text help of component.")]
-        //[Editor(typeof(System.ComponentModel.Design.MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
         public string TextHelp
         {
             get
