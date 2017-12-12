@@ -1,5 +1,21 @@
-# Component
-The component is a captcha that helps protect the application from spammers.
-The component is a ready-made software product ready for use. The component can be embedded into the application and used to test users.
-The component consist of several elements, among which one main and several children. When you drag an item, it checks the compatibility of the child element with the main one and displays the result.
-The component is a graphical mini-game with an intuitive interface.
+# Компонент
+Компонент представляет собой капчу, которая помогает защитить приложение от спамеров. Компонент представляет собой графическую мини-игру с интуитивно понятным интерфейсом.
+Компонент представляет собой готовый программный продукт, готовый к использованию. Компонент может быть встроен в приложение и использоваться для тестирования пользователей.
+Компонент состоит из нескольких элементов, среди которых один основной и несколько дочерних. Проверка заключается в перетаскивании правильных дочерних элементов на главный элемент.
+Возможности пользователя:
+•	Перетащить дочерний элемент на главный с помощью мыши
+•	Посмотреть справку
+•	Визуально увидеть ошибки
+•	Обновить компонент (сбросить прогресс)
+•	Пройти проверку
+Свойства:
+•	BackgroundImage: загрузка собственного изображения на фон компонента
+•	BackgroundImagePrimary: изменение изображения главного компонента с помощью свойства  
+•	CaptchaPattern (Face, Refrigerator, Flower): изменение локации
+•	ColorLine: изменение цвета обводки компонента
+•	CountRightChild: изменение количества правильных дочерних элементов
+•	CountWrongChild: изменение количества не правильных дочерних элементов
+•	ErrorNumber: изменение количества возможно допустимых ошибок
+•	PathRightChildPicture: загрузка собственных изображений на правильные дочерние элементы
+•	PathWrongChildPicture: загрузка собственных изображений на не правильные дочерние элементы
+•	TextHelp: изменение справки по работе с компонентом для пользователя 
