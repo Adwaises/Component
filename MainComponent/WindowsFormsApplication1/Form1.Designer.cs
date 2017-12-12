@@ -62,7 +62,7 @@
             this.humanVerification1.CountRightChild = 3;
             this.humanVerification1.CountWrongChild = 3;
             this.humanVerification1.ErrorNumber = 3;
-            this.humanVerification1.Location = new System.Drawing.Point(13, 13);
+            this.humanVerification1.Location = new System.Drawing.Point(12, 12);
             this.humanVerification1.MaximumSize = new System.Drawing.Size(400, 180);
             this.humanVerification1.MinimumSize = new System.Drawing.Size(400, 180);
             this.humanVerification1.Name = "humanVerification1";
@@ -71,7 +71,7 @@
             this.humanVerification1.RandomLocationChild = false;
             this.humanVerification1.Size = new System.Drawing.Size(400, 180);
             this.humanVerification1.TabIndex = 3;
-            this.humanVerification1.TextHelp = "Text\r\nhelp";
+            this.humanVerification1.TextHelp = "С помощью мыши перетащите элементы, чтобы собрать изображение лица";
             // 
             // Form1
             // 

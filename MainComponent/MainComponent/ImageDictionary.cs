@@ -15,19 +15,16 @@ namespace HumanVerification
         public Image primaryFace { get; set; }
         public Image primaryRefriger { get; set; }
         public Image primaryFlower { get; set; }
-        //public Image primaryCustomImg { get; set; }
 
         public Image BackgroundFace { get; set; }
         public Image BackgroundRefriger { get; set; }
         public Image BackgroundFlower { get; set; }
-       // public Image BackgroundCustom { get; set; }
 
         public ImageDictionary()
         {
             BackgroundFace = Resources.backgroundFace;
             BackgroundRefriger = Resources.backgroundRefriger;
             BackgroundFlower = Resources.backgroundFlower;
-            //BackgroundCustom = null;
 
             primaryFace = Resources.face;
             primaryFlower = Resources.vase;

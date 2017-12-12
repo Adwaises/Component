@@ -69,7 +69,7 @@ namespace HumanVerification
             ToPosition(this.primaryComponent1);
 
             //Загрузка картинок в зависимости от установленного TypesOfImages 
-            //SetImagesFromType(typeImages);
+            SetImagesFromType(typeImages);
 
             //После загрузки - перемещение
             childElemlist.Reverse();
@@ -185,7 +185,6 @@ namespace HumanVerification
 
             //Задает дочерним компонентам изображение из нового списка
             //Пока картинки есть и дочерние компоненты => делаем присваивание
-            
             if (accessory) {
                 int i = 0;
                 //Добавление подходящих компонентов
