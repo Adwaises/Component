@@ -69,7 +69,7 @@ namespace HumanVerification
             ToPosition(this.primaryComponent1);
 
             //Загрузка картинок в зависимости от установленного TypesOfImages 
-            SetImagesFromType(typeImages);
+            //SetImagesFromType(typeImages);
 
             //После загрузки - перемещение
             childElemlist.Reverse();
@@ -549,7 +549,7 @@ namespace HumanVerification
                 {
                     //Иначе - подгрузка из шаблонов
                     pathWrongChildPicture = String.Empty;
-                    SetImagesFromType(typeImages);
+                    //SetImagesFromType(typeImages);
                 }
                 Invalidate();
             }
@@ -572,7 +572,7 @@ namespace HumanVerification
                 else
                 {
                     pathRightChildPicture = String.Empty;
-                    SetImagesFromType(typeImages);
+                    //SetImagesFromType(typeImages);
                 }
 
                 Invalidate();
