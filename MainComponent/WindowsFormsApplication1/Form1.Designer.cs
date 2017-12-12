@@ -59,8 +59,8 @@
             this.humanVerification1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("humanVerification1.BackgroundImagePrimary")));
             this.humanVerification1.CaptchaPattern = TypesOfImages.Face;
             this.humanVerification1.ColorLine = System.Drawing.Color.Blue;
-            this.humanVerification1.CountCorrectChild = 3;
-            this.humanVerification1.CountNonCorrectChild = 3;
+            this.humanVerification1.CountRightChild = 3;
+            this.humanVerification1.CountWrongChild = 3;
             this.humanVerification1.ErrorNumber = 3;
             this.humanVerification1.Location = new System.Drawing.Point(13, 13);
             this.humanVerification1.MaximumSize = new System.Drawing.Size(400, 180);

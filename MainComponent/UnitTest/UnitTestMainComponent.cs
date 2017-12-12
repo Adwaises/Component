@@ -54,9 +54,9 @@ namespace UnitTest
             var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
-            mainComp.CountNonCorrectChild = 5;
+            mainComp.CountWrongChild = 5;
 
-            Assert.AreEqual(5, mainComp.CountNonCorrectChild);
+            Assert.AreEqual(5, mainComp.CountWrongChild);
         }
 
         [TestMethod]
@@ -64,10 +64,10 @@ namespace UnitTest
         {
             var mainComp = new HumanVerification.HumanVerification();
 
-            var num = mainComp.CountNonCorrectChild;
-            mainComp.CountNonCorrectChild = 51;
+            var num = mainComp.CountWrongChild;
+            mainComp.CountWrongChild = 51;
 
-            Assert.AreEqual(num, mainComp.CountNonCorrectChild);
+            Assert.AreEqual(num, mainComp.CountWrongChild);
         }
 
         [TestMethod]
@@ -76,9 +76,9 @@ namespace UnitTest
             var mainComp = new HumanVerification.HumanVerification();
 
             //var num = mainComp.CountNonCorrectChild;
-            mainComp.CountCorrectChild = 3;
+            mainComp.CountRightChild = 3;
 
-            Assert.AreEqual(3, mainComp.CountCorrectChild);
+            Assert.AreEqual(3, mainComp.CountRightChild);
         }
 
         [TestMethod]
@@ -86,10 +86,10 @@ namespace UnitTest
         {
             var mainComp = new HumanVerification.HumanVerification();
 
-            var num = mainComp.CountCorrectChild;
-            mainComp.CountCorrectChild = 51;
+            var num = mainComp.CountRightChild;
+            mainComp.CountRightChild = 51;
 
-            Assert.AreEqual(num, mainComp.CountCorrectChild);
+            Assert.AreEqual(num, mainComp.CountRightChild);
         }
 
         

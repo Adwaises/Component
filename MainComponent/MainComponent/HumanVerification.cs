@@ -25,8 +25,8 @@ namespace HumanVerification
         //переменные основного компонента
         private string textHelp = "Text\r\nhelp";
         private int errorNumber = 3;
-        private int countNonCorrectChild = 3;
-        private int countCorrectChild = 3;
+        private int countWrongChild = 3;
+        private int countRightChild = 3;
         private Color colorLine = Color.Blue;
         private bool result = false;
         private int minChildNumber = 1;
@@ -186,14 +186,14 @@ namespace HumanVerification
             //Пока картинки есть и дочерние компоненты => делаем присваивание
             int i = 0;
             //Добавление подходящих компонентов
-            for (int p = 0; p < CountCorrectChild; p++)
+            for (int p = 0; p < CountRightChild; p++)
             {
                 childElemlist[i].BackgroundImage = newImageList[p];
                 i++;
             }
 
             //Добавление неправильных компонентов
-            for (int j = 0; j < CountNonCorrectChild; j++)
+            for (int j = 0; j < CountWrongChild; j++)
             {
                 childElemlist[i].BackgroundImage = PatternImgResources.GetRandomWrongImage(typeImages);
                 i++;
@@ -501,7 +501,7 @@ namespace HumanVerification
                 }
             }
 
-            if (onPrimaryComponent == countCorrectChild)
+            if (onPrimaryComponent == countRightChild)
             {
                 return true;
             }
@@ -669,26 +669,26 @@ namespace HumanVerification
 
         //свойсво определяющее количество правильных дочерних элементов
         [Category("Component"), Description("Specifies the number of right child component. Value from 1 to 4.")]
-        public int CountCorrectChild
+        public int CountRightChild
         {
             get
-            { return countCorrectChild; }
+            { return countRightChild; }
             set
             {
-                int oldCountCorrectChild = countCorrectChild;
+                int oldCountCorrectChild = countRightChild;
                 if (value > 0 && value <= 4)
                 {
-                    countCorrectChild = value;
+                    countRightChild = value;
                 }
 
                 //Добавлять или удалять элементы?
-                if (oldCountCorrectChild < countCorrectChild)
+                if (oldCountCorrectChild < countRightChild)
                 {
-                    addChild(countCorrectChild - oldCountCorrectChild, true);
+                    addChild(countRightChild - oldCountCorrectChild, true);
                 }
                 else
                 {
-                    deleteChild(oldCountCorrectChild - countCorrectChild, true);
+                    deleteChild(oldCountCorrectChild - countRightChild, true);
                 }
 
                 Invalidate();
@@ -697,27 +697,27 @@ namespace HumanVerification
 
         //количество не правильных дочерних элементов
         [Category("Component"), Description("Specifies the number of child component. Value from 1 to 7.")]
-        public int CountNonCorrectChild
+        public int CountWrongChild
         {
             get
-            { return countNonCorrectChild; }
+            { return countWrongChild; }
             set
             {
                 //Мин-Макс проверка
-                int lastNum = countNonCorrectChild;
+                int lastNum = countWrongChild;
                 if (value >= minChildNumber && value <= maxChildNumber)
                 {
-                    countNonCorrectChild = value;
+                    countWrongChild = value;
                 }
 
-                if (countNonCorrectChild > lastNum)
+                if (countWrongChild > lastNum)
                 {
                     //Аргумент - сколько новых нужно // Добавление неподходящих картинок
-                    addChild(countNonCorrectChild - lastNum, false);
+                    addChild(countWrongChild - lastNum, false);
                 }
-                else if (lastNum > countNonCorrectChild)
+                else if (lastNum > countWrongChild)
                 {
-                    deleteChild(lastNum - countNonCorrectChild, false);
+                    deleteChild(lastNum - countWrongChild, false);
                 }
 
                 Invalidate();
