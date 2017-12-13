@@ -33,7 +33,7 @@ if (humanVerification1.Result)
 ###	`BackgroundImagePrimary`
 Позволяет измененять изображение главного компонента.
 ###	`CaptchaPattern`
-Позволяет изменять локацию (Face, Refrigerator, Flower).
+Позволяет выбирать шаблоны для капчи (Face, Refrigerator, Flower).
 ###	`ColorLine`
 Позволяет изменять цвет обводки компонента.
 ###	`CountRightChild`
