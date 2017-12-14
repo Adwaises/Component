@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.humanVerification1 = new HumanVerification.HumanVerification();
             this.SuspendLayout();
             // 
@@ -42,22 +41,12 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 1;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(476, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
-            // 
             // humanVerification1
             // 
             this.humanVerification1.BackColor = System.Drawing.SystemColors.Control;
             this.humanVerification1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("humanVerification1.BackgroundImage")));
             this.humanVerification1.BackgroundImagePrimary = ((System.Drawing.Image)(resources.GetObject("humanVerification1.BackgroundImagePrimary")));
-            this.humanVerification1.CaptchaPattern = TypesOfImages.Face;
+            this.humanVerification1.CaptchaPattern = TypesOfImages.Refrigerator;
             this.humanVerification1.ColorLine = System.Drawing.Color.Blue;
             this.humanVerification1.CountRightChild = 3;
             this.humanVerification1.CountWrongChild = 3;
@@ -69,15 +58,18 @@
             this.humanVerification1.PathRightChildPicture = "";
             this.humanVerification1.PathWrongChildPicture = "";
             this.humanVerification1.RandomLocationChild = false;
+            this.humanVerification1.ShowMessageBox = false;
             this.humanVerification1.Size = new System.Drawing.Size(400, 180);
             this.humanVerification1.TabIndex = 3;
-            this.humanVerification1.TextHelp = "С помощью мыши перетащите элементы, чтобы собрать изображение лица";
+            this.humanVerification1.TextHelp = "С помощью мыши перетащите всё продукты в холодильник";
+            this.humanVerification1.GoodResultEvent += new System.EventHandler(this.humanVerification1_ResultEvent);
+            this.humanVerification1.BadResultEvent += new System.EventHandler(this.humanVerification1_BadResultEvent);
+            this.humanVerification1.ErrorEvent += new System.EventHandler(this.humanVerification1_ErrorEvent);
             // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(673, 299);
             this.Controls.Add(this.humanVerification1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -90,7 +82,6 @@
 
         private HumanVerification.HumanVerification mainComponent1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
         private HumanVerification.HumanVerification humanVerification1;
     }
 }

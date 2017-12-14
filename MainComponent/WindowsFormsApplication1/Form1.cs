@@ -29,10 +29,24 @@ namespace WindowsFormsApplication1
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            if (humanVerification1.Result)
-            {
+
+        }
+
+        private void humanVerification1_ResultEvent(object sender, EventArgs e)
+        {
+            
                 textBox1.Enabled = true;
-            }
+           
+        }
+
+        private void humanVerification1_BadResultEvent(object sender, EventArgs e)
+        {
+            MessageBox.Show("Совершено более трех ошибок");
+        }
+
+        private void humanVerification1_ErrorEvent(object sender, EventArgs e)
+        {
+            MessageBox.Show("Совершена ошибка");
         }
     }
 }

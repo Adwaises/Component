@@ -32,8 +32,14 @@ namespace HumanVerification
         private int minChildNumber = 1;
         private int maxChildNumber = 7;
 
+        private bool showMessageBox = true;
+
         private string pathRightChildPicture = String.Empty;
         private string pathWrongChildPicture = String.Empty;
+
+        private event EventHandler goodResultEvent;
+        private event EventHandler badResultEvent;
+        private event EventHandler errorEvent;
 
         private static TypesOfImages typeImages = TypesOfImages.Face;
 
@@ -374,8 +380,10 @@ namespace HumanVerification
 
                         if (checkIsOver())
                         {
-                            MessageBox.Show("Проверка окончена");
+                            if (showMessageBox) 
+                                MessageBox.Show("Проверка окончена");
                             result = true;
+                            goodResultEvent(this,new EventArgs());
                             //это пока
                             Enabled = false;
                             //надо как то вернуть значение истины!
@@ -385,12 +393,16 @@ namespace HumanVerification
                     {
                         if (checkError())
                         {
-                            MessageBox.Show("Вы допустили слишком много ошибок");
+                            if (showMessageBox)
+                                MessageBox.Show("Вы допустили слишком много ошибок");
+                            badResultEvent(this, new EventArgs());
                             Enabled = false;
                         }
                         else
                         {
-                            MessageBox.Show("Ошибка! Всё заново!");
+                            if (showMessageBox)
+                                MessageBox.Show("Ошибка! Всё заново!");
+                            errorEvent(this, new EventArgs());
                             errorNumber--;
                             UpdateComponent();
                             (control as ChildComponent.ChildComponent).RandomLocation = true;
@@ -531,7 +543,7 @@ namespace HumanVerification
         }
 
 
-        #region Property and events
+        #region Property
 
         /// <summary>
         /// Свойства дочернего компонента
@@ -611,6 +623,20 @@ namespace HumanVerification
         /// <summary>
         /// Свойства основного коспонента
         /// </summary>
+        //отображать MesBox
+        [Category("Component"), Description("Show or not MessageBox message")]
+        public bool ShowMessageBox
+        {
+            get
+            {
+                return showMessageBox;
+            }
+
+            set
+            {
+                showMessageBox = value;
+            }
+        }
 
         //Свойство для выбора типа шаблона
         [Category("Component"), Description("Current type images of component")]
@@ -706,7 +732,7 @@ namespace HumanVerification
         }
 
         //количество не правильных дочерних элементов
-        [Category("Component"), Description("Specifies the number of child component. Value from 1 to 7.")]
+        [Category("Component"), Description("Specifies the number of wrong child component. Value from 1 to 7.")]
         public int CountWrongChild
         {
             get
@@ -835,11 +861,35 @@ namespace HumanVerification
         }
 
 
+
+
         // скрываем события
 
         #endregion
 
-        #region DeleteEvents
+        #region Events
+
+        [Category("Component"), Description("Event on good captcha result")]
+        public event EventHandler GoodResultEvent
+        {
+            add { goodResultEvent += value; }
+            remove { goodResultEvent -= value; }
+        }
+        [Category("Component"), Description("Event on bad captcha result")]
+        public event EventHandler BadResultEvent
+        {
+            add { badResultEvent += value; }
+            remove { badResultEvent -= value; }
+        }
+
+        [Category("Component"), Description("Event on error captcha")]
+        public event EventHandler ErrorEvent
+        {
+            add { errorEvent += value; }
+            remove { errorEvent -= value; }
+        }
+
+       
         //залоченные события
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
