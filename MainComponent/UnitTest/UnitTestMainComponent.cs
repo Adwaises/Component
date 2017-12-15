@@ -7,15 +7,6 @@ namespace UnitTest
     [TestClass]
     public class UnitTestMainComponent
     {
-        //[TestMethod]
-        //public void TestBackgroundImage()
-        //{
-        //    var mainComp = new MainComp.MainComponent();
-
-        //    mainComp.BackgroundImage = null;
-
-        //    Assert.AreEqual(null, mainComp.BackgroundImage);
-        //}
 
         [TestMethod]
         public void MainTestColorLine()
@@ -52,8 +43,7 @@ namespace UnitTest
         public void MainTestCountNonCorrectChild()
         {
             var mainComp = new HumanVerification.HumanVerification();
-
-            //var num = mainComp.CountNonCorrectChild;
+            
             mainComp.CountWrongChild = 5;
 
             Assert.AreEqual(5, mainComp.CountWrongChild);
@@ -74,8 +64,7 @@ namespace UnitTest
         public void MainTestCountCorrectChild()
         {
             var mainComp = new HumanVerification.HumanVerification();
-
-            //var num = mainComp.CountNonCorrectChild;
+            
             mainComp.CountRightChild = 3;
 
             Assert.AreEqual(3, mainComp.CountRightChild);
@@ -97,54 +86,29 @@ namespace UnitTest
         public void MainTestTextHelp()
         {
             var mainComp = new HumanVerification.HumanVerification();
-
-            //var num = mainComp.CountNonCorrectChild;
+            
             mainComp.TextHelp = "HEEEELLLPPPP";
 
             Assert.AreEqual("HEEEELLLPPPP", mainComp.TextHelp);
         }
 
 
-        //[TestMethod]
-        //public void MainTestPathRightChildPicture()
-        //{
-        //    var mainComp = new MainComp.MainComponent();
-
-        //    //var num = mainComp.CountNonCorrectChild;
-        //    mainComp.PathRightChildPicture = "C:\\Users";
-
-        //    Assert.AreEqual("C:\\Users", mainComp.PathRightChildPicture);
-        //}
-
         [TestMethod]
         public void MainTestPathRightChildPictureNonTrue()
         {
             var mainComp = new HumanVerification.HumanVerification();
-
-            //var num = mainComp.CountNonCorrectChild;
+            
             mainComp.PathRightChildPicture = "cfgmighi";
 
             Assert.AreEqual("", mainComp.PathRightChildPicture);
         }
 
 
-        //[TestMethod]
-        //public void MainTestPathNoRightChildPicture()
-        //{
-        //    var mainComp = new MainComp.MainComponent();
-
-        //    //var num = mainComp.CountNonCorrectChild;
-        //    mainComp.PathWrongChildPicture = "C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg";
-
-        //    Assert.AreEqual("C:\\Users\\Andrey\\source\\repos\\RepoComponent\\MainComponent\\MainComponent\\Resources\\FaceImg", mainComp.PathWrongChildPicture);
-        //}
-
         [TestMethod]
         public void MainTestPathNoRightChildPictureNonTrue()
         {
             var mainComp = new HumanVerification.HumanVerification();
-
-            //var num = mainComp.CountNonCorrectChild;
+            
             mainComp.PathWrongChildPicture = "cfgmighi";
 
             Assert.AreEqual("", mainComp.PathWrongChildPicture);
@@ -154,8 +118,7 @@ namespace UnitTest
         public void MainTestCaptchaPattern()
         {
             var mainComp = new HumanVerification.HumanVerification();
-
-            //var num = mainComp.CountNonCorrectChild;
+            
             mainComp.CaptchaPattern = TypesOfImages.Face;
 
             Assert.AreEqual(TypesOfImages.Face, mainComp.CaptchaPattern);

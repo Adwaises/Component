@@ -29,13 +29,5 @@ namespace UnitTest
 
             Assert.AreNotEqual(img, null);
         }
-
-        //[TestMethod]
-        //public void FindNewCorrectImage()
-        //{
-        //    ImageDictionary imgDict = new ImageDictionary();
-        //    var img = imgDict.FindNewCorrectImage(TypesOfImages.Flower, );
-
-        //}
     }
 }
